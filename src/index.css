@@ -1,0 +1,109 @@
+@import "tailwindcss";
+
+@theme {
+  --color-hajj-alabaster: #F9F6F0;
+  --color-hajj-green: #0A3622;
+  --color-hajj-gold: #D4AF37;
+  --color-hajj-navy: #1B263B;
+  
+  --font-sans: "Inter", ui-sans-serif, system-ui, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji";
+  --font-arabic: "Amiri", serif;
+}
+
+@font-face {
+  font-family: 'Inter';
+  src: url('/fonts/Inter.ttf') format('truetype');
+  font-weight: 100 900;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: 'Amiri';
+  src: url('/fonts/Amiri.ttf') format('truetype');
+  font-weight: normal;
+  font-style: normal;
+}
+
+html,
+body {
+  height: 100dvh;
+  width: 100%;
+  margin: 0;
+  padding: 0;
+  background-color: #0A3622; /* Our Deep Forest Green fallback */
+  overscroll-behavior-y: none; /* Disables the pull-to-refresh bounce */
+  overflow: hidden;
+}
+
+#root {
+  height: 100dvh;
+  width: 100%;
+  max-width: 450px; /* Standard mobile width for desktop viewing */
+  margin: 0 auto;
+  position: relative;
+  overflow: hidden;
+  background-color: var(--color-hajj-alabaster);
+  overscroll-behavior-y: none;
+}
+
+@layer base {
+  body {
+    background-color: var(--color-hajj-alabaster);
+    color: var(--color-hajj-navy);
+    font-family: var(--font-sans);
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    overflow: hidden; /* Prevent body scroll, use drawer scroll */
+    position: fixed; /* Extra precaution for mobile bounce/scroll */
+    inset: 0;
+  }
+}
+
+@layer utilities {
+  .safe-pb {
+    padding-bottom: env(safe-area-inset-bottom);
+  }
+  .safe-pt {
+    padding-top: env(safe-area-inset-top);
+  }
+}
+
+/* Premium Custom Scrollbars (Ascensor Bar styling to match components) */
+::-webkit-scrollbar {
+  width: 6px;
+  height: 6px;
+}
+
+::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+/* Light mode scrollbar thumb */
+::-webkit-scrollbar-thumb {
+  background: rgba(10, 54, 34, 0.15); /* Muted Hajj Green */
+  border-radius: 999px;
+  transition: background-color 0.2s ease;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: rgba(10, 54, 34, 0.4); /* Highlighted Hajj Green */
+}
+
+/* Dark mode scrollbar thumb using .dark class on html root */
+.dark ::-webkit-scrollbar-thumb {
+  background: rgba(212, 175, 55, 0.25); /* Muted Hajj Gold */
+}
+
+.dark ::-webkit-scrollbar-thumb:hover {
+  background: rgba(212, 175, 55, 0.6); /* Highlighted Hajj Gold */
+}
+
+/* Firefox compatibility styling */
+* {
+  scrollbar-width: thin;
+  scrollbar-color: rgba(10, 54, 34, 0.15) transparent;
+}
+
+.dark * {
+  scrollbar-color: rgba(212, 175, 55, 0.25) transparent;
+}

@@ -1,0 +1,218 @@
+{
+  "ihram": {
+    "en": {
+      "term": "Ihram",
+      "definition": "The sacred state of ritual purity that every pilgrim must enter before performing Hajj or Umrah. Men wear two seamless white garments; women dress modestly in their normal attire. While in Ihram, a pilgrim must avoid cutting hair or nails, using perfume, sexual relations, hunting, and certain other prohibited acts."
+    },
+    "ar": {
+      "term": "الإحرام",
+      "definition": "الحالة المقدسة من الطهارة الطقوسية التي يجب على كل حاج الدخول فيها قبل أداء الحج أو العمرة. يرتدي الرجال ثوبين أبيضين غير مخيطين، بينما ترتدي المرأة لباسها المعتاد المحتشم. خلال الإحرام، يجب على الحاج تجنب قص الشعر والأظافر، واستخدام العطور، والعلاقات الزوجية، والصيد، وغيرها من المحظورات."
+    },
+    "tr": {
+      "term": "İhram",
+      "definition": "Her hacının Hac veya Umre yapmadan önce girmesi gereken kutsal ritüel saflık hali. Erkekler dikişsiz iki beyaz örtü giyer; kadınlar normal mütevazı kıyafetlerini giyerler. İhramdayken hacı; saç ve tırnak kesmekten, koku kullanmaktan, cinsel ilişkiden, avlanmaktan ve diğer yasaklardan kaçınmak zorundadır."
+    },
+    "sq": {
+      "term": "Ihrami",
+      "definition": "Gjendja e shenjtë e pastërtisë rituale që çdo haxhi duhet të hyjë para kryerjes së Haxhit ose Umres. Burrat veshin dy rroba të bardha pa qepëse; gratë veshin veshjen e tyre normale modeste. Gjatë Ihramit, haxhiu duhet të shmangë prerjen e flokëve apo thonjve, përdorimin e parfumit, marrëdhëniet seksuale, gjuetinë dhe veprimet e tjera të ndaluara."
+    }
+  },
+  "tawaf": {
+    "en": {
+      "term": "Tawaf",
+      "definition": "The act of circumambulating (walking in circles around) the Kaaba seven times in a counterclockwise direction. Tawaf is one of the most central rituals of Hajj and symbolizes the unity of believers in their worship of Allah. Each circuit begins and ends at the Black Stone (Hajar al-Aswad)."
+    },
+    "ar": {
+      "term": "الطواف",
+      "definition": "فعل الطواف (السير في دوائر حول) الكعبة المشرفة سبع مرات عكس اتجاه عقارب الساعة. الطواف هو أحد أهم شعائر الحج ويرمز إلى وحدة المؤمنين في عبادتهم لله. يبدأ كل شوط وينتهي عند الحجر الأسود (حجر الأسود)."
+    },
+    "tr": {
+      "term": "Tavaf",
+      "definition": "Kâbe'nin etrafında saat yönünün tersine yedi kez dönme (dolaşma) eylemi. Tavaf, Hac'ın en merkezi ritüellerinden biridir ve Allah'a ibadette inananların birliğini simgeler. Her tur, Hacerü'l-Esved'de (Kara Taş) başlar ve biter."
+    },
+    "sq": {
+      "term": "Tavafi",
+      "definition": "Akti i rrotullimit (ecjes në rrathë) rreth Qabes shtatë herë në drejtim kundër akrepave të sahatit. Tavafi është një nga ritualet më qendrore të Haxhit dhe simbolizon unitetin e besimtarëve në adhurimin e tyre ndaj Allahut. Çdo rreth fillon dhe mbaron te Guri i Zi (Hajar al-Aswad)."
+    }
+  },
+  "sai": {
+    "en": {
+      "term": "Sa'i",
+      "definition": "The ritual of walking seven times between the hills of Safa and Marwah, commemorating Hajar's desperate search for water for her infant son Ismail. Each one-way journey between the two hills counts as one lap. Sa'i is performed after Tawaf and is obligatory for Hajj and Umrah."
+    },
+    "ar": {
+      "term": "السعي",
+      "definition": "طقس المشي سبع مرات بين تلتَي الصفا والمروة، إحياءً لذكرى بحث هاجر اليائس عن الماء لابنها الرضيع إسماعيل. كل رحلة أحادية الاتجاه بين التلتين تُحسب شوطاً واحداً. يُؤدَّى السعي بعد الطواف وهو واجب في الحج والعمرة."
+    },
+    "tr": {
+      "term": "Sa'y",
+      "definition": "Hacer'in bebeği İsmail için su arama çabasını anmak amacıyla Safa ve Merve tepeleri arasında yedi kez yürüme ritüeli. İki tepe arasındaki her tek yönlü yolculuk bir tur sayılır. Sa'y, Tavaf'tan sonra yapılır ve Hac ile Umre için zorunludur."
+    },
+    "sq": {
+      "term": "Sajiu",
+      "definition": "Rituali i ecjes shtatë herë ndërmjet kodrave të Safas dhe Merves, duke kujtuar kërkimin e dëshpëruar të Haxheres për ujë për djalin e saj të vogël Ismailin. Çdo udhëtim njëdrejtimësh ndërmjet dy kodrave numërohet si një rrethrrotullim. Sajiu kryhet pas Tavafi dhe është i detyrueshëm për Haxhin dhe Umren."
+    }
+  },
+  "wuquf": {
+    "en": {
+      "term": "Wuquf",
+      "definition": "The 'Standing' at the plain of Arafat on the 9th of Dhul Hijjah — the single most important pillar of Hajj. Pilgrims gather from Dhuhr until sunset, engaged in supplication, repentance, and remembrance of Allah. The Prophet ﷺ said: 'Hajj is Arafat.' Missing Wuquf invalidates the entire Hajj."
+    },
+    "ar": {
+      "term": "الوقوف",
+      "definition": "الوقوف في سهل عرفات في اليوم التاسع من ذي الحجة — وهو الركن الأهم والأعظم في الحج. يجتمع الحجاج من صلاة الظهر حتى غروب الشمس، مشغولين بالدعاء والتوبة وذكر الله. قال النبي ﷺ: 'الحج عرفة'. ومن فاته الوقوف بطل حجه."
+    },
+    "tr": {
+      "term": "Vakfe",
+      "definition": "Zilhicce'nin 9. günü Arafat ovasında 'Duruş' — Hac'ın tek en önemli rüknü. Hacılar öğleden güneş batımına kadar dua, tövbe ve Allah'ın zikriyle meşgul olarak toplanır. Peygamber ﷺ şöyle buyurdu: 'Hac Arafat'tır.' Vakfe'yi kaçırmak tüm Hac'ı geçersiz kılar."
+    },
+    "sq": {
+      "term": "Vakja e Arafatit",
+      "definition": "Qëndrimi në fushën e Arafatit më 9 Dhul Hixhxhe — shtylla e vetme më e rëndësishme e Haxhit. Haxhilerët mblidhen nga koha e Drekës deri në perëndim të diellit, të angazhuar në lutje, pendim dhe kujtimin e Allahut. Profeti ﷺ tha: 'Haxhi është Arafati.' Mungesa e Vakjes e bën Haxhin të pavlefshëm."
+    }
+  },
+  "muzdalifah": {
+    "en": {
+      "term": "Muzdalifah",
+      "definition": "An open plain between Arafat and Mina where pilgrims spend the night after Wuquf (the 9th of Dhul Hijjah). Here they pray Maghrib and Isha combined, collect 49–70 pebbles for the Rami ritual, sleep under the open sky, and pray Fajr before proceeding to Mina."
+    },
+    "ar": {
+      "term": "مزدلفة",
+      "definition": "سهل مفتوح بين عرفات ومنى حيث يقضي الحجاج الليل بعد الوقوف (في التاسع من ذي الحجة). هنا يجمعون بين صلاتَي المغرب والعشاء، ويجمعون 49 إلى 70 حصاة لشعيرة الرمي، وينامون تحت السماء المفتوحة، ويصلون الفجر قبل التوجه إلى منى."
+    },
+    "tr": {
+      "term": "Müzdelife",
+      "definition": "Arafat ile Mina arasında hacıların Vakfe'den sonra geceyi geçirdiği açık bir ova (Zilhicce'nin 9'u). Burada Akşam ve Yatsı namazlarını birleştirerek kılarlar, Rami ritüeli için 49–70 çakıl taşı toplarlar, açık gökyüzü altında uyurlar ve Mina'ya geçmeden önce Sabah namazını kılarlar."
+    },
+    "sq": {
+      "term": "Muzdelifeja",
+      "definition": "Një fushë e hapur ndërmjet Arafatit dhe Minasë ku haxhilerët kalojnë natën pas Vakjes (më 9 Dhul Hixhxhe). Këtu ata falin Akshamin dhe Jacinë bashkuar, mbledhin 49–70 gurë për ritualin e Ramit, flenë nën qiellin e hapur dhe falin Sabahun para se të vazhdojnë drejt Minasë."
+    }
+  },
+  "rami": {
+    "en": {
+      "term": "Rami",
+      "definition": "The ritual stoning of the three Jamarat pillars at Mina, symbolizing the rejection of Shaytan (the devil) and commemorating Ibrahim's act of stoning the devil when he appeared to tempt him. Pilgrims throw 7 pebbles at each of the three pillars over several days (10th, 11th, 12th, and optionally 13th of Dhul Hijjah)."
+    },
+    "ar": {
+      "term": "الرمي",
+      "definition": "رمي الجمرات الثلاث في منى رمزاً لرفض الشيطان، وتخليداً لذكرى فعل إبراهيم حين ظهر له الشيطان ليغريه. يرمي الحجاج 7 حصيات على كل جمرة من الجمرات الثلاث على مدار أيام عدة (10 و11 و12، واختيارياً 13 من ذي الحجة)."
+    },
+    "tr": {
+      "term": "Remi",
+      "definition": "Mina'daki üç Cemre sütununa taş atma ritüeli; Şeytan'ı (iblis) reddetmeyi simgeler ve İbrahim'in ona ayartmaya çalıştığında şeytanı taşlamasını anmak için yapılır. Hacılar birkaç gün boyunca (Zilhicce'nin 10, 11, 12 ve isteğe bağlı 13. günleri) üç sütunun her birine 7 çakıl taşı atar."
+    },
+    "sq": {
+      "term": "Remia (Hedhja e gurëve)",
+      "definition": "Rituali i gjuajtjes me gurë të tre shtyllave të Xhemeratit në Minë, duke simbolizuar refuzimin e Shejtanit (djallit) dhe duke kujtuar aktin e Ibrahimit kur gjuajti shejtan kur u shfaq për ta tunduar. Haxhilerët hedhin 7 gurë te secila prej tre shtyllave gjatë disa ditëve (10, 11, 12, dhe opsionalisht 13 Dhul Hixhxhe)."
+    }
+  },
+  "kaaba": {
+    "en": {
+      "term": "Kaaba",
+      "definition": "The cube-shaped structure at the center of Masjid al-Haram in Mecca, Islam's most sacred site. Muslims worldwide face the Kaaba during prayer. It was first built by Prophet Ibrahim and his son Ismail as a house of worship for Allah. The black cloth covering it is called the Kiswah."
+    },
+    "ar": {
+      "term": "الكعبة",
+      "definition": "البناء المكعب الشكل الواقع في قلب المسجد الحرام في مكة المكرمة، وهو أقدس مكان في الإسلام. يتجه المسلمون حول العالم نحو الكعبة خلال الصلاة. بناها النبي إبراهيم وابنه إسماعيل بيتاً لعبادة الله. ويُسمى الغطاء الأسود الذي يكسوها بالكسوة."
+    },
+    "tr": {
+      "term": "Kâbe",
+      "definition": "Mekke'deki Mescid-i Haram'ın merkezinde yer alan küp şeklindeki yapı, İslam'ın en kutsal mekânıdır. Dünya genelindeki Müslümanlar namaz sırasında Kâbe'ye yönelir. Hz. İbrahim ve oğlu İsmail tarafından Allah'a ibadet evi olarak inşa edilmiştir. Onu örten siyah örtüye Kisve denir."
+    },
+    "sq": {
+      "term": "Qabeja",
+      "definition": "Struktura në formë kubi në qendër të Xhamisë së Haramit në Mekë, vendi më i shenjtë i Islamit. Muslimanët në të gjithë botën i drejtohen Qabesë gjatë namazit. Ajo u ndërtua fillimisht nga Profeti Ibrahim dhe djali i tij Ismaili si një shtëpi adhurimi për Allahun. Mbulesë e zezë që e mbron quhet Kisve."
+    }
+  },
+  "mina": {
+    "en": {
+      "term": "Mina",
+      "definition": "A valley approximately 8 km east of Mecca where pilgrims spend the days of Tashreeq (11th, 12th, and optionally 13th of Dhul Hijjah). Mina contains the Jamarat pillars for the stoning ritual and is filled with thousands of air-conditioned tents for the pilgrims. It is often called the 'City of Tents.'"
+    },
+    "ar": {
+      "term": "منى",
+      "definition": "واد يبعد نحو 8 كيلومترات شرق مكة المكرمة، يقضي فيه الحجاج أيام التشريق (الحادي عشر والثاني عشر، واختيارياً الثالث عشر من ذي الحجة). تحتوي منى على جمرات الرمي، وتمتلئ بآلاف الخيام المكيفة للحجاج. وكثيراً ما تُعرف بـ'مدينة الخيام'."
+    },
+    "tr": {
+      "term": "Mina",
+      "definition": "Mekke'nin yaklaşık 8 km doğusunda yer alan, hacıların Teşrik günlerini (Zilhicce'nin 11, 12 ve isteğe bağlı 13. günleri) geçirdiği bir vadi. Mina, taşlama ritüeli için Cemre sütunlarını barındırır ve hacılar için binlerce klimadlı çadırla doludur. Sıklıkla 'Çadırlar Şehri' olarak anılır."
+    },
+    "sq": {
+      "term": "Mina",
+      "definition": "Një luginë rreth 8 km në lindje të Mekës ku haxhilerët kalojnë ditët e Tashrikut (11, 12, dhe opsionalisht 13 Dhul Hixhxhe). Mina përmban shtyllat e Xhemeratit për ritualin e gjuajtjes me gurë dhe është mbushur me mijëra çadra të klimatizuara për haxhilerët. Shpesh quhet 'Qyteti i Çadrave'."
+    }
+  },
+  "zamzam": {
+    "en": {
+      "term": "Zamzam",
+      "definition": "The sacred well inside Masjid al-Haram, just a few meters from the Kaaba. Its water miraculously appeared to Hajar when she searched desperately for water for her infant son Ismail. The well has been flowing for over 4,000 years. Drinking Zamzam water is a Sunnah during Hajj, and pilgrims may take it home."
+    },
+    "ar": {
+      "term": "زمزم",
+      "definition": "البئر المقدسة داخل المسجد الحرام، على بعد أمتار قليلة من الكعبة المشرفة. ظهر ماؤها بصورة معجزية لهاجر حين كانت تبحث يائسةً عن الماء لرضيعها إسماعيل. وقد ظلت تتدفق منذ أكثر من 4000 عام. شرب ماء زمزم سنة مؤكدة خلال الحج، ويجوز للحجاج أخذه معهم."
+    },
+    "tr": {
+      "term": "Zemzem",
+      "definition": "Mescid-i Haram içinde, Kâbe'den yalnızca birkaç metre uzaklıkta yer alan kutsal kuyu. Suyu, Hacer'in bebeği İsmail için çaresizce su aradığında mucizevi biçimde ortaya çıkmıştır. Kuyu 4.000 yılı aşkın süredir akmaktadır. Zemzem suyu içmek Hac sırasında sünnettir ve hacılar onu eve götürebilir."
+    },
+    "sq": {
+      "term": "Zemzemi",
+      "definition": "Pusi i shenjtë brenda Xhamisë së Haramit, vetëm disa metra nga Qabeja. Uji i tij u shfaq mrekullisht Haxheres kur ajo kërkoi me dëshpërim ujë për djalin e saj të vogël Ismailin. Pusi ka rrjedhur për mbi 4,000 vjet. Pirja e ujit të Zemzemit është Sunet gjatë Haxhit dhe haxhilerët mund ta marrin atë në shtëpi."
+    }
+  },
+  "nahr": {
+    "en": {
+      "term": "Nahr (Hady)",
+      "definition": "The ritual sacrifice of a livestock animal (sheep, goat, cow, or camel) on Eid al-Adha (10th of Dhul Hijjah), commemorating Ibrahim's willingness to sacrifice his son. For Tamattu and Qiran pilgrims, this sacrifice (called Hady) is obligatory. The meat is distributed to the poor."
+    },
+    "ar": {
+      "term": "النحر (الهدي)",
+      "definition": "ذبح حيوان أليف (خروف أو ماعز أو بقرة أو جمل) يوم عيد الأضحى (العاشر من ذي الحجة)، إحياءً لذكرى استعداد إبراهيم لذبح ابنه. وهذا الذبح (المسمى بالهدي) واجب على حجاج التمتع والقران. ويُوزَّع اللحم على الفقراء."
+    },
+    "tr": {
+      "term": "Nahr (Hedy)",
+      "definition": "İbrahim'in oğlunu kurban etmeye olan istekliliğini anmak için Kurban Bayramı'nda (Zilhicce'nin 10'u) bir çiftlik hayvanının (koyun, keçi, inek veya deve) ritüel kurban edilmesi. Temettü ve Kıran hacıları için bu kurban (Hedy olarak adlandırılır) zorunludur. Et, yoksullara dağıtılır."
+    },
+    "sq": {
+      "term": "Nahri (Hady)",
+      "definition": "Kurbanimi ritual i një kafshe shtëpiake (dele, dhi, lopë ose deve) në Eid al-Adha (10 Dhul Hixhxhe), duke kujtuar gatishmërinë e Ibrahimit për të flijuar djalin e tij. Për haxhilerët Tamattu dhe Kiran, ky kurban (i quajtur Hady) është i detyrueshëm. Mishi shpërndahet tek të varfërit."
+    }
+  },
+  "halq": {
+    "en": {
+      "term": "Halq / Taqsir",
+      "definition": "The ritual shaving (Halq) or shortening (Taqsir) of hair that marks the exit from the state of Ihram. Men may either shave their heads completely (preferred) or shorten their hair significantly. Women are only required to cut a fingertip's length of hair. This act is performed after the Nahr sacrifice on the 10th of Dhul Hijjah."
+    },
+    "ar": {
+      "term": "الحلق / التقصير",
+      "definition": "حلق الرأس (الحلق) أو تقصير الشعر (التقصير) الذي يُعدّ علامةً على الخروج من حالة الإحرام. للرجال الخيار بين حلق الرأس بالكامل (وهو الأفضل) أو تقصير الشعر بشكل ملحوظ. أما المرأة فيكتفي بقص قدر أنملة من شعرها. يُؤدَّى هذا الفعل بعد ذبح الهدي في العاشر من ذي الحجة."
+    },
+    "tr": {
+      "term": "Tıraş / Taksir",
+      "definition": "İhram halinden çıkışı simgeleyen saç tıraşı (Halq) veya kısaltma (Taksir) ritüeli. Erkekler ya başlarını tamamen traş edebilir (tercih edilen) ya da saçlarını önemli ölçüde kısaltabilir. Kadınların yalnızca parmak ucu kadar saç kesmesi gerekir. Bu eylem, Zilhicce'nin 10'unda Nahr kurbanından sonra yapılır."
+    },
+    "sq": {
+      "term": "Halkji / Taksiri",
+      "definition": "Rroja rituale (Halki) ose shkurtimi (Taksiri) i flokëve që shënon daljen nga gjendja e Ihramit. Burrat mund të rruan kokat plotësisht (e preferueshme) ose të shkurtojnë flokët ndjeshëm. Gratë kërkohet vetëm të presin sa gjatësia e majës së gishtit. Ky akt kryhet pas kurbanit të Nahrit më 10 Dhul Hixhxhe."
+    }
+  },
+  "masjidAlHaram": {
+    "en": {
+      "term": "Masjid al-Haram",
+      "definition": "The Grand Mosque in Mecca, the largest mosque in the world and the holiest site in Islam. It surrounds the Kaaba and accommodates millions of worshippers. All Tawaf rituals take place within its precincts. Prayers offered here are rewarded 100,000 times more than prayers offered elsewhere."
+    },
+    "ar": {
+      "term": "المسجد الحرام",
+      "definition": "المسجد الجامع في مكة المكرمة، أكبر مسجد في العالم وأقدس مكان في الإسلام. يحيط بالكعبة المشرفة ويستوعب الملايين من المصلين. تُقام جميع شعائر الطواف في رحابه. والصلاة فيه تعادل مئة ألف صلاة في غيره."
+    },
+    "tr": {
+      "term": "Mescid-i Haram",
+      "definition": "Mekke'deki Ulu Cami, dünyanın en büyük camisi ve İslam'ın en kutsal mekânıdır. Kâbe'yi çevreler ve milyonlarca ibadeti ağırlar. Tüm Tavaf ritüelleri onun sınırları içinde gerçekleşir. Burada kılınan namazlar, başka yerlerde kılınan namazlardan 100.000 kat daha fazla sevap getirir."
+    },
+    "sq": {
+      "term": "Xhamia e Haramit",
+      "definition": "Xhamia e Madhe në Mekë, xhamia më e madhe në botë dhe vendi më i shenjtë në Islam. Ajo rrethon Qabenë dhe strehon miliona besimtarë. Të gjitha ritualet e Tavafi bëhen brenda territorit të saj. Namazi i falur këtu shpërblihet 100,000 herë më shumë se namazi i falur gjetkë."
+    }
+  }
+}
