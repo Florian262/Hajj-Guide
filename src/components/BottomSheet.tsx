@@ -442,7 +442,7 @@ const BottomSheet: React.FC = () => {
             {chapterLabels[currentStage.chapter]?.[language] ?? ''}
           </span>
           <h2 className={`text-xl font-bold tracking-tight transition-colors duration-500 ${isDark ? 'text-hajj-gold' : 'text-hajj-green'}`}>
-            Step {currentStage.stepNumber} — {currentStage.title}
+            {language === 'ar' ? 'الخطوة' : language === 'tr' ? 'Adım' : language === 'sq' ? 'Hapi' : 'Step'} {currentStageIndex + 1} — {currentStage.title}
           </h2>
           <p className={`text-sm font-medium transition-colors duration-500 ${isDark ? 'text-hajj-alabaster/60' : 'text-hajj-navy/60'}`}>
             {currentStage.location}

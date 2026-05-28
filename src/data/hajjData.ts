@@ -737,6 +737,7 @@ export const hajjData: HajjData = {
   },
   {
     "id": "step-05-hair-clip",
+    "hajjTypeFilter": ["tamattu"],
     "chapter": 1,
     "stepNumber": 5,
     "title": "التحلل من العمرة — قص الشعر",
@@ -760,6 +761,7 @@ export const hajjData: HajjData = {
   },
   {
     "id": "step-06-rest",
+    "hajjTypeFilter": ["tamattu"],
     "chapter": 1,
     "stepNumber": 6,
     "title": "الاستراحة والعبادة بمكة",
@@ -1251,6 +1253,7 @@ export const hajjData: HajjData = {
   },
   {
     "id": "step-05-hair-clip",
+    "hajjTypeFilter": ["tamattu"],
     "chapter": 1,
     "stepNumber": 5,
     "title": "Tıraş Olma ve İhramdan Çıkış",
@@ -1274,6 +1277,7 @@ export const hajjData: HajjData = {
   },
   {
     "id": "step-06-rest",
+    "hajjTypeFilter": ["tamattu"],
     "chapter": 1,
     "stepNumber": 6,
     "title": "Mekke'de İbadet ve Dinlenme",
