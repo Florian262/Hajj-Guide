@@ -107,3 +107,65 @@ body {
 .dark * {
   scrollbar-color: rgba(212, 175, 55, 0.25) transparent;
 }
+
+/* ─── Splash Screen Animations ─────────────────────────────────────────── */
+
+/* The metallic gold "grating" shimmer sweep — GPU only (background-position) */
+@keyframes shimmer-sweep {
+  0%   { background-position: 200% center; }
+  100% { background-position: -200% center; }
+}
+
+/* Soft breathe/pulse for the logo ring */
+@keyframes logo-breathe {
+  0%, 100% { opacity: 0.6; transform: scale(1); }
+  50%       { opacity: 1;   transform: scale(1.04); }
+}
+
+/* Staggered fade+rise for the greeting text */
+@keyframes greeting-rise {
+  0%   { opacity: 0; transform: translateY(14px); }
+  100% { opacity: 1; transform: translateY(0); }
+}
+
+/* The shimmer class applied to the logo text / SVG */
+.splash-shimmer {
+  background: linear-gradient(
+    105deg,
+    #b8902a 20%,
+    #fffbe6 42%,
+    #f5d97a 50%,
+    #fffbe6 58%,
+    #b8902a 80%
+  );
+  background-size: 300% auto;
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+  animation: shimmer-sweep 2s linear infinite;
+  will-change: background-position;
+}
+
+.splash-logo-ring {
+  animation: logo-breathe 2.8s ease-in-out infinite;
+  will-change: opacity, transform;
+}
+
+.splash-greeting {
+  animation: greeting-rise 0.9s cubic-bezier(0.22, 1, 0.36, 1) both;
+  animation-delay: 0.55s;
+  will-change: opacity, transform;
+}
+
+.splash-sub {
+  animation: greeting-rise 0.9s cubic-bezier(0.22, 1, 0.36, 1) both;
+  animation-delay: 0.85s;
+  will-change: opacity, transform;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .splash-shimmer       { animation: none; -webkit-text-fill-color: #D4AF37; }
+  .splash-logo-ring     { animation: none; }
+  .splash-greeting      { animation: none; opacity: 1; }
+  .splash-sub           { animation: none; opacity: 1; }
+}

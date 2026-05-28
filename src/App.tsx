@@ -104,6 +104,9 @@ const App: React.FC = () => {
   const [touchEnd, setTouchEnd] = useState<number | null>(null);
   const [isMouseDown, setIsMouseDown] = useState(false);
   
+  // Splash Screen State — shown for exactly 3 seconds (2.5s display + 0.5s exit)
+  const [showSplash, setShowSplash] = useState(true);
+
   // Synth and Onboarding States
   const synthRef = useRef<SanctuarySynth | null>(null);
   const [isSoundOn, setIsSoundOn] = useState(false);
@@ -112,6 +115,14 @@ const App: React.FC = () => {
 
   // Minimum swipe distance (in px)
   const minSwipeDistance = 50;
+
+  // Splash screen lifecycle: hide after 2500ms (Framer Motion exit takes 500ms → total 3s)
+  useEffect(() => {
+    const timer = setTimeout(() => setShowSplash(false), 2500);
+    // Safety fallback: force hide after 4.5s even if something blocks React
+    const safety = setTimeout(() => setShowSplash(false), 4500);
+    return () => { clearTimeout(timer); clearTimeout(safety); };
+  }, []);
 
   // Initialize Synth
   useEffect(() => {
@@ -199,6 +210,140 @@ const App: React.FC = () => {
         handleEnd();
       }}
     >
+      {/* ── Premium Animated Greeting Splash Screen ─────────────────── */}
+      <AnimatePresence>
+        {showSplash && (
+          <motion.div
+            key="splash"
+            initial={{ opacity: 1 }}
+            animate={{ opacity: 1 }}
+            exit={{ opacity: 0, scale: 1.04 }}
+            transition={{ duration: 0.5, ease: 'easeInOut' }}
+            className="absolute inset-0 z-[1000] flex flex-col items-center justify-center bg-[#030f07] select-none"
+            style={{ willChange: 'opacity, transform' }}
+          >
+            {/* Radial ambient glow behind the logo */}
+            <div
+              className="absolute inset-0 pointer-events-none"
+              style={{
+                background:
+                  'radial-gradient(ellipse 55% 42% at 50% 46%, rgba(212,175,55,0.13) 0%, transparent 70%)',
+              }}
+            />
+
+            {/* ── Logo Mark ── */}
+            <div className="splash-logo-ring relative flex items-center justify-center mb-8">
+              {/* Outer glow ring */}
+              <div
+                className="absolute rounded-full"
+                style={{
+                  width: 148,
+                  height: 148,
+                  background:
+                    'radial-gradient(circle, rgba(212,175,55,0.18) 0%, transparent 72%)',
+                  filter: 'blur(8px)',
+                }}
+              />
+              {/* Kaaba SVG with shimmer fill */}
+              <svg
+                width="96"
+                height="96"
+                viewBox="0 0 96 96"
+                fill="none"
+                xmlns="http://www.w3.org/2000/svg"
+                aria-hidden="true"
+              >
+                {/* Gradient definition for SVG shimmer */}
+                <defs>
+                  <linearGradient id="kaaba-gold" x1="0%" y1="0%" x2="100%" y2="0%">
+                    <stop offset="0%"   stopColor="#b8902a" />
+                    <stop offset="40%"  stopColor="#f5d97a" />
+                    <stop offset="50%"  stopColor="#fffbe6" />
+                    <stop offset="60%"  stopColor="#f5d97a" />
+                    <stop offset="100%" stopColor="#b8902a" />
+                    <animateTransform
+                      attributeName="gradientTransform"
+                      type="translate"
+                      from="-2 0"
+                      to="2 0"
+                      dur="2s"
+                      repeatCount="indefinite"
+                    />
+                  </linearGradient>
+                  <linearGradient id="band-gold" x1="0%" y1="0%" x2="100%" y2="0%">
+                    <stop offset="0%"   stopColor="#7a5c10" />
+                    <stop offset="50%"  stopColor="#D4AF37" />
+                    <stop offset="100%" stopColor="#7a5c10" />
+                  </linearGradient>
+                </defs>
+
+                {/* Outer circle frame */}
+                <circle cx="48" cy="48" r="46" stroke="url(#kaaba-gold)" strokeWidth="1.5" strokeDasharray="6 4" opacity="0.5" />
+
+                {/* Kaaba body */}
+                <rect x="22" y="30" width="52" height="46" rx="2" fill="url(#kaaba-gold)" opacity="0.12" />
+                <rect x="22" y="30" width="52" height="46" rx="2" stroke="url(#kaaba-gold)" strokeWidth="2" />
+
+                {/* Kiswah golden band */}
+                <rect x="22" y="46" width="52" height="7" fill="url(#band-gold)" opacity="0.55" />
+                <line x1="22" y1="46" x2="74" y2="46" stroke="url(#kaaba-gold)" strokeWidth="1" />
+                <line x1="22" y1="53" x2="74" y2="53" stroke="url(#kaaba-gold)" strokeWidth="1" />
+
+                {/* Door */}
+                <rect x="40" y="55" width="16" height="21" rx="1" stroke="url(#kaaba-gold)" strokeWidth="1.5" fill="none" />
+                <rect x="40" y="55" width="16" height="21" rx="1" fill="url(#kaaba-gold)" opacity="0.08" />
+
+                {/* Kaaba top arch shadow line */}
+                <line x1="22" y1="30" x2="74" y2="30" stroke="url(#kaaba-gold)" strokeWidth="1.5" opacity="0.4" />
+
+                {/* Crescent moon top */}
+                <path
+                  d="M48 10 C44 14, 44 22, 48 26 C42 24, 38 18, 40 12 C42 8, 48 10 48 10Z"
+                  fill="url(#kaaba-gold)"
+                  opacity="0.85"
+                />
+                {/* Star */}
+                <circle cx="53" cy="15" r="1.5" fill="url(#kaaba-gold)" opacity="0.75" />
+              </svg>
+            </div>
+
+            {/* ── Brand Name with shimmer ── */}
+            <p
+              className="splash-shimmer text-[11px] font-black uppercase tracking-[0.45em] mb-6"
+              style={{ fontFamily: 'Inter, sans-serif' }}
+            >
+              Hajj Way
+            </p>
+
+            {/* ── The Sacred Greeting ── */}
+            <div className="flex flex-col items-center gap-2 px-8 text-center">
+              <p
+                className="splash-greeting splash-shimmer text-[22px] leading-snug"
+                style={{ fontFamily: 'Amiri, serif', letterSpacing: '0.02em' }}
+              >
+                السَّلَامُ عَلَيْكُمْ وَرَحْمَةُ اللهِ وَبَرَكَاتُهُ
+              </p>
+              <p
+                className="splash-sub text-[13px] font-medium tracking-wide"
+                style={{ color: 'rgba(212,175,55,0.65)', fontFamily: 'Inter, sans-serif' }}
+              >
+                Selam Aleykum ve Rahmetullahi ve Berekatuhu
+              </p>
+            </div>
+
+            {/* Bottom shimmer line */}
+            <div
+              className="absolute bottom-12 left-1/2 -translate-x-1/2"
+              style={{
+                width: 64,
+                height: 1,
+                background: 'linear-gradient(90deg, transparent, rgba(212,175,55,0.5), transparent)',
+              }}
+            />
+          </motion.div>
+        )}
+      </AnimatePresence>
+
       <BackgroundViewer />
       
       {/* Header Overlay */}
