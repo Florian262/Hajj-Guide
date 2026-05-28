@@ -46,6 +46,17 @@ const calculateBearing = (lat1: number, lon1: number, lat2: number, lon2: number
   return (brng + 360) % 360; // bearing in degrees
 };
 
+const getStepGender = (stepText: string): 'male' | 'female' | 'both' => {
+  const text = stepText.toLowerCase();
+  if (text.startsWith('men:') || text.startsWith('man:') || text.startsWith('الرجال:') || text.startsWith('erkekler:') || text.startsWith('burrat:')) {
+    return 'male';
+  }
+  if (text.startsWith('women:') || text.startsWith('woman:') || text.startsWith('النساء:') || text.startsWith('kadınlar:') || text.startsWith('gratë:')) {
+    return 'female';
+  }
+  return 'both';
+};
+
 const BottomSheet: React.FC = () => {
   const { 
     currentStageIndex, 
@@ -83,6 +94,7 @@ const BottomSheet: React.FC = () => {
   // States
   const [playingDuaIndex, setPlayingDuaIndex] = useState<number | null>(null);
   const [isGuideOpen, setIsGuideOpen] = useState(false);
+  const [isMensesDrawerOpen, setIsMensesDrawerOpen] = useState(false);
   const [showConfetti, setShowConfetti] = useState(false);
   const [confettiMessage, setConfettiMessage] = useState(false);
 
@@ -377,6 +389,22 @@ const BottomSheet: React.FC = () => {
           <canvas ref={canvasRef} className="absolute inset-0 z-50 pointer-events-none w-full h-full" />
         )}
 
+        {/* Floating Menses Assistant Button for Women */}
+        {profile.gender === 'female' && isDrawerOpen && (
+          <motion.button
+            initial={{ scale: 0, opacity: 0 }}
+            animate={{ scale: 1, opacity: 1 }}
+            exit={{ scale: 0, opacity: 0 }}
+            whileHover={{ scale: 1.05 }}
+            whileTap={{ scale: 0.95 }}
+            onClick={(e) => { e.stopPropagation(); setIsMensesDrawerOpen(true); }}
+            className="absolute top-5 right-5 z-40 w-10 h-10 rounded-full flex items-center justify-center border shadow-lg cursor-pointer focus:outline-none bg-rose-50 border-rose-200 text-rose-500 shadow-rose-200/20 dark:bg-rose-950/40 dark:border-rose-900/40 dark:text-rose-400 dark:shadow-none"
+            title="Menses Assistant"
+          >
+            <span className="text-base select-none">🌸</span>
+          </motion.button>
+        )}
+
         {/* Milestone Achievement Notification Banner */}
         <AnimatePresence>
           {confettiMessage && (
@@ -586,18 +614,39 @@ const BottomSheet: React.FC = () => {
                 {language === 'ar' ? 'المناسك والخطوات' : language === 'tr' ? 'Yolculuk Adımları' : language === 'sq' ? 'Hapat e Udhëtimit' : 'The Journey'}
               </h3>
               <ul className="space-y-4">
-                {currentStage.details.steps.map((step, i) => (
-                  <li key={i} className="flex gap-4 items-start">
-                    <span className={`flex-shrink-0 w-6 h-6 rounded-full text-xs flex items-center justify-center font-bold transition-all duration-500 ${
-                      isDark ? 'bg-hajj-gold text-hajj-green' : 'bg-hajj-green text-hajj-alabaster'
-                    }`}>
-                      {i + 1}
-                    </span>
-                    <span className={`transition-colors duration-500 ${isDark ? 'text-hajj-alabaster/90' : 'text-hajj-navy/90'}`}>
-                      {step}
-                    </span>
-                  </li>
-                ))}
+                {currentStage.details.steps.map((step, i) => {
+                  const stepGender = getStepGender(step);
+                  const isOpposite = stepGender !== 'both' && profile.gender !== stepGender;
+                  const isMatching = stepGender !== 'both' && profile.gender === stepGender;
+
+                  let liClass = "flex gap-4 items-start transition-all duration-500 ";
+                  if (isOpposite) {
+                    liClass += "opacity-25 blur-[0.2px] hover:opacity-50 hover:blur-none";
+                  } else if (isMatching) {
+                    liClass += isDark 
+                      ? `p-3.5 rounded-2xl border ${stepGender === 'female' ? 'bg-rose-950/10 border-rose-900/30' : 'bg-emerald-950/10 border-emerald-900/30'}`
+                      : `p-3.5 rounded-2xl border ${stepGender === 'female' ? 'bg-rose-50/50 border-rose-200/50' : 'bg-emerald-50/50 border-emerald-200/50'}`;
+                  }
+
+                  return (
+                    <li key={i} className={liClass}>
+                      <span className={`flex-shrink-0 w-6 h-6 rounded-full text-xs flex items-center justify-center font-bold transition-all duration-500 ${
+                        isMatching
+                          ? (stepGender === 'female' ? 'bg-rose-400 text-white shadow-sm shadow-rose-400/25' : 'bg-emerald-500 text-white shadow-sm shadow-emerald-500/25')
+                          : (isDark ? 'bg-hajj-gold text-hajj-green' : 'bg-hajj-green text-hajj-alabaster')
+                      }`}>
+                        {isMatching ? (stepGender === 'female' ? '🌸' : '👞') : (i + 1)}
+                      </span>
+                      <span className={`text-sm leading-relaxed transition-colors duration-500 ${
+                        isMatching
+                          ? (stepGender === 'female' ? (isDark ? 'text-rose-200' : 'text-rose-900') : (isDark ? 'text-emerald-200' : 'text-emerald-900'))
+                          : (isDark ? 'text-hajj-alabaster/90' : 'text-hajj-navy/90')
+                      }`}>
+                        {step}
+                      </span>
+                    </li>
+                  );
+                })}
               </ul>
             </section>
 
@@ -1010,6 +1059,23 @@ const BottomSheet: React.FC = () => {
                   </section>
                 )}
 
+                {/* Special Rules for Women Section */}
+                {profile.gender === 'female' && currentStage.scholarlyGuide.mensesRules && (
+                  <section className={`p-6 rounded-3xl border transition-all duration-500 space-y-4 ${
+                    isDark 
+                      ? 'bg-rose-950/20 border-rose-800/30 text-rose-200/90 shadow-[0_0_20px_rgba(244,63,94,0.05)]' 
+                      : 'bg-rose-50/70 border-rose-200/50 text-rose-900 shadow-sm shadow-rose-100/30'
+                  }`}>
+                    <h4 className="text-rose-400 font-black text-xs uppercase tracking-widest border-b border-rose-400/20 pb-2 flex items-center gap-2 select-none">
+                      <span>🌸</span>
+                      {language === 'ar' ? 'أحكام خاصة بالمرأة' : language === 'tr' ? 'Kadınlara Özel Hükümler' : language === 'sq' ? 'Rregulla të veçanta për Gratë' : 'Special Rules for Women'}
+                    </h4>
+                    <div className="text-xs leading-relaxed font-medium space-y-3.5 whitespace-pre-line">
+                      {renderTextWithTerms(currentStage.scholarlyGuide.mensesRules)}
+                    </div>
+                  </section>
+                )}
+
                 {/* Did You Know? Interesting Fact Banner (Break up Fiqh and Hacks) */}
                 {currentStage.scholarlyGuide.interestingFact && (
                   <div className={`p-5 rounded-[28px] border transition-all duration-500 flex flex-col space-y-2 relative overflow-hidden select-none ${
@@ -1052,6 +1118,159 @@ const BottomSheet: React.FC = () => {
               </div>
             )}
           </motion.div>
+        )}
+      </AnimatePresence>
+
+      {/* 🌸 Menses Assistant Overlay Drawer */}
+      <AnimatePresence>
+        {isMensesDrawerOpen && (
+          <>
+            {/* Backdrop */}
+            <motion.div
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 1 }}
+              exit={{ opacity: 0 }}
+              onClick={() => setIsMensesDrawerOpen(false)}
+              className="absolute inset-0 z-55 bg-black/60 backdrop-blur-sm w-full max-w-[450px] mx-auto rounded-t-[32px]"
+            />
+            {/* Drawer Container */}
+            <motion.div
+              initial={{ y: '100%' }}
+              animate={{ y: 0 }}
+              exit={{ y: '100%' }}
+              transition={{ type: 'spring', damping: 25, stiffness: 200 }}
+              className={`absolute inset-x-0 bottom-0 z-55 w-full max-w-[450px] mx-auto rounded-t-[32px] border-t flex flex-col overflow-hidden transition-colors duration-500 ${
+                isDark 
+                  ? 'bg-[#0b0406]/95 border-rose-950/40 text-rose-100 shadow-[0_-15px_45px_rgba(0,0,0,0.8)]' 
+                  : 'bg-rose-50/95 border-rose-200/60 text-rose-950 shadow-2xl'
+              }`}
+              style={{ height: '75dvh' }}
+              onScroll={(e) => e.stopPropagation()}
+            >
+              {/* Drag Handle Area */}
+              <div className="w-full py-4 flex flex-col items-center cursor-pointer flex-shrink-0" onClick={() => setIsMensesDrawerOpen(false)}>
+                <div className={`w-12 h-1.5 rounded-full mb-1 ${isDark ? 'bg-rose-900/30' : 'bg-rose-200'}`} />
+              </div>
+
+              {/* Header */}
+              <div className="px-6 pb-4 flex items-center justify-between border-b border-rose-200/25 flex-shrink-0">
+                <div className="flex items-center gap-2">
+                  <span className="text-xl">🌸</span>
+                  <div>
+                    <h3 className="text-base font-black tracking-tight text-rose-400">
+                      {language === 'ar' ? 'مساعد الأحكام للمرأة' : language === 'tr' ? 'Kadın Özel Haller Rehberi' : language === 'sq' ? 'Asistenti i Rregullave për Gratë' : 'Menses Assistant'}
+                    </h3>
+                    <p className="text-[10px] font-bold opacity-60 uppercase tracking-widest mt-0.5">
+                      {language === 'ar' ? 'الفقه واليسر في الحج' : language === 'tr' ? 'Kolaylık & Fıkıh Rehberi' : language === 'sq' ? 'Lehtësimi & Fikhu në Haxh' : 'Ease & Fiqh Guidelines'}
+                    </p>
+                  </div>
+                </div>
+                <button
+                  onClick={() => setIsMensesDrawerOpen(false)}
+                  className={`w-8 h-8 rounded-full flex items-center justify-center border cursor-pointer active:scale-90 transition-all focus:outline-none ${
+                    isDark ? 'bg-rose-950/20 border-rose-900/30 text-rose-300' : 'bg-rose-100 border-rose-200 text-rose-800'
+                  }`}
+                >
+                  <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24" strokeWidth="2.5">
+                    <path strokeLinecap="round" strokeLinejoin="round" d="M6 18L18 6M6 6l12 12" />
+                  </svg>
+                </button>
+              </div>
+
+              {/* Scrollable Content */}
+              <div className="flex-1 overflow-y-auto px-6 py-6 space-y-6">
+                {/* Spiritual Comfort Card */}
+                <div className={`p-5 rounded-2xl border transition-all flex flex-col space-y-3 relative overflow-hidden ${
+                  isDark ? 'bg-rose-950/10 border-rose-900/25' : 'bg-white/90 border-rose-200/50 shadow-sm'
+                }`}>
+                  <div className="absolute top-0 right-0 w-24 h-24 bg-rose-400/5 rounded-full blur-2xl pointer-events-none" />
+                  <span className="text-xl text-rose-400 font-extrabold select-none">“</span>
+                  <p className={`text-xs italic leading-relaxed font-semibold ${isDark ? 'text-rose-200/90' : 'text-rose-900'}`}>
+                    {language === 'ar' 
+                      ? '«إنَّ هذا أمْرٌ كَتَبَهُ اللَّهُ علَى بَناتِ آدَمَ، فاقْضِي ما يَقْضِي الحاجُّ، غيرَ أنْ لا تَطُوفي بالبَيْتِ»'
+                      : language === 'tr' 
+                      ? '"Şüphesiz ki bu (özel hal), Allah\'ın Âdem kızlarına takdir ettiği bir şeydir. Hacıların yaptığı her şeyi yap, fakat Kâbe\'yi tavaf etme."'
+                      : language === 'sq' 
+                      ? '"Kjo është një çështje që Allahu e ka caktuar për vajzat e Ademit, prandaj bëj atë që bën çdo haxhi, por mos bëj Tavaf rreth Qabes."'
+                      : '"This is a matter which Allah has decreed for the daughters of Adam, so do what any pilgrim does, but do not perform Tawaf."'}
+                  </p>
+                  <div className="flex items-center justify-between text-[9px] font-black uppercase tracking-wider text-rose-400/70 border-t border-rose-200/10 pt-2">
+                    <span>— Prophet Muhammad ﷺ (Sahih al-Bukhari)</span>
+                  </div>
+                </div>
+
+                {/* Stage Specific Guideline */}
+                <section className="space-y-3">
+                  <h4 className="text-rose-400 font-extrabold uppercase tracking-widest text-[10px] border-b border-rose-200/20 pb-1.5 flex items-center gap-2">
+                    <span>📍</span>
+                    {language === 'ar' ? 'إرشادات النسك الحالي' : language === 'tr' ? 'Bu Adım İçin Durumunuz' : language === 'sq' ? 'Udhëzimi për këtë Hap' : 'Current Stage Guideline'}
+                  </h4>
+                  <p className={`text-xs leading-relaxed font-semibold whitespace-pre-line ${isDark ? 'text-rose-100/80' : 'text-rose-950/80'}`}>
+                    {currentStage.scholarlyGuide?.mensesRules 
+                      ? currentStage.scholarlyGuide.mensesRules
+                      : (language === 'ar' 
+                          ? 'في هذه الخطوة، يمكنك أداء جميع أعمال ومناسك الحج بشكل طبيعي، حيث إن الطهارة الطقوسية (الوضوء أو الغسل) ليست شرطاً لصحة هذه الأعمال.'
+                          : language === 'tr'
+                          ? 'Bu adımda, hac ibadetlerinin tümünü normal şekilde gerçekleştirebilirsiniz; çünkü bu amellerin geçerliliği için abdest veya gusül şartı bulunmamaktadır.'
+                          : language === 'sq'
+                          ? 'Në këtë hap, ju mund të kryeni të gjitha veprimet e Haxhit krejtësisht normalisht, pasi pastërtia rituale (abdesti ose gusli) nuk është kusht për vlefshmërinë e këtë veprash.'
+                          : 'During this step, you can perform all actions and rituals of Hajj normally, as ritual purity is not required for their validity.')}
+                  </p>
+                </section>
+
+                {/* Quick Fiqh Cheat Sheet */}
+                <section className="space-y-3">
+                  <h4 className="text-rose-400 font-extrabold uppercase tracking-widest text-[10px] border-b border-rose-200/20 pb-1.5 flex items-center gap-2">
+                    <span>📋</span>
+                    {language === 'ar' ? 'مخطط الأعمال المباحة والممنوعة' : language === 'tr' ? 'İzin Verilen & Yasak Olan Ameller' : language === 'sq' ? 'Lista e Veprave të Lejuara & Ndaluara' : 'Permissibility Cheat-Sheet'}
+                  </h4>
+                  <div className={`p-4 rounded-2xl border text-xs space-y-4 ${isDark ? 'bg-black/35 border-rose-950/40' : 'bg-white border-rose-200/50 shadow-sm'}`}>
+                    {/* Allowed Acts */}
+                    <div className="space-y-2">
+                      <h5 className="font-black text-rose-500 uppercase tracking-widest text-[9px] flex items-center gap-1.5">
+                        <span className="text-emerald-500 text-sm">✓</span>
+                        {language === 'ar' ? 'أعمال مباحة تماماً (لا تشترط الطهارة)' : language === 'tr' ? 'Tamamen Serbest (Abdest Şart Değil)' : language === 'sq' ? 'Veprat e Lejuara (Nuk kërkohet pastërti)' : 'Fully Allowed (No Purity Required)'}
+                      </h5>
+                      <ul className={`grid grid-cols-2 gap-2 text-[10px] font-semibold ${isDark ? 'text-rose-100/70' : 'text-rose-950/70'}`}>
+                        <li className="flex items-center gap-1">🟢 {language === 'ar' ? 'الوقوف بعرفة' : language === 'tr' ? 'Arafat Vakfesi' : language === 'sq' ? 'Qëndrimi në Arafat' : 'Arafat Standing'}</li>
+                        <li className="flex items-center gap-1">🟢 {language === 'ar' ? 'المبيت بمزدلفة' : language === 'tr' ? 'Müzdelife Geceleme' : language === 'sq' ? 'Muzdelifë' : 'Muzdalifah Stay'}</li>
+                        <li className="flex items-center gap-1">🟢 {language === 'ar' ? 'البقاء في منى' : language === 'tr' ? 'Mina Çadırları' : language === 'sq' ? 'Qëndrimi në Minë' : 'Mina Staying'}</li>
+                        <li className="flex items-center gap-1">🟢 {language === 'ar' ? 'رمي الجمرات' : language === 'tr' ? 'Şeytan Taşlama' : language === 'sq' ? 'Gjuajtja e Gurëve' : 'Jamarat Stoning'}</li>
+                        <li className="flex items-center gap-1">🟢 {language === 'ar' ? 'الذكر والدعاء' : language === 'tr' ? 'Dua & Zikir' : language === 'sq' ? 'Lutja & Dhikri' : 'Dhikr & Supplication'}</li>
+                        <li className="flex items-center gap-1">🟢 {language === 'ar' ? 'قص/تقصير الشعر' : language === 'tr' ? 'Saç Kısaltma' : language === 'sq' ? 'Prerja e Flokëve' : 'Hair Trimming'}</li>
+                      </ul>
+                    </div>
+                    
+                    {/* Forbidden Acts */}
+                    <div className="space-y-2 border-t border-rose-200/10 pt-3">
+                      <h5 className="font-black text-rose-500 uppercase tracking-widest text-[9px] flex items-center gap-1.5">
+                        <span className="text-rose-500 text-sm">✗</span>
+                        {language === 'ar' ? 'أعمال مؤجلة (تشترط الطهارة)' : language === 'tr' ? 'Ertelenmesi Gerekenler (Abdest Şart)' : language === 'sq' ? 'Veprat e Ndaluara (Kërkohet pastërti)' : 'Must Postpone (Ritual Purity Required)'}
+                      </h5>
+                      <ul className={`grid grid-cols-1 gap-2 text-[10px] font-semibold ${isDark ? 'text-rose-100/70' : 'text-rose-950/70'}`}>
+                        <li className="flex items-center gap-1">🔴 {language === 'ar' ? 'دخول المسجد الحرام' : language === 'tr' ? 'Mescid-i Haram\'a Giriş' : language === 'sq' ? 'Hyrja në Xhaminë e Haramit' : 'Entering Masjid al-Haram'}</li>
+                        <li className="flex items-center gap-1">🔴 {language === 'ar' ? 'الطواف بالبيت (الإفاضة/القدوم)' : language === 'tr' ? 'Kabe Tavafı (İfade/Kudüm)' : language === 'sq' ? 'Tavafi rreth Qabes' : 'Tawaf al-Kaaba (Pillar/Arrival)'}</li>
+                        <li className="flex items-center gap-1">🔴 {language === 'ar' ? 'صلاة ركعتي الطواف أو الصلوات المفروضة' : language === 'tr' ? 'Tavaf Namazı & Farz Namazlar' : language === 'sq' ? 'Falja e Namazit' : 'Tawaf Prayers & Obligatory Prayers'}</li>
+                      </ul>
+                    </div>
+                  </div>
+                </section>
+              </div>
+
+              {/* Safe Area Footer */}
+              <div className={`flex-shrink-0 border-t border-rose-200/10 py-4 px-6 flex justify-end ${isDark ? 'bg-[#0d0406]' : 'bg-rose-100/50'}`}>
+                <button
+                  onClick={() => setIsMensesDrawerOpen(false)}
+                  className={`py-3 px-6 rounded-2xl font-black text-xs uppercase tracking-widest shadow-md cursor-pointer active:scale-95 transition-all focus:outline-none ${
+                    isDark ? 'bg-rose-500 text-white shadow-rose-950' : 'bg-rose-600 text-white shadow-rose-600/10'
+                  }`}
+                >
+                  {language === 'ar' ? 'مفهوم، شكراً لك' : language === 'tr' ? 'Anlaşıldı, Teşekkürler' : language === 'sq' ? 'Kuptova, Faleminderit' : 'Understood, Thank You'}
+                </button>
+              </div>
+              <div className={isDark ? 'bg-[#0d0406]' : 'bg-rose-100/50'} style={{ height: 'env(safe-area-inset-bottom, 0px)' }} />
+            </motion.div>
+          </>
         )}
       </AnimatePresence>
     </>

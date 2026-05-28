@@ -134,6 +134,7 @@ export const hajjData: HajjData = {
       ]
     },
     "scholarlyGuide": {
+      "mensesRules": "Women on their menses do everything for Ihram—bathe, groom, wear modest clothes, and make the intention—but skip the 2 Rakats prayer.",
       "spiritualEssence": "The [miqat|Meeqat] is the spiritual boundary — the point of no return. Sheikh Omar Suleiman emphasizes that the preparation rituals at the [miqat|Meeqat] are [sunnah|Sunnahs] that significantly enhance the spiritual experience, stripping away worldly wealth, social status, and identity in favor of simple, identical white sheets — the [ihram|Ihram].",
       "fiqhRules": "• [miqat|Meeqat] Obligation: If you pass the [miqat|Meeqat] without entering [ihram|Ihram], a sacrifice (Fidya) is required. If on a plane, the pilot announces the [miqat|Meeqat] approximately 30 minutes before landing — be ready.\n• Ghusl & Grooming: Bathe (Ghusl) — this is [sunnah|Sunnah] for both men and women before entering [ihram|Ihram]. Trim your moustache, armpit hair, pubic hair, and cut nails before the [miqat|Meeqat]. This cannot be done after entering Ihram.\n• Body Perfume: Apply perfume to your body (NOT on the Ihram cloth itself). This is one of the last things you apply before the sacred state begins.\n• Sewn clothes prohibition: Men: Do NOT wear sewn clothes that fit limbs (shirts, trousers, underwear). Violation requires Fidya (expiation: animal sacrifice, 3 days fasting, or feeding 6 needy people).\n• Grooming prohibitions: Do NOT cut or pluck hair or clip nails. Broken nails by accident or hair shedding during sleep or combing are forgiven.\n• Veils & Head covers: Women: Do NOT wear a Niqab (face veil) affixed to the skin. A loose face covering that doesn't touch the skin is permitted. Men: Do NOT cover your head with a hat or cap (umbrellas, watches, rings, stitched belts, and sandals that don't cover the ankle are all permitted).\n• Perfume prohibition: Do NOT wear perfume or use perfumed soap after entering [ihram|Ihram]. Plain unscented showers are fine.\n• Spousal relations: Do NOT kiss or touch your spouse provocatively (major Istighfar required). Do NOT engage in sexual intercourse — this invalidates the entire Hajj.\n• Menses Rules: Women on their menses at the [miqat|Meeqat] do everything for [ihram|Ihram] — bathe, groom, wear Ihram, and make the [niyyah|Niyyah] — but do not pray the 2 Rakats or perform [tawaf|Tawaf] until they are pure. They are still fully in Ihram.",
       "survivalHacks": "• Fly-in Preparation: If passing through Madinah first: do all preparation rituals (bath, grooming, putting on Ihram) BEFORE leaving Madinah, but do NOT make the [niyyah|Niyyah] until you physically reach the [miqat|Meeqat].\n• [talbiyah|Talbiyah] continuity: Continue reciting the [talbiyah|Talbiyah] as much as possible during the journey from the [miqat|Meeqat] until you reach the Haram — individually, not in a group chant.\n• Blankets in Ihram: Blankets are permissible if you feel cold in Mina or Muzdalifah even while in Ihram."
@@ -169,6 +170,7 @@ export const hajjData: HajjData = {
       ]
     },
     "scholarlyGuide": {
+      "mensesRules": "A menstruating woman cannot perform Tawaf. If she is doing Tamattu' and her period does not end before Hajj starts, she simply converts her intention to Hajj al-Qiran (Hajj and Umrah combined) and proceeds to Mina without doing the initial Umrah Tawaf.",
       "spiritualEssence": "[tawaf|Tawaf] al-Qudoom (the Welcome Tawaf) is the first act you perform upon entering Makkah. It takes the place of the 2-Rakat prayer of greeting the [masjidAlHaram|Masjid al-Haram]. Sheikh Omar Suleiman emphasizes that circling the [kaaba|Kaaba] represents the universe revolving around a single divine focus, and that there are no prescribed supplications for each circuit — you make personal Dua in any language.",
       "fiqhRules": "• Ablution (Wudu): Ensure full Wudu before entering the [masjidAlHaram|Masjid al-Haram]. [tawaf|Tawaf] without Wudu is invalid according to the strongest opinion.\n• The Wudu Dilemma: If your Wudu breaks mid-[tawaf|Tawaf]: the Hanafi school says you can just go make Wudu and resume from the same lap you left. The Shafi'i school historically required restarting from lap one (though modern scholars offer leniency due to severe crowding).\n• [idtiba|Idtiba] & [raml|Raml]: Men: Arrange the [ihram|Ihram] sheet so the right shoulder is fully exposed ([idtiba|Idtiba]) only for this first [tawaf|Tawaf]. The first 3 circuits should be done at a brisker pace ([raml|Raml]). Cover the shoulder again as soon as the 7th circuit is finished.\n• Interruption rules: Do NOT interrupt the 7 circuits unless absolutely necessary. If prayer begins during [tawaf|Tawaf], join the prayer and continue from where you left off.\n• Dua rules: Touch the Yamani Corner (before Black Stone) if possible. Do NOT signal or kiss it. Between Yamani Corner and the Black Stone, recite: 'Rabbena atina...' For all other parts, make personal, individual Duas. Chanting in groups or following books of innovated Duas has no basis in the [sunnah|Sunnah].",
       "survivalHacks": "• Floor Selection: Going to the 2nd or 3rd floor of the Haram for Tawaf is permitted and is much less crowded. The distance is longer but the physical ease is worth it.\n• Greeting the Haram: Tawaf replaces the 2-Rakat greeting prayer of the mosque. If you enter the Haram at other times (without Tawaf), pray 2 normal Rakats."
@@ -202,6 +204,7 @@ export const hajjData: HajjData = {
       ]
     },
     "scholarlyGuide": {
+      "mensesRules": "Ritual purity is not a condition for Sa'i, but since Sa'i must legally follow Tawaf, you must postpone it until you have performed Tawaf. (If you converted to Qiran, you proceed straight to Mina).",
       "spiritualEssence": "[sai|Sa'i] is a [wajib|Wajib] (mandatory) act of both Umrah and Hajj. It commemorates Hajar's desperate search for water between Safa and Marwa for her infant son Isma'il, showing that we must make physical effort ([sai|Sa'i]) while relying entirely on Allah for the results. The [zamzam|Zamzam] water we drink today is a living miracle of that moment.",
       "fiqhRules": "• Ritual Purity: Wudu is recommended but not strictly required for Sa'i according to the majority of scholars. Adetli (menstruating) women can perform Sa'i normally.\n• Green Markers: Men should speed-walk/jog between the green neon markers; women walk normally.\n• Dua at Hills: Climb Safa/Marwa, face the Kaaba, raise hands, and recite the Prophet's Dua 3 times: 'La ilaha illallahu wahdahu la sharika lah...'. Make personal Dua in between.\n• Circuit count: Count Safa to Marwa as 1 circuit, and Marwa to Safa as 2. Do not do 14 one-way trips.",
       "survivalHacks": "• Upper Deck Sa'i: Use the air-conditioned upper floor Mas'a to save physical energy for the grueling Hajj days ahead.\n• Exit side: The 7th circuit ends at Marwa, where the exit doors are located.",
@@ -365,6 +368,7 @@ export const hajjData: HajjData = {
       ]
     },
     "scholarlyGuide": {
+      "mensesRules": "Standing in Arafat (Wuquf) is fully valid while menstruating. You can stay in Arafat, make all Du'as, and read Quran. Ritual purity is not required for Arafat.",
       "spiritualEssence": "[wuquf|Wuquf] in Arafat is the pinnacle and spiritual heart of Hajj. The Prophet (ﷺ) said: 'Hajj is Arafah.' It is a day of absolute humility and direct connection to Allah, representing the gathering on the Day of Judgment. Every second from noon until sunset is a once-in-a-lifetime opportunity to plead for forgiveness and make personal supplications.",
       "fiqhRules": "• The Core Pillar ([rukn|Rukn]): Standing in Arafat for even a brief moment between Dhuhr (noon) and sunset on the 9th of Dhul Hijjah is a mandatory pillar ([rukn|Rukn]). If missed, the Hajj is completely invalid.\n• Departure Rule: You must remain in Arafat until the sun has fully set. Leaving before sunset requires a sacrifice (Fidya) to rectify, according to the majority of scholars.\n• Prayers: Pray Dhuhr and Asr combined and shortened (2 Rakats each) at the time of Dhuhr (Jam' Ta'qeed) with one Adhan and two Iqamahs.\n• Qiblah Orientation: Face the Qiblah (Makkah) when making Dua, not Mount Arafat (Jabal ar-Rahmah). Standing or climbing the mountain is NOT a [sunnah|Sunnah] or requirement.\n• Menses Rules: Menstruating women are fully permitted to stand in Arafat and make Duas, as ritual purity is not a condition for the validity of Wuquf.",
       "survivalHacks": "• Stay Near Your Camp: Do not try to walk to Masjid al-Namira or climb Jabal ar-Rahmah unless you are extremely close. The crowds are immense, the heat is intense (often exceeding 45°C), and getting lost can ruin your day. The Wuquf is valid anywhere in the Arafat plains.\n• Dua Lists: Write down a detailed list of Duas beforehand. Use these hours for sincere, personal, and silent pleading rather than socializing, eating, or sleeping.\n• No Maghrib in Arafat: Do NOT pray Maghrib in Arafat. It must be prayed only after reaching Muzdalifah, combined with Isha.",
@@ -393,6 +397,7 @@ export const hajjData: HajjData = {
       ]
     },
     "scholarlyGuide": {
+      "mensesRules": "Staying overnight in Muzdalifah and collecting pebbles are fully valid during menses. Ritual purity is not required.",
       "spiritualEssence": "Sleeping on the bare ground under the stars in [muzdalifah|Muzdalifah], stripped of all earthly luxury or social distinctions, embodies the absolute equality of humanity and our complete dependence on the Almighty Creator.",
       "fiqhRules": "• Combining Prayers: Maghrib and Isha prayers must be performed combined and shortened upon arriving in Muzdalifah (Jam' Ta'kheer). Maghrib is prayed as 3 Rakats, and Isha is shortened to 2 Rakats.\n• Overnight Stay (Wuquf): Spending the night at Muzdalifah (at least until past midnight) is a [wajib|Wajib] (mandatory) act of Hajj.\n• Concession for the Weak: Women, the elderly, and the sick are permitted to leave Muzdalifah after midnight to avoid the dangerous morning crowds at the Jamarat.\n• Collecting Pebbles: Collect small pebbles here. You need 7 pebbles for the first day, and 21 for each of the subsequent [tashreeq|Tashreeq] days.",
       "survivalHacks": "• Lightweight Mat: A small, lightweight yoga mat or inflatable sleeping pad is extremely useful for sleeping on the gravelly ground of Muzdalifah.\n• Do Not Pray on the Way: Follow the [sunnah|Sunnah] by praying Maghrib and Isha only when you physically arrive at Muzdalifah, regardless of traffic delays.",
@@ -421,6 +426,7 @@ export const hajjData: HajjData = {
       ]
     },
     "scholarlyGuide": {
+      "mensesRules": "Stoning the Jamarat al-Aqaba is fully valid. Women, the sick, and the elderly have a legal concession to leave Muzdalifah after midnight to stone early, or they can delegate a proxy to stone on their behalf if crowds are too dangerous.",
       "spiritualEssence": "Stoning Jamarat al-Aqaba on Eid Day — the first act of [rami|Rami] — commemorates the actions of Prophet Ibrahim (as) when the devil tried to tempt him to disobey Allah. It symbolizes the active rejection of base desires, satanic whispers, and evil inclinations.",
       "fiqhRules": "• Stoning on Eid Day: On the 10th of Dhul Hijjah, the pilgrim stones ONLY the large pillar (Jamarat al-Aqaba) with 7 consecutive pebbles. The small and medium pillars are not stoned on this day.\n• Method of Stoning: Raise the hand and say 'Allahu Akbar' with each throw. Each pebble must fall inside the circular basin surrounding the pillar.\n• Stopping the [talbiyah|Talbiyah]: The [talbiyah|Talbiyah] is discontinued immediately when throwing the first pebble, replaced by the Eid Takbeerat.\n• Time of Stoning: Stoning begins after sunrise on Eid Day and continues throughout the day and night until the Fajr of the next day.\n• First Release (Tahallul): Upon stoning the Jamarat and either shaving or cutting the hair, the first release from Ihram (Tahallul al-Awwal) is achieved, permitting all restrictions of Ihram except marital relations.",
       "survivalHacks": "• Angle of Approach: Approach the stoning basin from the sides or back, avoiding the center where crowds are most dense.\n• Avoid Peak Times: Avoid stoning immediately after sunrise, as crowd density is extremely high. Stoning after Dhuhr or in the evening is much safer and more comfortable for the elderly and women.",
@@ -509,6 +515,7 @@ export const hajjData: HajjData = {
       ]
     },
     "scholarlyGuide": {
+      "mensesRules": "You must postpone Tawaf al-Ifadah (which is a core Pillar/Rukn of Hajj) until you become pure. You can still shave/trim your hair on Eid day to achieve partial release (Tahallul al-Awwal) and wear normal clothes, but you must delay the Tawaf. If your travel group is departing permanently and you cannot wait, consult scholars regarding modern medical solutions or emergency concessions.",
       "spiritualEssence": "[tawaf|Tawaf] al-Ifadah is the crowning glory of Hajj. Now dressed in your regular clothes, you return to the [kaaba|Kaaba] to perform the circumambulations of allegiance, completing the final pillar that fully releases you from all [ihram|Ihram] restrictions.",
       "fiqhRules": "• The Core Pillar ([rukn|Rukn]): Tawaf al-Ifadah is an indispensable pillar of Hajj. Without it, Hajj is invalid and it cannot be compensated by an animal sacrifice.\n• No [idtiba|Idtiba] or [raml|Raml]: Since you are no longer in Ihram (or have been partially released), you do not expose the right shoulder and do not run during the first three circuits.\n• Sa'i of Hajj: Tamattu pilgrims must perform the Hajj Sa'i after this Tawaf. Qiran and Ifrad pilgrims perform it only if they did not perform it during the Arrival Tawaf.\n• Menstruation Rule: Women on their period do not perform this Tawaf until they become pure. They must wait in Makkah or Mina and perform it once they have finished their cycle.\n• Full Release (Tahallul al-Akbar): Upon completing all three acts of Eid (Stoning + Haircut + Tawaf), you achieve full release, lifting all restrictions including marital relations.",
       "survivalHacks": "• Postpone the Tawaf: Performing the stoning, shaving, traveling to Makkah, and performing Tawaf all in a single day is extremely exhausting. It is highly recommended to perform it on the night of the 11th or 12th of Dhul Hijjah when it is cooler and less crowded."
@@ -607,6 +614,7 @@ export const hajjData: HajjData = {
       ]
     },
     "scholarlyGuide": {
+      "mensesRules": "A menstruating woman is completely exempt from the Farewell Tawaf (Tawaf al-Wida). You may leave Makkah with your travel group without any penalty, sacrifice, or compensation required.",
       "spiritualEssence": "The Farewell [tawaf|Tawaf] (Tawaf al-Wida) is your final parting with the House of Allah. Looking at the [kaaba|Kaaba] for the last time, you thank Allah for accepting you as His guest and pray that this is not your last visit to this sacred sanctuary.",
       "fiqhRules": "• Obligation ([wajib|Wajib]): The Farewell Tawaf is [wajib|Wajib] for all pilgrims before permanently leaving Makkah. Omitting it requires a sheep sacrifice.\n• Concession for Women: Women undergoing menstruation or postpartum bleeding are completely exempt from this Tawaf and may depart without any sacrifice.\n• Immediate Departure: This Tawaf must be the absolute final act in Makkah. It is not permissible to stay for shopping, dining, or sleeping afterward. Any long delay requires repeating the Tawaf.",
       "survivalHacks": "• Pre-departure Shopping: Complete all souvenir shopping and pack your luggage BEFORE performing the Farewell Tawaf, so you can head straight to your bus or car immediately after finishing."
@@ -659,6 +667,7 @@ export const hajjData: HajjData = {
       ]
     },
     "scholarlyGuide": {
+      "mensesRules": "تفعل المرأة الحائض كل شيء لطلب الإحرام — الاغتسال والتنظف ولبس ملابسها المعتادة والنية — لكنها تتجاوز صلاة ركعتي الإحرام.",
       "spiritualEssence": "[ihram|الإحرام] هو رمز المساواة والتجرد الكامل من مظاهر الدنيا. يرتدي الجميع رداءً أبيض بسيطاً، مما يذكرنا بيوم الحشر والوقوف بين يدي الله تعالى بلا ألقاب أو ثروات.",
       "fiqhRules": "• [niyyah|نية] الدخول: [ihram|الإحرام] هو [niyyah|نية] الدخول في النسك، ولا يكفي مجرد لبس الثياب بلا [niyyah|نية].\n• محظورات [ihram|الإحرام]: بمجرد عقد [niyyah|النية]، يحرم قص الشعر والأظافر، استخدام العطور، تغطية الرأس للرجال، ولبس المخيط للرجال، وعقد النكاح، والجماع ومقدماته.\n• المرأة الحائض: تحرم المرأة الحائض من [miqat|الميقات] وتفعل كل المناسك إلا [tawaf|الطواف] بالبيت حتى تطهر.",
       "survivalHacks": "• تجنب التسلخات: استخدم الفازلين أو كريمات الحماية على الفخذين لمنع التسلخات المؤلمة الناتجة عن المشي الطويل بملابس الإحرام.\n• الملابس الاحتياطية: احمل معك مجموعة إحرام إضافية في حقيبتك لاستبدالها في حال اتساخ الإحرام الأول."
@@ -694,6 +703,7 @@ export const hajjData: HajjData = {
       ]
     },
     "scholarlyGuide": {
+      "mensesRules": "لا يجوز للمرأة الحائض الطواف بالبيت. وإذا كانت متمتعة ولم تطهر قبل بدء أعمال الحج، فإنها تقلب نيتها إلى حج القران وتتوجه إلى منى مباشرة دون عمرة.",
       "spiritualEssence": "[tawaf|الطواف] حول [kaaba|الكعبة] يمثل حركة الكون بأسره حول مركز إلهي واحد. في [tawaf|الطواف]، يندمج الفرد مع ملايين المؤمنين في تسبيح واحد، متقربين إلى رب البيت بقلوب خاشعة ونفوس تائبة.",
       "fiqhRules": "• الوضوء شرط: الوضوء شرط لصحة [tawaf|الطواف] عند جمهور العلماء. إذا انتقض الوضوء أثناء [tawaf|الطواف]، يجب قطعه والوضوء ثم استئنافه.\n• [idtiba|الاضطباع] والرمل: [idtiba|الاضطباع] (كشف الكتف الأيمن للرجال) والرمل (الهرولة في الأشواط الثلاثة الأولى) سنتان في [tawaf|طواف] القدوم فقط.\n• صلاة الركعتين: صلاة ركعتي [tawaf|الطواف] خلف [maqamIbrahim|مقام إبراهيم] أو في أي مكان في [masjidAlHaram|الحرم] بعد الفراغ من الأشواط السبعة [sunnah|سنة] مؤكدة.",
       "survivalHacks": "• الطواف في الأدوار العليا: الطواف في الدور الثاني أو السطح أطول مسافة لكنه أقل زحاماً بكثير وأكثر راحة للضعفاء وكبار السن.\n• الحفاظ على الوضوء: تجنب شرب كميات هائلة من الماء قبل الطواف مباشرة لتفادي الحاجة للذهاب إلى دورات المياه المزدحمة وقطع الطواف."
@@ -726,6 +736,7 @@ export const hajjData: HajjData = {
       ]
     },
     "scholarlyGuide": {
+      "mensesRules": "الطهارة ليست شرطاً للسعي، ولكن بما أن السعي يجب أن يتبع الطواف، فيجب تأجيله حتى تطهر وتطوف أولاً. (إذا تحولت للقران، تذهب لمنى مباشرة).",
       "spiritualEssence": "يجسد [sai|السعي] أهمية بذل الجهد البشري والتوكل الكامل على الله. نسعى في حياتنا كما سعت هاجر، واثقين بأن الفرج ونبع [zamzam|زمزم] الإلهي سيأتي في الوقت الذي يحدده الله سبحانه.",
       "fiqhRules": "• الوضوء في السعي: الوضوء في السعي [sunnah|سنة] مستحبة وليس شرطاً؛ ولذا يصح سعي الحائض والنفساء والجنب.\n• الهرولة للرجال: الهرولة بين العلمين الأخضرين [sunnah|سنة] للرجال فقط، وتمشي النساء كعادتهن دون هرولة.\n• عدد الأشواط: الذهاب من الصفا إلى المروة يعتبر شوطاً، والعودة من المروة إلى الصفا شوطاً آخر.",
       "survivalHacks": "• المسعى المكيف: السعي في الأدوار العليا المكيفة يوفر طاقة بدنية هائلة ويحمي الحجاج من الإجهاد الحراري.\n• مخرج المروة: ينتهي الشوط السابع عند المروة، حيث توجد مخارج سهلة للوصول إلى الحلاقين وخارج المسجد الحرام.",
@@ -877,6 +888,7 @@ export const hajjData: HajjData = {
       ]
     },
     "scholarlyGuide": {
+      "mensesRules": "الوقوف بعرفة صحيح تماماً للحائض. تقف وتدعو وتذكر الله وتتضرع؛ فالطهارة ليست شرطاً للوقوف بعرفة.",
       "spiritualEssence": "[wuquf|الوقوف] في عرفة هو يوم الرحمة والرضوان والمغفرة والعتق من النيران. إنه الموقف الذي يباهي الله فيه ملائكته بعباده الخاشعين، وموقف يذكر بيوم الحشر والوقوف العظيم.",
       "fiqhRules": "• الوقوف [rukn|ركن] أعظم: الوقوف بعرفة [rukn|ركن] لا يصح الحج إلا به، لقول النبي ﷺ: \"الحج عرفة\".\n• وقت الوقوف: يمتد وقت الوقوف بعرفة من زوال شمس يوم التاسع وحتى طلوع فجر يوم النحر (العاشر من ذي الحجة).\n• الجمع والقصر: صلاة الظهر والعصر تؤديان جمعاً وقصراً (جمع تقديم) في وقت الظهر للتفرغ للدعاء.\n• النساء الحائضات: يصح وقوف الحائض بعرفة لأن الطهارة ليست شرطاً لصحة الوقوف بعرفة.",
       "survivalHacks": "• حدود عرفات الصفراء: انتبه جيداً للوحات الصفراء الكبيرة واللوحات الإرشادية التي توضح حدود مشعر عرفات؛ فالوقوف خارجها يبطل الحج تماماً.\n• الدعاء الفردي والخاص: استثمر هذه الساعات الثمينة في الدعاء الفردي والخاشع بطلب المغفرة وتحقيق الأمنيات وتجنب النقاشات والأحاديث الجانبية.",
@@ -905,6 +917,7 @@ export const hajjData: HajjData = {
       ]
     },
     "scholarlyGuide": {
+      "mensesRules": "المبيت بمزدلفة وجمع الحصى صحيح تماماً للحائض؛ فالطهارة ليست شرطاً لأعمال مزدلفة.",
       "spiritualEssence": "يمثل المبيت في العراء في [muzdalifah|مزدلفة] قمة التواضع والتجرد والسكينة. ينام الملوك والفقراء متجاورين على تراب واحد في ضيافة الرحمن، مستشعرين عظمة الخالق وفقر المخلوق.",
       "fiqhRules": "• الجمع والتأخير: تؤخر صلاة المغرب والعشاء لتؤديا في مزدلفة جمع تأخير وقصراً، ولا تجوز صلاتهما في الطريق إلا لعذر شديد.\n• وجوب المبيت: المبيت بمزدلفة على الأقل حتى منتصف الليل [wajib|واجب] عند جمهور الفقهاء.\n• الرخصة للضعفاء: يُرخص للنساء والضعفاء وكبار السن والمرضى مغادرة مزدلفة بعد منتصف الليل لتجنب الزحام وتدافع الحشود صباح العيد.\n• جمع الحصى: اجمع الحصى الصغير هنا. تحتاج 7 حصيات لليوم الأول و21 حصاة لكل يوم من [tashreeq|أيام التشريق] التالية.",
       "survivalHacks": "• سجادة النوم الخفيفة: سجادة اليوجا خفيفة الوزن أو فراش نوم رقيق يوفر راحة كافية للنوم فوق أرض مزدلفة الحصوية.\n• تأخير الصلاة: اتبع [sunnah|السنة] ولا تصلي المغرب في طريق النفرة؛ انتظر حتى تصل إلى مزدلفة مهما كانت العوائق والحشود.",
@@ -933,6 +946,7 @@ export const hajjData: HajjData = {
       ]
     },
     "scholarlyGuide": {
+      "mensesRules": "رمي جمرة العقبة الكبرى صحيح تماماً للحائض. وللنساء رخصة النفرة من مزدلفة بعد منتصف الليل للرمي مبكراً، أو توكيل من يرمي عنهن عند الزحام الشديد.",
       "spiritualEssence": "[rami|رمي] جمرة العقبة الكبرى في يوم العيد يجسد رمي إبراهيم عليه السلام للشيطان الذي حاول وسوسته لمنعه من طاعة الله. وهو يرمز إلى الرفض العملي لشهوات النفس ووساوس الشيطان.",
       "fiqhRules": "• رمي يوم العيد: يرمي الحاج جمرة العقبة الكبرى فقط بـ ٧ حصيات متعاقبات. ولا يرمي الصغرى أو الوسطى في هذا اليوم.\n• كيفية الرمي: يرفع يده ويكبر مع كل حصاة قائلاً \"الله أكبر\"، ويجب أن تسقط الحصاة في الحوض الدائري المحيط بالعمود.\n• قطع [talbiyah|التلبية]: يقطع الحاج [talbiyah|التلبية] مع أول حصاة يرميها ويبدأ بالتكبير المطلق.\n• وقت الرمي: يبدأ بعد طلوع شمس يوم العيد ويمتد طوال اليوم والليلة حتى فجر اليوم التالي.\n• التحلل الأول: بالرمي مع الحلق أو التقصير يتحقق التحلل الأول (التحلل الأصغر) ويباح كل محظورات الإحرام ما عدا الجماع.",
       "survivalHacks": "• زاوية الاقتراب: اقترب من حوض الجمرات من الجانبين أو الخلف وتجنب الوسط لتفادي الزحام الشديد.\n• تجنب وقت الذروة: تجنب الرمي فور طلوع الشمس لكثافة الحجاج الشديدة، والرمي بعد الظهر أو في المساء أكثر أمناً وراحةً للضعفاء والنساء.",
@@ -1023,6 +1037,7 @@ export const hajjData: HajjData = {
       ]
     },
     "scholarlyGuide": {
+      "mensesRules": "يجب تأجيل طواف الإفاضة (وهو ركن الحج) حتى تطهر. وتقص شعرها يوم العيد لتتحلل التحلل الأول وتلبس العادي، وتؤخر الطواف. وإذا كانت القافلة ستغادر ولا يمكنها الانتظار، تستشير العلماء في الحلول الطبية أو الرخص الاضطرارية.",
       "spiritualEssence": "[tawaf|طواف] الإفاضة هو تتويج لرحلة الحج الطويلة. يأتي فيه الحاج بملابسه العادية كضيف مكرم ليرتمي بين يدي ربه ويجدد عهد الإيمان والتوحيد طائفاً ب[kaaba|بيته العتيق]، ليعلن التحلل الأكبر والتام من [ihram|الإحرام].",
       "fiqhRules": "• [rukn|ركن] لا يجبر: طواف الإفاضة [rukn|ركن] من [rukn|أركان] الحج بالإجماع، لا يصح الحج بدونه ولا يجبر بدم.\n• لا [idtiba|اضطباع] ولا [raml|رمل]: لا يشرع [idtiba|الاضطباع] ولا [raml|الرمل] في طواف الإفاضة لأن المحرم يكون قد تحلل التحلل الأول ويلبس ثيابه العادية.\n• سعي الحج: يجب على المتمتع أداء سعي ثانٍ للحج بعد طواف الإفاضة. أما القارن والمفرد فلا سعي عليهما إن كانا قد سعيا مع طواف القدوم.\n• أحكام الحائض: لا يجوز للمرأة الحائض الطواف حتى تطهر. وتنتظر في مكة حتى تطهر لتطوف، وإذا كانت مرتبطة برحلة مغادرة حتمية ولا يمكنها التأخر فلها أحكام خاصة تراجع فيها أهل الفتوى.\n• التحلل الأكبر: بفراغ الحاج من طواف الإفاضة والسعي (إن كان عليه سعي) يكتمل التحلل الأكبر ويباح له كل شيء حتى النساء.",
       "survivalHacks": "• تأخير الطواف والسعي: يوم العيد يكون الحرم مزدحماً للغاية ومجهداً جداً. يفضل تأخير طواف الإفاضة وسعي الحج إلى [tashreeq|أيام التشريق] أو الليل حيث الأجواء الباردة والزحام الخفيف، وهو خيار مرخص وفيه تيسير كبير للحجاج الضعفاء."
@@ -1122,6 +1137,7 @@ export const hajjData: HajjData = {
       ]
     },
     "scholarlyGuide": {
+      "mensesRules": "الحائض معفاة تماماً من طواف الوداع. تغادر مكة مع رفقتها ولا فدية عليها ولا كفارة.",
       "spiritualEssence": "[tawaf|طواف] الوداع هو لحظة الفراق المؤثرة لبيت الله العتيق. يقف فيه الحاج طائفاً مستحضراً تغيره الروحي ونقاء قلبه، وداعياً الله ألا يكون هذا آخر عهده ب[kaaba|بيته الحرام].",
       "fiqhRules": "• وجوب طواف الوداع: طواف الوداع [wajib|واجب] على كل حاج خارج من مكة بغير عذر، وتركه يوجب فدية (دم).\n• إعفاء الحائض: تعفى المرأة الحائض والنفساء من طواف الوداع تماماً بمكرمة نبوية، وتغادر مكة دون فدية أو ذنب.\n• الخروج الفوري: يجب أن يكون طواف الوداع هو آخر العهد بمكة. فلا يجوز البقاء بعده للشراء أو السياحة أو النوم، ومن فعل ذلك لزمه إعادة الطواف.",
       "survivalHacks": "• شراء الهدايا مسبقاً: احرص على حزم أمتعتك وشراء كل الهدايا التذكارية مسبقاً قبل الذهاب لطواف الوداع، لتخرج من الحرم إلى سيارة السفر أو الحافلة مباشرة دون أي تأخير."
@@ -1175,6 +1191,7 @@ export const hajjData: HajjData = {
       ]
     },
     "scholarlyGuide": {
+      "mensesRules": "Özel günündeki kadınlar ihram için her şeyi yapar — boy abdesti alır, temizlenir, normal kıyafetlerini giyer ve niyet eder — ancak ihram namazını kılmazlar.",
       "spiritualEssence": "[ihram|İhram], mutlak eşitliğin ve dünya nimetlerinden sıyrılmanın sembolüdür. Herkesin aynı sade beyaz örtüye bürünmesi, makam ve servet farkı gözetmeksizin mahşer gününü ve Allah'ın huzurundaki dirilişi hatırlatır.",
       "fiqhRules": "• İhrama [niyyah|Niyet]: [ihram|İhram], sadece kıyafeti giymekten ibaret değildir; asıl olan ibadete başlama niyetidir.\n• [ihram|İhram] Yasakları: [niyyah|Niyet] edildikten sonra saç-sakal tıraşı olmak, tırnak kesmek, koku (parfüm, kokulu sabun) kullanmak, erkeklerin başını örtmesi ve dikişli elbise giymesi, cinsel yakınlık ve tartışmalar kesinlikle yasaktır.\n• Özel Durumdaki Kadınlar: Özel günlerinde olan kadınlar mikatta [ihram|ihrama] girerler ve [tawaf|tavaf] hariç diğer tüm hac ibadetlerini yerine getirebilirler.",
       "survivalHacks": "• Pişik Önleme: İhram kıyafetiyle yapılacak uzun yürüyüşlerde pişik oluşumunu engellemek için bacak aralarına vazelin veya pişik önleyici kremler sürün.\n• Yedek İhram: İhram örtünüzün kirlenmesi ihtimaline karşı yanınızda mutlaka yedek bir ihram seti bulundurun."
@@ -1210,6 +1227,7 @@ export const hajjData: HajjData = {
       ]
     },
     "scholarlyGuide": {
+      "mensesRules": "Özel günündeki kadın Kabe'yi tavaf edemez. Eğer Temettu haccı yapıyorsa ve hac günleri başlayana kadar temizlenmezse, niyetini Kıran haccına çevirir ve ilk Umre tavafını yapmadan doğrudan Mina'ya geçer.",
       "spiritualEssence": "[kaaba|Kabe] etrafında [tawaf|tavaf] etmek, tüm kainatın tek bir ilahi merkez etrafındaki dönüşünü ve teslimiyetini temsil eder. [tawaf|Tavafta] mümin, milyonlarca kardeşinin zikrine ortak olarak tevhid inancını yaşar.",
       "fiqhRules": "• Abdest Şartı: [tawaf|Tavafın] geçerli olması için abdestli olmak cumhur ulemaya göre şarttır. [tawaf|Tavaf] esnasında abdest bozulursa, tavaf kesilip abdest alınmalı ve kalındığı yerden devam edilmelidir.\n• Izdıba ve [raml|Remel]: Izdıba (erkeklerin sağ omzunu açması) ve [raml|Remel] (ilk 3 turda çalımlı ve hızlı yürümek) sadece arkasından sa'y yapılacak [tawaf|tavaflarda] [sunnah|sünnettir].\n• [tawaf|Tavaf] Namazı: [tawaf|Tavaftan] sonra [masjidAlHaram|Mescid-i Haram'da] [maqamIbrahim|Makam-ı İbrahim]'in arkasında kılınan iki rekat namaz [sunnah|sünnettir].",
       "survivalHacks": "• Üst Katlarda Tavaf: Tavafı üst katlarda veya çatıda yapmak mesafe olarak uzun olsa da çok daha sakin, serin ve yaşlılar/hastalar için güvenlidir.\n• Abdesti Korumak: Tavaf öncesinde aşırı miktarda su içmekten kaçının, böylece kalabalık tuvaletlere gitmek zorunda kalıp tavafınızı bölmezsiniz."
@@ -1242,6 +1260,7 @@ export const hajjData: HajjData = {
       ]
     },
     "scholarlyGuide": {
+      "mensesRules": "Sa'y için abdest şart değildir, ancak Sa'y tavaftan sonra yapılmak zorunda olduğu için temizlenip tavaf yapana kadar Sa'y ertelenmelidir. (Kıran'a çevirdiyse doğrudan Mina'ya gidilir).",
       "spiritualEssence": "[sai|Sa'y], insanoğlunun çabasını ve Allah'a olan tam tevekkülünü simgeler. Tıpkı Hacer validemiz gibi biz de hayat boyu çabalarız ([sai|sa'y ederiz]) ve biliriz ki ferahlık ve ilahi ikram ([zamzam|zemzem]) Allah'ın takdir ettiği vakitte gelecektir.",
       "fiqhRules": "• Sa'yda Abdest: Sa'y yaparken abdestli olmak [sunnah|sünnettir], şart değildir. Bu nedenle özel günündeki kadınlar da sa'y yapabilirler.\n• Hervele Yürüyüşü: Yeşil direkler arasında hızlı adımlarla koşmak (hervele) sadece erkekler için [sunnah|sünnettir], kadınlar normal adımlarla yürürler.\n• Şavt Sayısı: Safa ile Merve arasındaki her bir tek yönlü geçiş bir şavt sayılır. Git-gel iki şavttır, toplam 14 değil 7 şavt yapılmalıdır.",
       "survivalHacks": "• Klimalı Üst Katlar: Mes'a alanının klimalı üst katlarını tercih etmek fiziksel enerjinizi korumanıza yardımcı olur.\n• Merve Çıkışı: Yedinci şavt Merve'de biter. Burada çıkış kapıları ve berber dükkanları yakındır.",
@@ -1393,6 +1412,7 @@ export const hajjData: HajjData = {
       ]
     },
     "scholarlyGuide": {
+      "mensesRules": "Arafat vakfesi özel gününde olan kadınlar için tamamen geçerlidir. Dua edebilir, zikir yapabilir ve Kur'an okuyabilirler; vakfe için abdest şart değildir.",
       "spiritualEssence": "[wuquf|Vakfe], rahmet, mağfiret ve cehennemden kurtuluş günüdür. Allah'ın kullarıyla meleklerine iftihar ettiği, duaların geri çevrilmediği en kutsal andır. Mahşer provasıdır.",
       "fiqhRules": "• En Büyük [rukn|Rükn] (Vakfe): Arafat vakfesi haccın en önemli [rukn|rüknüdür]. Vakfeyi yapmayanın haccı batıldır. 'Hac Arafat'tır' (Hadis).\n• Vakfe Vakti: Zeval vaktinden bayram sabahı fecr-i sadığa kadar olan süredir.\n• Namazların Cem'i: Arafat'ta öğle ve ikindi namazları tek ezan ve iki ikametle öğle vaktinde cem edilerek kılınır.\n• Özel Durumdaki Kadınlar: Temizlik şartı aranmadığı için kadınlar özel günlerinde dahi Arafat vakfesini yapabilirler.",
       "survivalHacks": "• Sarı Sınır Levhaları: Arafat sınırlarını belirleyen büyük sarı tabelalara çok dikkat edin. Sınır dışında beklemek vakfeyi geçersiz kılar.\n• Kişisel Dualar: Toplu yüksek sesli dualar yerine içinizden gelen samimi ve gözyaşlarıyla dolu bireysel dualara odaklanın, zamanı sohbetle harcamayın.",
@@ -1421,6 +1441,7 @@ export const hajjData: HajjData = {
       ]
     },
     "scholarlyGuide": {
+      "mensesRules": "Müzdelife'de gecelemek ve şeytan taşlama için taş toplamak özel günündeki kadınlar için tamamen geçerlidir. Abdest şart değildir.",
       "spiritualEssence": "[muzdalifah|Müzdelife'de] açık havada, hiçbir lüks olmaksızın toprak üzerinde uyumak, mutlak eşitliği ve Allah'a olan muhtaçlığımızı simgeler. Zengin-fakir herkes yan yana uyur.",
       "fiqhRules": "• Cem-i Tehir: Akşam namazı Arafat'ta kılınmaz, yatsı ile birleştirilerek Müzdelife'de kılınır.\n• Müzdelife Vakfesi: Geceyi Müzdelife sınırlarında geçirmek [wajib|vaciptir].\n• Zayıflara Ruhsat: Kadınlar, yaşlılar ve hastalar izdihama kalmamak için gece yarısından sonra Müzdelife'den ayrılıp Mina'ya gidebilirler.\n• Taş Toplama: Taşları buradan veya Mina'dan toplayabilirsiniz. İlk gün için 7 taş, sonraki günler için ise 21'er taş toplamanız gerekir.",
       "survivalHacks": "• İnce Mat veya Yoga Matı: Taşlık zeminde rahat uyumak için yanınızda hafif bir yoga matı veya şişme minder bulundurun.\n• Yolda Namaz Kılmayın: Trafik ne kadar sıkışık olursa olsun sünnete uyun ve namazınızı yolda değil, mutlaka Müzdelife alanına ulaştığınızda kılın.",
@@ -1449,6 +1470,7 @@ export const hajjData: HajjData = {
       ]
     },
     "scholarlyGuide": {
+      "mensesRules": "Büyük Şeytan taşlama özel gününde tamamen geçerlidir. Kadınlar için gece yarısından sonra Müzdelife'den ayrılıp erkenden taşlama yapma ruhsatı vardır; aşırı kalabalıkta vekalet verebilirler.",
       "spiritualEssence": "Bayram günü Cemre-i Akabe'yi (Büyük Şeytan) taşlamak — [rami|Remi] — Hz. İbrahim'in (as) kurban emrini yerine getirmeye giderken kendisini vazgeçirmeye çalışan şeytanı taşlamasını canlandırır. Nefsin kötü arzularını, vesveseleri ve kötülükleri aktif olarak reddetmeyi simgeler.",
       "fiqhRules": "• Bayram Günü Taşlaması: Zilhicce'nin 10'unda (Bayramın 1. günü) SADECE büyük sütun taşlanır. Küçük ve orta sütunlar bu gün taşlanmaz.\n• Taşlama Şekli: Taşlar tek tek, el yukarı kaldırılarak ve \"Allahu Ekber\" denilerek atılır. Taşın sütunun etrafındaki havuzun içine düşmesi şarttır.\n• [talbiyah|Telbiye] Sonu: İlk taşı atarken [talbiyah|Telbiye] kesilir ve [tashreeq|teşrik] tekbirlerine başlanır.\n• Zamanı: Taşlama bayram günü güneş doğduktan sonra başlar. Ertesi günün fecr vaktine kadar geçerlidir.\n• İlk Tahallül: Akabe cemresini taşlamak ve saç tıraşı olmakla ihramdan ilk çıkış (tahallül-i evvel) gerçekleşir. Cinsel ilişki dışındaki tüm ihram yasakları kalkar.\n• Kadınların Durumu: Adetli kadınlar taşlamayı normal şekilde yaparlar. Ardından saçlarını kısaltarak ihramdan çıkarlar. Tavaf-ı İfade'yi ise temizlenene kadar ertelerler.",
       "survivalHacks": "• Yan Açıdan Yaklaşım: Havuzun tam ön tarafındaki yoğunluğa girmek yerine, yan veya arka taraflardan yaklaşarak taş atın. Bu, izdihamı önler ve güvenliğinizi sağlar.\n• Bayram Sabahı Yoğunluğu: Bayram namazından hemen sonra (sabah saatlerinde) Cemarat aşırı yoğundur. Taşlamayı ikindi veya akşam saatlerine ertelemek çok daha sakin ve güvenlidir.",
@@ -1539,6 +1561,7 @@ export const hajjData: HajjData = {
       ]
     },
     "scholarlyGuide": {
+      "mensesRules": "Haccın en önemli rüknü olan Ziyaret Tavafı (Tavaf-ı İfade) temizlenene kadar ertelenmelidir. Bayram günü saçını keserek ilk tahallüle (ihramdan kısmen çıkış) ulaşır ve normal elbiselerini giyer, ancak tavafı erteler. Eğer tur grubu kesin olarak ayrılıyorsa ve bekleyemiyorsa, tıbbi çözümler veya acil durum ruhsatları için alimlere danışır.",
       "spiritualEssence": "[tawaf|Tavaf-ı] İfade, haccın en önemli zirvesidir. Artık normal kıyafetleriyle [kaaba|Allah'ın evine] dönen kul, Rabbi ile olan ahdini tazeler ve haccın son farzını yerine getirerek tam bir arınmışlık yaşar. Tüm [ihram|ihram] kısıtlamaları sona erer.",
       "fiqhRules": "• Haccın [rukn|Rüknüdür]: Ziyaret tavafı haccın [rukn|rüknüdür], yapılmadığı takdirde hac tamamlanmış olmaz ve kurban cezası ile telafi edilemez.\n• [idtiba|Iztıba] ve [raml|Remel] Yoktur: Normal kıyafetlerle yapıldığı için ıztıba ve [raml|remel] sünnetleri bu tavafta uygulanmaz.\n• Hac Sa'yi: Temettu haccı yapanların bu tavaftan sonra Hac sa'yini yapması farzdır. Kıran ve İfrad yapanlar ise kudüm tavafında sa'y yapmamışlarsa şimdi yaparlar.\n• Adetli Kadınların Hükmü: Kadınlar temizlenene kadar bu tavafı ertelerler. Mekke'den ayrılmadan önce temizlenip tavafı yapmaları gerekir.\n• Büyük Tahallül: Ziyaret tavafı ve sa'yin yapılmasıyla büyük tahallül gerçekleşir ve eşler arasındaki yakınlık yasağı da dahil tüm yasaklar kalkar.",
       "survivalHacks": "• Tavafı Ertelemek: Bayram günü Harem aşırı kalabalık ve sıcaktır. Tavafı bayramın 2. veya 3. günü gece saatlerine ertelemek çok daha serin ve rahat bir tavaf yapmanızı sağlar."
@@ -1638,6 +1661,7 @@ export const hajjData: HajjData = {
       ]
     },
     "scholarlyGuide": {
+      "mensesRules": "Özel günündeki kadınlar Veda Tavafından tamamen muaftır. Herhangi bir kurban, ceza veya kefaret ödemeden gruplarıyla birlikte Mekke'den ayrılabilirler.",
       "spiritualEssence": "[tawaf|Veda Tavafı], Allah'ın evine hüzünlü ve sevgi dolu bir vedadır. [kaaba|Kâbe'ye] son kez bakan hacı, içsel dönüşümünü tefekkür eder, kendisini kabul ettiği için Allah'a şükreder ve tekrar kavuşmayı niyaz eder.",
       "fiqhRules": "• [wajib|Vacip] Hükmü: Mekke dışından gelen hacıların veda tavafı yapması [wajib|vaciptir]. Terki kurban cezası gerektirir.\n• Adetli Kadınların Muafiyeti: Adetli veya nifaslı kadınlar veda tavafından tamamen muaftır. Herhangi bir ceza ödemeden Mekke'den ayrılabilirler.\n• Hemen Ayrılış Şartı: Tavaftan sonra alışveriş, otelde kalma gibi nedenlerle oyalanılmamalı, doğrudan yola çıkılmalıdır. Oyalanılırsa tavafın iadesi gerekir.",
       "survivalHacks": "• Hediyelikleri Önceden Alın: Tüm alışverişlerinizi ve valiz hazırlığınızı veda tavafından ÖNCE tamamlayın. Tavaftan çıktıktan sonra doğrudan havalimanı veya seyahat aracına geçin."
@@ -1709,6 +1733,7 @@ export const hajjData: HajjData = {
       ]
     },
     "scholarlyGuide": {
+      "mensesRules": "Gratë me cikël menstrual bëjnë çdo gjë për Ihramin — lahen, pastrohen, veshin rrobat e tyre modeste dhe bëjnë nijetin — por nuk e falin namazin e Ihramit.",
       "spiritualEssence": "[ihram|Ihrami] është zhveshja nga të gjitha dallimet dhe shenjat e statusit shoqëror. Të gjithë haxhinjtë veshin të njëjtën rrobë të thjeshtë të bardhë, e cila të kujton Ditën e Kiametit dhe ringjalljen para Allahut.",
       "fiqhRules": "• Kufiri i Mikatit: Është e ndaluar kalimi i Mikatit pa Ihram. Shkelja e këtij kufiri kërkon therjen e një kurbani (dem) si ndëshkim.\n• Ndalimet për Burrat: Burrat nuk lejohen të veshin rroba të qepura (të prera sipas trupit), të mbajnë mbathje apo të mbulojnë kokën.\n• Ndalimet e Përgjithshme: Ndalohet prerja e flokëve ose thonjve, përdorimi i parfumit, gjuetia dhe marrëdhëniet bashkëshortore.\n• Rregullat për Gratë: Gratë veshin rrobat e tyre të zakonshme të thjeshta dhe nuk lejohet të mbajnë peçe (nikab) që prek fytyrën. Gratë me cikël hyjnë në Ihram dhe thonë [talbiyah|Telbijen], por nuk falen dhe nuk bëjnë Tavaf.",
       "survivalHacks": "• Përgatitja paraprake: Bëni gusl dhe shkurtoni flokët/thonjtë në hotel ose në aeroport para se të hipni në fluturimin për në Xhedah për të lehtësuar procesin.\n• [talbiyah|Telbija]: Përsëriteni [talbiyah|Telbijen] vazhdimisht individualisht dhe me zë të lartë (për burrat) pa pasur nevojë të thirret në grup."
@@ -1743,6 +1768,7 @@ export const hajjData: HajjData = {
       ]
     },
     "scholarlyGuide": {
+      "mensesRules": "Gruaja me cikël nuk mund ta bëjë Tavafin. Nëse kryen Tamattu dhe nuk pastrohet para fillimit të Haxhit, ajo e kthen nijetin në Haxh Kiran (bashkim i Haxhit me Umren) dhe shkon direkt në Minë pa bërë Tavafin e Umres.",
       "spiritualEssence": "[tawaf|Tavafi] rreth [kaaba|Qabes] simbolizon harmoninë e të gjithë krijimit që sillet rreth Krijuesit të vet. [kaaba|Qabja] është pika e takimit shpirtëror të të gjithë muslimanëve në botë.",
       "fiqhRules": "• Kushti i Abdesit: Abdesi është i domosdoshëm për vlefshmërinë e Tavafit sipas shumicës së dijetarëve. Nëse prishet abdesi, duhet të merret abdes sërish dhe të vazhdohet Tavafi.\n• [idtiba|Idtiba] dhe [raml|Raml]: Për burrat është sunnet të zbulojnë supin e djathtë ([idtiba|Idtiba]) dhe të ecin shpejt në tri rrotullimet e para ([raml|Raml]).\n• Namaz pas Tavafit: Pas përfundimit, falen 2 rekate pas Makamit të Ibrahimit ose në çdo vend tjetër brenda Haremmit.",
       "survivalHacks": "• Tavafi në katet e sipërme: Katet e sipërme kanë distancë më të gjatë por janë shumë më pak të ngarkuara dhe më të freskëta, ideale për familjet dhe të moshuarit.\n• Lutjet personale: Nuk ka lutje specifike për çdo rrotullim. Lutuni sinqerisht në gjuhën tuaj pa pasur nevojë të përsëritni pas dikujt tjetër."
@@ -1775,6 +1801,7 @@ export const hajjData: HajjData = {
       ]
     },
     "scholarlyGuide": {
+      "mensesRules": "Pastërtia rituale nuk është kusht për Sajin, por meqë Saji duhet të bëhet pas Tavafit, duhet ta shtyni atë derisa të pastroheni dhe të bëni Tavafin. (Nëse jeni kthyer në Kiran, vazhdoni direkt në Minë).",
       "spiritualEssence": "[sai|Sa'i] midis Safas dhe Mervas rikujton përpjekjen dhe besimin absolut të Haxheres (ra) te Allahu. Na mëson se duhet të bëjmë çdo përpjekje njerëzore dhe t'ia lëmë rezultatin Allahut. [zamzam|Zemzemi] është dëshmi e gjallë e kësaj mrekullie.",
       "fiqhRules": "• Rregulli i 7 kalimeve: Sa'i përbëhet nga 7 kalime. Shkuarja nga Safa në Merva është 1 kalim, kthimi nga Merva në Safa është kalimi i dytë.\n• Vrapimi i lehtë (Hervele): Është sunnet vetëm për burrat të vrapojnë lehtë midis dritave të gjelbra.\n• Abdesi jo i detyrueshëm: Abdesi nuk është kusht i domosdoshëm për Sa'i, prandaj gratë me cikël menstrual mund ta kryejnë atë pa problem.",
       "survivalHacks": "• Zgjidhni katet me kondicioner: Katet e sipërme janë të kondicionuara mirë dhe ju kursejnë energji për ditët e vështira të Haxhit.\n• Mbarimi në Merva: Kalimi i shtatë mbaron gjithmonë në Merva, ku ndodhen edhe daljet kryesore drejt rrugës dhe dyqaneve.",
@@ -1937,6 +1964,7 @@ export const hajjData: HajjData = {
       ]
     },
     "scholarlyGuide": {
+      "mensesRules": "Qëndrimi në Arafat (Vakfa) është plotësisht i vlefshëm për gratë me cikël. Mund të qëndroni në Arafat, të bëni të gjitha lutjet dhe të bëni dhikr; pastërtia nuk kërkohet për Arafat.",
       "spiritualEssence": "[wuquf|Vukufi] në Arafat është dita e faljes së madhe dhe kulmi i Haxhit. Profeti (ﷺ) ka thënë: 'Haxhi është Arafat'. Është një ditë e përulësisë absolute ku lutjet tona pranohen drejtpërdrejt nga Allahu i Madhërishëm.",
       "fiqhRules": "• [rukn|Rukni] i Haxhit: Qëndrimi në Arafat qoftë edhe për pak çaste midis kohës së drekës dhe perëndimit të diellit është shtyllë ([rukn|Rukn]) pa të cilën Haxhi nuk është i vlefshëm.\n• Bashkimi i namazeve: Namazi i drekës dhe i ikindisë falen të bashkuara (Xhem al-Taqdim) dhe të shkurtuara me një ezan dhe dy ikamete.\n• Kufiri i kohës: Nuk lejohet largimi nga Arafati para perëndimit të plotë të diellit. Largimi i parakohshëm kërkon therje kurbani (fidje) për ndreqje.",
       "survivalHacks": "• Fokusohuni tek lutjet: Mos humbni kohë me gjumë, biseda apo foto selfi. Kjo është dita më e rëndësishme e jetës suaj shpirtërore.\n• Mos u ngjitni në kodër: Qëndrimi (Vukufi) është i vlefshëm në çdo pjesë të fushës së Arafatit. Ngjitja në Kodrën e Mëshirës (Jabal ar-Rahmah) nuk është kusht dhe mund t'ju lodhë jashtëzakonisht.",
@@ -1965,6 +1993,7 @@ export const hajjData: HajjData = {
       ]
     },
     "scholarlyGuide": {
+      "mensesRules": "Kalimi i natës në Muzdelifë dhe mbledhja e gurëve janë plotësisht të vlefshme gjatë ciklit. Pastërtia rituale nuk është kusht për Muzdelifën.",
       "spiritualEssence": "Fjetja në tokë nën yje në [muzdalifah|Muzdelife], pa asnjë luks apo dallim shoqëror, tregon barazinë e plotë të njerëzve dhe varësinë e tyre absolute nga Allahu i Madhërishëm.",
       "fiqhRules": "• Bashkimi i namazeve: Namazi i akshamit dhe i jacisë falen të bashkuara pas mbërritjes në Muzdelife (Xhem al-Tahir). Akshami falet i plotë (3 rekate), ndërsa jacia shkurtohet në 2 rekate.\n• Qëndrimi (Vukufi): Qëndrimi në Muzdelife të paktën deri pas mesnatës është [wajib|Vaxhib] për haxhinjtë.\n• Lehtësimi për të dobëtit: Gratë, të moshuarit dhe të sëmurët lejohen të largohen nga Muzdelifeja pas mesnatës për të shmangur shtytjet e rrezikshme në mëngjes te Jamarati.\n• Mbledhja e gurëve: Mblidhni gurët e vegjël këtu. Ju duhen 7 gurë për ditën e parë dhe nga 21 gurë për ditët e tjera të Teshrikut.",
       "survivalHacks": "• Dyshek i lehtë: Një tapet i lehtë yoga ose dyshek i hollë me ajër ju ndihmon të flini më mirë mbi tokën me gurë të Muzdelifes.\n• Mos falni akshamin rrugës: Ndiqni sunnetin dhe faleni akshamin dhe jacinë vetëm kur të arrini fizikisht në Muzdelife, pavarësisht vonesave në komunikacion.",
@@ -1993,6 +2022,7 @@ export const hajjData: HajjData = {
       ]
     },
     "scholarlyGuide": {
+      "mensesRules": "Gjuajtja e Jamarat al-Aqaba është plotësisht e vlefshme për gratë me cikël. Ato kanë lehtësim (rrethanë lehtësuese) të largohen nga Muzdelifa pas mesnate për të gjuajtur herët, ose mund të delegojnë dikë të gjuajë në emër të tyre nëse zhurma dhe rreziku në turma është i madh.",
       "spiritualEssence": "[rami|Gjuajtja e Jamarat al-Aqaba] (shtyllës së madhe) në ditën e Bajramit simbolizon refuzimin aktiv të dëshirave të epshit, pëshpëritjeve të djallit dhe prirjeve të këqija, duke ndjekur shembullin e profetit Ibrahim (as).",
       "fiqhRules": "• Gjuajtja e ditës së Bajramit: Më 10 Dhul Hixhe gjuhet VETËM [rukn|shtylla] e madhe (Jamarat al-Aqaba) me 7 gurë. [rukn|Shtylla] e vogël dhe e mesme nuk gjuhen në këtë ditë.\n• Mënyra e gjuajtjes: Çdo gur duhet të hidhet veçmas me dorë duke thënë 'Allahu Akbar'. Guri duhet të bjerë brenda rrethit të basenit të shtyllës.\n• Ndalimi i Telbijes: [talbiyah|Telbija] ndërpritet menjëherë me hedhjen e gurit të parë.\n• Tahalluli i parë: Pas gjuajtjes dhe prerjes/rrojës së flokëve, arrihet dalja e parë nga Ihrami (Tahallul al-Awwal) ku lejohen të gjitha gjërat përveç marrëdhënieve bashkëshortore.",
       "survivalHacks": "• Qëndroni në anë: Afrohuni te baseni i shtyllës nga anët ose nga pjesa e pasme për të shmangur turmën e dendur në qendër.\n• Shmangni mëngjesin e hershëm: Koha menjëherë pas lindjes së diellit është më e ngarkuara. Gjuajtja pas drekës ose në mbrëmje është shumë më e qetë dhe më e sigurt për të moshuarit.",
@@ -2081,6 +2111,7 @@ export const hajjData: HajjData = {
       ]
     },
     "scholarlyGuide": {
+      "mensesRules": "Duhet ta shtyni Tavafin e Ifadahut (i cili është shtyllë/Rukn e Haxhit) derisa të pastroheni. Ju mund të shkurtoni flokët tuaj në ditën e Bajramit për të arritur lirimin e parë nga Ihrami (Tahallul al-Awwal) dhe të veshni rrobat e zakonshme, por duhet ta shtyni Tavafin. Nëse grupi juaj i udhëtimit niset dhe nuk mund të prisni, konsultohuni me dijetarët për rregullat e emergjencës apo përdorimin e medikamenteve.",
       "spiritualEssence": "[tawaf|Tavafi i Ifadahut] është kurorëzimi i Haxhit. Tashmë të veshur me rrobat tuaja të zakonshme, ju ktheheni te [kaaba|Qabja] për të kryer rrotullimet e besës, duke kompletuar shtyllën finale që ju liron plotësisht nga të gjitha ndalimet e [ihram|Ihramit].",
       "fiqhRules": "• [rukn|Shtylla] e domosdoshme ([rukn|Rukn]): Tavafi i Ifadahut është shtyllë e domosdoshme e Haxhit. Pa të Haxhi nuk është i vlefshëm dhe nuk mund të zëvendësohet me kurban.\n• Pa [idtiba|Idtiba] dhe pa Remel: Meqenëse nuk jeni më në Ihram (ose jeni liruar nga kufizimet e tij), nuk zbuloni supin dhe nuk vraponi në tri rrotullimet e para.\n• Sa'i i Haxhit: Haxhinjtë Tamattu duhet të bëjnë edhe Sa'in e Haxhit pas këtij Tavafi. Haxhinjtë Kiran dhe Ifrad e bëjnë vetëm nëse nuk e kanë bërë gjatë Tavafit të arritjes.\n• Rregulli i Ciklit: Gratë me cikël menstrual nuk e bëjnë këtë Tavaf derisa të pastrohen. Ato qëndrojnë në Makkah ose Mina dhe presin pastrimin për ta kryer atë.\n• Tahalluli i Plotë (Tahallul al-Akbar): Pas përfundimit të të 3 veprimeve të Bajramit (Gjuajtja + Rroja + Tavafi), ju arritni tahallulin e plotë ku lejohen edhe marrëdhëniet bashkëshortore.",
       "survivalHacks": "• Shtyjeni Tavafin: Kryerja e gjuajtjes, rrojës, udhëtimit në Makkah dhe Tavafit brenda një dite është jashtëzakonisht e lodhshme. Rekomandohet të kryhet natën e 11-të ose 12-të të Dhul Hixhes kur është më freskët dhe më pak ngarkesë."
@@ -2179,6 +2210,7 @@ export const hajjData: HajjData = {
       ]
     },
     "scholarlyGuide": {
+      "mensesRules": "Gruaja me cikël menstrual është plotësisht e liruar nga Tavafi i Lamtumirës. Ju mund të largoheni nga Meka me grupin tuaj pa pasur nevojë për therjen e kurbanit apo ndonjë fidje tjetër.",
       "spiritualEssence": "Tavafi i Lamtumirës (Tawaf al-Wida) është lamtumira juaj e fundit me Shtëpinë e Allahut. Duke parë Qaben për herë të fundit, ju falënderoni Allahun që ju pranoi si mysafir të Tij dhe luteni që ky të mos jetë vizita juaj e fundit në këtë vend të shenjtë.",
       "fiqhRules": "• Detyrimi ([wajib|Vaxhib]): Tavafi i Lamtumirës është [wajib|vaxhib] për të gjithë haxhinjtë para se të largohen nga Makkah. Terki i tij kërkon therjen e një kurbani.\n• Lehtësimi për Gratë: Gratë me cikël menstrual ose lehonat janë të liruara plotësisht nga ky Tavaf dhe mund të largohen pa pasur nevojë për fidje.\n• Largimi i menjëhershëm: Ky Tavaf duhet të jetë akti juaj absolutisht i fundit në Makkah. Nuk lejohet qëndrimi për blerje, ushqim apo fjetje pas tij. Çdo qëndrim i gjatë kërkon përsëritjen e Tavafit.",
       "survivalHacks": "• Blerjet paraprake: Kryeni të gjitha blerjet e dhuratave dhe paketoni valixhet PARA se të kryeni Tavafin e Lamtumirës, në mënyrë që të niseni menjëherë drejt makinës apo autobusit tuaj pas përfundimit të tij."
