@@ -214,5 +214,203 @@
       "term": "Xhamia e Haramit",
       "definition": "Xhamia e Madhe në Mekë, xhamia më e madhe në botë dhe vendi më i shenjtë në Islam. Ajo rrethon Qabenë dhe strehon miliona besimtarë. Të gjitha ritualet e Tavafi bëhen brenda territorit të saj. Namazi i falur këtu shpërblihet 100,000 herë më shumë se namazi i falur gjetkë."
     }
+  },
+  "miqat": {
+    "en": {
+      "term": "Miqat",
+      "definition": "The designated physical boundary stations where pilgrims must enter the state of Ihram before entering Makkah for Hajj or Umrah."
+    },
+    "ar": {
+      "term": "الميقات",
+      "definition": "المواقيت المكانية المحددة التي يجب على الحاج أو المعتمر الإحرام منها قبل دخول مكة المكرمة لأداء المناسك."
+    },
+    "tr": {
+      "term": "Mikat",
+      "definition": "Hacı adaylarının Hac veya Umre için Mekke'ye girmeden önce ihrama girmeleri gereken kutsal sınır noktaları."
+    },
+    "sq": {
+      "term": "Mikati",
+      "definition": "Pikat kufitare apo stacionet e caktuara ku haxhilerët duhet të hyjnë në gjendjen e Ihramit para se të hyjnë në Mekë për Haxh apo Umre."
+    }
+  },
+  "talbiyah": {
+    "en": {
+      "term": "Talbiyah",
+      "definition": "The devotional chant recited aloud by pilgrims in Ihram: 'Labbayk Allahumma Labbayk...' signifying submission to Allah's call."
+    },
+    "ar": {
+      "term": "التلبية",
+      "definition": "النداء والذكر الذي يردده المحرم بصوت مسموع: 'لبيك اللهم لبيك...' إعلاناً للاستجابة لأمر الله والخضوع له."
+    },
+    "tr": {
+      "term": "Telbiye",
+      "definition": "İhramlı hacıların yüksek sesle (kadınlar sessizce) söylediği, Allah'ın çağrısına teslimiyeti simgeleyen kutsal zikir: 'Lebbeyk Allahümme Lebbeyk...'"
+    },
+    "sq": {
+      "term": "Telbija",
+      "definition": "Lutja dhe zikri që thonë me zë të lartë haxhilerët në Ihram: 'Labbayk Allahumma Labbayk...' duke shprehur dorëzimin dhe përgjigjen ndaj thirrjes së Allahut."
+    }
+  },
+  "niyyah": {
+    "en": {
+      "term": "Niyyah",
+      "definition": "The mental intention made within the heart before performing any Islamic act of worship, which is essential for its validity."
+    },
+    "ar": {
+      "term": "النية",
+      "definition": "القصد والعزم بالقلب قبل البدء بأي عبادة إسلامية، وهي شرط أساسي لصحة وقبول الأعمال الفقهية."
+    },
+    "tr": {
+      "term": "Niyet",
+      "definition": "Bir ibadete başlamadan önce kalpten geçen irade ve amaç; ibadetin geçerliliği için temel şarttır."
+    },
+    "sq": {
+      "term": "Nijeti",
+      "definition": "Qëllimi dhe vendosmëria me zemër para kryerjes së çdo ibadeti, i cili është kusht themelor për vlefshmërinë e veprës."
+    }
+  },
+  "sunnah": {
+    "en": {
+      "term": "Sunnah",
+      "definition": "The voluntary practices, customs, and traditions established by the Prophet Muhammad ﷺ, highly rewarded but not strictly mandatory."
+    },
+    "ar": {
+      "term": "السنة",
+      "definition": "الأعمال والأقوال والتقريرات التطوعية المأثورة عن النبي محمد ﷺ، يثاب فاعلها ولا يعاقب تاركها ولكنها مستحبة بشدة."
+    },
+    "tr": {
+      "term": "Sünnet",
+      "definition": "Hz. Muhammed'in ﷺ yaptığı, yapılması tavsiye edilen ve büyük sevabı olan ancak yapılması farz/vacip olmayan ibadet ve davranışlar."
+    },
+    "sq": {
+      "term": "Suneti",
+      "definition": "Veprat, fjalët dhe praktikat vullnetare të transmetuara nga Profeti Muhamed ﷺ, të cilat janë shumë të rekomanduara por jo rreptësisht të detyrueshme."
+    }
+  },
+  "wajib": {
+    "en": {
+      "term": "Wajib",
+      "definition": "An obligatory act in Hajj. Missing a Wajib act does not invalidate Hajj, but requires an animal sacrifice (Dam) to compensate."
+    },
+    "ar": {
+      "term": "الواجب",
+      "definition": "الأمر الإلزامي في مناسك الحج. تركه لا يبطل الحج بالكامل، ولكن يجب على الحاج كفارة بتقديم هدي (ذبح شاة) للتعويض."
+    },
+    "tr": {
+      "term": "Vacip",
+      "definition": "Hac ibadetinde yapılması zorunlu olan ameller. Terk edilmesi haccı bozmaz ancak kurban (Dem) keserek telafi edilmesini gerektirir."
+    },
+    "sq": {
+      "term": "Vaxhibi",
+      "definition": "Vepër e detyrueshme në Haxh. Moskryerja e një vaxhibi nuk e prish Haxhin, por kërkon therjen e një kurbani si zhdëmtim për gabimin."
+    }
+  },
+  "rukn": {
+    "en": {
+      "term": "Rukn",
+      "definition": "An essential pillar of Hajj (plural: Arkan). If a Rukn is missed, the entire Hajj becomes invalid and cannot be compensated by sacrifice."
+    },
+    "ar": {
+      "term": "الركن",
+      "definition": "العمود والفرض الأساسي في الحج (جمعها أركان). إذا فات الركن بطل الحج بأكمله ولا يمكن تعويضه بأي فدية أو ذبح هدي."
+    },
+    "tr": {
+      "term": "Rükn",
+      "definition": "Hac ibadetinin temel şartı ve direği (çoğulu: Erkan). Kaçırılması durumunda Hac tamamen geçersiz kalır ve kurbanla telafi edilemez."
+    },
+    "sq": {
+      "term": "Rukni (Shtylla)",
+      "definition": "Shtylla apo kushti themelor i Haxhit (shumës: Erkan). Nëse mungon një rukn, i gjithë Haxhi bëhet i pavlefshëm dhe nuk mund të zhdëmtohet me kurban."
+    }
+  },
+  "idtiba": {
+    "en": {
+      "term": "Idtiba",
+      "definition": "The practice (for men) of exposing the right shoulder during the first Tawaf of arrival by passing the upper Ihram sheet under the right arm."
+    },
+    "ar": {
+      "term": "الاضطباع",
+      "definition": "كشف الكتف الأيمن للرجال خلال طواف القدوم فقط، بوضع وسط الرداء تحت الإبط الأيمن وطرفيه على الكتف الأيسر."
+    },
+    "tr": {
+      "term": "Iztıba",
+      "definition": "Kudüm tavafında (erkekler için) ihramın üst parçasını sağ koltuk altından geçirip sol omuz üzerine atarak sağ omzu açık bırakma uygulaması."
+    },
+    "sq": {
+      "term": "Idtibai",
+      "definition": "Veprimi (për burrat) i zbulimit të shpatullës së djathtë gjatë Tavafit të parë të mbërritjes duke e kaluar pjesën e sipërme të Ihramit nën sqetullën e djathtë."
+    }
+  },
+  "raml": {
+    "en": {
+      "term": "Raml",
+      "definition": "The practice (for men) of walking with quick, short, brisk steps during the first three circuits of the arrival Tawaf."
+    },
+    "ar": {
+      "term": "الرمل",
+      "definition": "إسراع المشي مع تقارب الخطوات وهز الكتفين للرجال في الأشواط الثلاثة الأولى من طواف القدوم فقط إظهاراً للقوة."
+    },
+    "tr": {
+      "term": "Remel",
+      "definition": "Kudüm tavafının ilk üç şavtında (erkeklerin) canlılık ve güç göstermek amacıyla omuzları silkerek kısa ve hızlı adımlarla yürümesi."
+    },
+    "sq": {
+      "term": "Ramli",
+      "definition": "Veprimi (për burrat) i ecjes me hapa të shpejtë e të shkurtër (në formë vrapimi të lehtë) gjatë tre rretheve të para të Tavafit të mbërritjes."
+    }
+  },
+  "maqamIbrahim": {
+    "en": {
+      "term": "Maqam Ibrahim",
+      "definition": "The Station of Ibrahim—a sacred stone near the Kaaba containing Prophet Ibrahim's footprints where pilgrims pray 2 Rakats after Tawaf."
+    },
+    "ar": {
+      "term": "مقام إبراهيم",
+      "definition": "الحجر الأثري المقدس بالقرب من الكعبة الذي يحتوي على آثار قدمي النبي إبراهيم، ويصلي الحجاج خلفه ركعتين بعد الطواف."
+    },
+    "tr": {
+      "term": "Makam-ı İbrahim",
+      "definition": "Kâbe'nin yakınında bulunan ve üzerinde Hz. İbrahim'in ayak izlerinin olduğu kutsal taş; arkasında iki rekat tavaf namazı kılınır."
+    },
+    "sq": {
+      "term": "Makami Ibrahimit",
+      "definition": "Vendi i Ibrahimit—guri i shenjtë pranë Qabesë ku ndodhen gjurmët e këmbëve të Profetit Ibrahim, ku falen 2 rekate pas Tavafit."
+    }
+  },
+  "tashreeq": {
+    "en": {
+      "term": "Tashreeq",
+      "definition": "The 'Days of Tashreeq' (11th, 12th, and 13th of Dhul Hijjah) spent in Mina for remembering Allah and performing the stoning ritual."
+    },
+    "ar": {
+      "term": "أيام التشريق",
+      "definition": "الأيام الثلاثة التي تلي عيد الأضحى (11 و 12 و 13 ذي الحجة) يقضيها الحجاج في منى لذكر الله ورمي الجمرات الثلاث."
+    },
+    "tr": {
+      "term": "Teşrik Günleri",
+      "definition": "Kurban Bayramı'nın 2, 3 ve 4. günleri (Zilhicce 11, 12, 13); Mina'da geçirilen, tekbir getirilen ve taşlama yapılan günler."
+    },
+    "sq": {
+      "term": "Ditët e Tashrikut",
+      "definition": "Tri ditët pas Kurban Bajramit (11, 12, dhe 13 Dhul Hixhxhe) të kaluara në Minë për të kujtuar Allahun dhe për të kryer ritualin e hedhjes së gurëve."
+    }
+  },
+  "tarwiyah": {
+    "en": {
+      "term": "Tarwiyah",
+      "definition": "The 'Day of Tarwiyah' (8th of Dhul Hijjah), marking the official beginning of Hajj when pilgrims enter Ihram and proceed to Mina."
+    },
+    "ar": {
+      "term": "يوم التروية",
+      "definition": "اليوم الثامن من شهر ذي الحجة، وهو البداية الرسمية لمناسك الحج حيث يحرم الحجاج ويتوجهون إلى مشعر منى."
+    },
+    "tr": {
+      "term": "Terviye Günü",
+      "definition": "Zilhicce'nin 8. günü; hacıların Mina'ya gitmek üzere ihrama girip yola çıktıkları, Hac ibadetinin ilk resmi günü."
+    },
+    "sq": {
+      "term": "Dita e Tervijes",
+      "definition": "Dita e Tervijes (dita e 8-të e Dhul Hixhxhes), që shënon fillimin zyrtar të Haxhit kur haxhilerët hyjnë në Ihram dhe shkojnë në Minë."
+    }
   }
 }
