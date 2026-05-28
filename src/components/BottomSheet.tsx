@@ -86,6 +86,9 @@ const BottomSheet: React.FC = () => {
   const [showConfetti, setShowConfetti] = useState(false);
   const [confettiMessage, setConfettiMessage] = useState(false);
 
+  // Handle swipe gesture state
+  const [handleSwipeStartY, setHandleSwipeStartY] = useState<number | null>(null);
+
   // GPS & Compass States
   const [userCoords, setUserCoords] = useState<{ lat: number; lng: number } | null>(null);
   const [deviceHeading, setDeviceHeading] = useState<number>(0);
@@ -301,6 +304,27 @@ const BottomSheet: React.FC = () => {
     window.speechSynthesis.speak(utterance);
   };
 
+  // ── Swipe Up/Down gesture handlers for the handle bar ────────────────
+  const onHandleTouchStart = (e: React.TouchEvent) => {
+    setHandleSwipeStartY(e.touches[0].clientY);
+  };
+
+  const onHandleTouchEnd = (e: React.TouchEvent) => {
+    if (handleSwipeStartY === null) return;
+    const endY = e.changedTouches[0].clientY;
+    const diffY = handleSwipeStartY - endY; // positive = swiped up, negative = swiped down
+    const threshold = 40;
+
+    if (diffY > threshold && !isDrawerOpen) {
+      toggleDrawer(true);
+      if (navigator.vibrate) navigator.vibrate(40);
+    } else if (diffY < -threshold && isDrawerOpen) {
+      toggleDrawer(false);
+      if (navigator.vibrate) navigator.vibrate(30);
+    }
+    setHandleSwipeStartY(null);
+  };
+
   const drawerVariants = {
     closed: { y: 'calc(80dvh - 140px)' }, // leaves exactly 140px visible
     open: { y: '0px' }, // fully open, sits at the bottom of the viewport
@@ -372,13 +396,33 @@ const BottomSheet: React.FC = () => {
           )}
         </AnimatePresence>
 
-        {/* Handle / Tap Area */}
+        {/* Handle / Tap Area — supports tap, swipe up (open), swipe down (close) */}
         <div 
-          className="w-full py-4 flex flex-col items-center cursor-pointer flex-shrink-0 select-none"
+          className="w-full py-3.5 flex flex-col items-center cursor-pointer flex-shrink-0 select-none"
           onClick={() => toggleDrawer()}
+          onTouchStart={onHandleTouchStart}
+          onTouchEnd={onHandleTouchEnd}
         >
-          <div className={`w-12 h-1.5 rounded-full mb-4 transition-colors duration-500 ${isDark ? 'bg-white/15' : 'bg-hajj-navy/20'}`} />
+          {/* Drag Pill */}
+          <div className={`w-12 h-1.5 rounded-full mb-2.5 transition-colors duration-500 ${isDark ? 'bg-white/15' : 'bg-hajj-navy/20'}`} />
           
+          {/* Swipe direction micro-hint chevron */}
+          <motion.div
+            animate={{ y: isDrawerOpen ? 2 : -2 }}
+            transition={{ duration: 1.2, repeat: Infinity, repeatType: 'reverse', ease: 'easeInOut' }}
+            className="mb-2"
+          >
+            <svg
+              className={`w-3.5 h-3.5 transition-all duration-400 ${
+                isDark ? 'text-white/25' : 'text-hajj-navy/25'
+              } ${isDrawerOpen ? 'rotate-180' : ''}`}
+              fill="none" stroke="currentColor" viewBox="0 0 24 24" strokeWidth="2.5"
+              aria-hidden="true"
+            >
+              <path strokeLinecap="round" strokeLinejoin="round" d="M5 15l7-7 7 7" />
+            </svg>
+          </motion.div>
+
           {/* Progress Mini bar */}
           {checklists.length > 0 && (
             <div className={`w-24 h-1 rounded-full mb-2 overflow-hidden transition-colors duration-500 ${
@@ -834,49 +878,60 @@ const BottomSheet: React.FC = () => {
         <div className="h-[env(safe-area-inset-bottom,24px)]" />
       </div>
 
-      {/* Navigation Bar (Sticky at bottom of drawer) */}
-      <div className={`p-6 border-t flex justify-between items-center transition-colors duration-500 flex-shrink-0 ${
+      {/* Navigation Bar — 3-Column Grid: always centered, never overflows on any phone */}
+      <div className={`px-4 py-3 border-t grid grid-cols-3 items-center transition-colors duration-500 flex-shrink-0 ${
         isDark ? 'bg-[#061D13]/95 border-white/5' : 'bg-hajj-alabaster/95 border-hajj-green/5'
       }`}>
-        <button 
-          onClick={(e) => { e.stopPropagation(); prevStage(); }}
-          disabled={currentStageIndex === 0}
-          className={`px-6 py-3 rounded-2xl font-bold disabled:opacity-20 transition-all active:scale-95 cursor-pointer select-none ${
-            isDark ? 'text-hajj-alabaster/85 hover:bg-white/5' : 'text-hajj-green hover:bg-hajj-green/5'
-          }`}
-        >
-          {language === 'ar' ? 'السابق' : language === 'tr' ? 'Geri' : language === 'sq' ? 'Prapa' : 'Previous'}
-        </button>
-        <div className="flex items-center gap-1 px-2">
+
+        {/* ← Previous — left column */}
+        <div className="justify-self-start">
+          <button 
+            onClick={(e) => { e.stopPropagation(); prevStage(); }}
+            disabled={currentStageIndex === 0}
+            className={`px-4 py-2.5 rounded-xl font-bold text-sm disabled:opacity-20 transition-all active:scale-95 cursor-pointer select-none focus:outline-none ${
+              isDark ? 'text-hajj-alabaster/85 hover:bg-white/5' : 'text-hajj-green hover:bg-hajj-green/5'
+            }`}
+          >
+            {language === 'ar' ? 'السابق' : language === 'tr' ? 'Geri' : language === 'sq' ? 'Prapa' : '← Prev'}
+          </button>
+        </div>
+
+        {/* Stage Dots — center column, perfectly centered */}
+        <div className="justify-self-center flex items-center gap-0.5 flex-wrap justify-center max-w-[72px]">
           {visibleStages.map((stage, i) => {
-            // Show a thin divider between chapter boundaries
-            const prevStage = visibleStages[i - 1];
-            const isChapterStart = i > 0 && prevStage && stage.chapter !== prevStage.chapter;
+            const prevStageItem = visibleStages[i - 1];
+            const isChapterStart = i > 0 && prevStageItem && stage.chapter !== prevStageItem.chapter;
             return (
               <React.Fragment key={stage.id}>
                 {isChapterStart && (
-                  <div className={`w-px h-3 rounded-full mx-0.5 flex-shrink-0 ${isDark ? 'bg-white/15' : 'bg-hajj-navy/15'}`} />
+                  <div className={`w-px h-2 rounded-full mx-0.5 flex-shrink-0 ${isDark ? 'bg-white/15' : 'bg-hajj-navy/15'}`} />
                 )}
                 <div
                   className={`h-1.5 rounded-full transition-all duration-300 flex-shrink-0 ${
-                    i === currentStageIndex ? 'w-5 bg-hajj-gold' : isDark ? 'w-1.5 bg-white/10' : 'w-1.5 bg-hajj-navy/10'
+                    i === currentStageIndex
+                      ? 'w-3 bg-hajj-gold'
+                      : isDark ? 'w-1 bg-white/15' : 'w-1 bg-hajj-navy/15'
                   }`}
                 />
               </React.Fragment>
             );
           })}
         </div>
-        <button 
-          onClick={(e) => { e.stopPropagation(); nextStage(); }}
-          disabled={currentStageIndex === totalStages - 1}
-          className={`px-8 py-3 rounded-2xl font-bold shadow-lg transition-all active:scale-95 disabled:opacity-20 cursor-pointer select-none ${
-            isDark 
-              ? 'bg-hajj-gold text-hajj-green shadow-hajj-gold/10 hover:brightness-110' 
-              : 'bg-hajj-green text-hajj-alabaster shadow-hajj-green/20 hover:brightness-110'
-          }`}
-        >
-          {language === 'ar' ? 'التالي' : language === 'tr' ? 'İleri' : language === 'sq' ? 'Para' : 'Next Step'}
-        </button>
+
+        {/* Next → — right column */}
+        <div className="justify-self-end">
+          <button 
+            onClick={(e) => { e.stopPropagation(); nextStage(); }}
+            disabled={currentStageIndex === totalStages - 1}
+            className={`px-4 py-2.5 rounded-xl font-extrabold text-sm shadow-md transition-all active:scale-95 disabled:opacity-20 cursor-pointer select-none focus:outline-none ${
+              isDark 
+                ? 'bg-hajj-gold text-hajj-green shadow-hajj-gold/10 hover:brightness-110' 
+                : 'bg-hajj-green text-hajj-alabaster shadow-hajj-green/20 hover:brightness-110'
+            }`}
+          >
+            {language === 'ar' ? 'التالي' : language === 'tr' ? 'İleri' : language === 'sq' ? 'Para' : 'Next →'}
+          </button>
+        </div>
       </div>
       {/* Safe Area Spacer for Bottom Bar */}
       <div className={`flex-shrink-0 transition-colors duration-500 ${isDark ? 'bg-[#061D13]/95' : 'bg-hajj-alabaster/95'}`} style={{ height: 'env(safe-area-inset-bottom, 0px)' }} />
