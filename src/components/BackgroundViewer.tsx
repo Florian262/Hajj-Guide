@@ -179,7 +179,7 @@ const BackgroundViewer: React.FC = () => {
             className={`absolute inset-0 bg-gradient-to-t pointer-events-none transition-colors duration-500 ${
               isDark 
                 ? 'from-[#061D13] via-[#061D13]/40 to-black/15' 
-                : 'from-hajj-alabaster via-hajj-alabaster/40 to-black/10'
+                : 'from-hajj-alabaster/12 via-hajj-alabaster/4 to-transparent'
             }`} 
           />
         </motion.div>
