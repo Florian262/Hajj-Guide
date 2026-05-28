@@ -4,6 +4,7 @@ import BackgroundViewer from './components/BackgroundViewer';
 import BottomSheet from './components/BottomSheet';
 import GlossaryModal from './components/GlossaryModal';
 import { useStore } from './store/useStore';
+import { JourneyMap } from './components/JourneyMap';
 
 // Web Audio API Sanctuary Drone Synth
 class SanctuarySynth {
@@ -205,7 +206,9 @@ const App: React.FC = () => {
     toggleTheme,
     profile,
     setProfile,
-    clearProfile
+    clearProfile,
+    viewMode,
+    setViewMode
   } = useStore();
 
   const [touchStart, setTouchStart] = useState<number | null>(null);
@@ -271,8 +274,8 @@ const App: React.FC = () => {
   const handleEnd = () => {
     if (touchStart === null || touchEnd === null) return;
     
-    // Only swipe if the drawer is NOT open to prevent conflicting vertical scrolls
-    if (isDrawerOpen) return;
+    // Only swipe if the drawer is NOT open and we are in guide view
+    if (isDrawerOpen || viewMode === 'map') return;
 
     const distance = touchStart - touchEnd;
     const isLeftSwipe = distance > minSwipeDistance;
@@ -453,7 +456,11 @@ const App: React.FC = () => {
         )}
       </AnimatePresence>
 
-      <BackgroundViewer />
+      {!isOnboardingOpen && viewMode === 'map' ? (
+        <JourneyMap />
+      ) : (
+        <BackgroundViewer />
+      )}
       
       {/* Header Overlay */}
       <header className="absolute top-0 inset-x-0 z-20 pt-[env(safe-area-inset-top)] p-6 pointer-events-none flex justify-between items-center">
@@ -464,6 +471,30 @@ const App: React.FC = () => {
 
         {/* Control Tools */}
         <div className="flex items-center gap-3 pointer-events-auto">
+          {/* Map Portal Toggle Button */}
+          {!isOnboardingOpen && (
+            <button
+              onClick={() => setViewMode(viewMode === 'map' ? 'guide' : 'map')}
+              className={`w-10 h-10 flex items-center justify-center rounded-full backdrop-blur-md border active:scale-95 transition-all cursor-pointer shadow-sm focus:outline-none ${
+                viewMode === 'map' 
+                  ? 'bg-hajj-gold/25 border-hajj-gold/45 text-hajj-gold font-bold animate-pulse' 
+                  : 'bg-white/10 dark:bg-black/35 border-white/15 dark:border-white/10 text-white hover:bg-white/20'
+              }`}
+              title={viewMode === 'map' ? "Enter Guide View" : "Enter Map View"}
+              aria-label="Toggle View Mode"
+            >
+              {viewMode === 'map' ? (
+                <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24" strokeWidth="2.5">
+                  <path strokeLinecap="round" strokeLinejoin="round" d="M12 6.253v13m0-13C10.832 5.477 9.246 5 7.5 5S4.168 5.477 3 6.253v13C4.168 18.477 5.754 18 7.5 18s3.332.477 4.5 1.253m0-13C13.168 5.477 14.754 5 16.5 5c1.747 0 3.332.477 4.5 1.253v13C19.832 18.477 18.247 18 16.5 18c-1.746 0-3.332.477-4.5 1.253" />
+                </svg>
+              ) : (
+                <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24" strokeWidth="2.5">
+                  <path strokeLinecap="round" strokeLinejoin="round" d="M9 20l-5.447-2.724A1 1 0 013 16.382V5.618a1 1 0 011.447-.894L9 7m0 13l6-3m-6 3V7m6 10l4.553 2.276A1 1 0 0021 18.382V7.618a1 1 0 00-.553-.894L15 4m0 13V4m0 0L9 7" />
+                </svg>
+              )}
+            </button>
+          )}
+
           {/* Sound Synthesizer Player Toggle */}
           <button
             onClick={handleToggleSound}
@@ -541,7 +572,7 @@ const App: React.FC = () => {
         </div>
       </header>
 
-      <BottomSheet />
+      {!isOnboardingOpen && viewMode === 'map' ? null : <BottomSheet />}
 
       {/* Onboarding Glassmorphism Screen */}
       <AnimatePresence>

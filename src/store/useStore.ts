@@ -17,6 +17,7 @@ interface AppState {
   theme: 'light' | 'dark';
   profile: UserProfile;
   activeGlossaryTerm: string | null;
+  viewMode: 'map' | 'guide';
   setStageIndex: (index: number) => void;
   toggleDrawer: (open?: boolean) => void;
   nextStage: () => void;
@@ -32,6 +33,7 @@ interface AppState {
   saveTentLocation: (lat: number, lng: number) => void;
   clearProfile: () => void;
   setActiveGlossaryTerm: (term: string | null) => void;
+  setViewMode: (mode: 'map' | 'guide') => void;
 }
 
 const initialProfile: UserProfile = {
@@ -52,56 +54,60 @@ export const useStore = create<AppState>()(
       theme: 'light',
       profile: initialProfile,
       activeGlossaryTerm: null,
+      viewMode: 'map',
       setActiveGlossaryTerm: (term) => set({ activeGlossaryTerm: term }),
       setStageIndex: (index) => set({ currentStageIndex: index }),
       toggleDrawer: (open) => set((state) => ({ 
-        isDrawerOpen: open !== undefined ? open : !state.isDrawerOpen 
-      })),
+          isDrawerOpen: open !== undefined ? open : !state.isDrawerOpen 
+        })),
       nextStage: () => set((state) => ({ 
-        currentStageIndex: Math.min(state.currentStageIndex + 1, 17) 
-      })),
+          currentStageIndex: Math.min(state.currentStageIndex + 1, 17) 
+        })),
       prevStage: () => set((state) => ({ 
-        currentStageIndex: Math.max(state.currentStageIndex - 1, 0) 
-      })),
+          currentStageIndex: Math.max(state.currentStageIndex - 1, 0) 
+        })),
       toggleChecklistItem: (stageId, itemIndex) => set((state) => {
-        const key = `${stageId}-${itemIndex}`;
-        return {
-          completedItems: {
-            ...state.completedItems,
-            [key]: !state.completedItems[key]
-          }
-        };
-      }),
+          const key = `${stageId}-${itemIndex}`;
+          return {
+            completedItems: {
+              ...state.completedItems,
+              [key]: !state.completedItems[key]
+            }
+          };
+        }),
       incrementTawaf: () => set((state) => ({
-        tawafCount: state.tawafCount < 7 ? state.tawafCount + 1 : 7
-      })),
+          tawafCount: state.tawafCount < 7 ? state.tawafCount + 1 : 7
+        })),
       resetTawaf: () => set({ tawafCount: 0 }),
       incrementSai: () => set((state) => ({
-        saiCount: state.saiCount < 7 ? state.saiCount + 1 : 7
-      })),
+          saiCount: state.saiCount < 7 ? state.saiCount + 1 : 7
+        })),
       resetSai: () => set({ saiCount: 0 }),
       setLanguage: (lang) => set({ language: lang }),
       toggleTheme: () => set((state) => ({ theme: state.theme === 'light' ? 'dark' : 'light' })),
       setProfile: (newProfile) => set((state) => ({
-        profile: {
-          ...state.profile,
-          gender: newProfile.gender,
-          hajjType: newProfile.hajjType,
-        }
-      })),
+          profile: {
+            ...state.profile,
+            gender: newProfile.gender,
+            hajjType: newProfile.hajjType,
+          },
+          viewMode: 'map'
+        })),
       saveTentLocation: (lat, lng) => set((state) => ({
-        profile: {
-          ...state.profile,
-          tentCoords: { lat, lng }
-        }
-      })),
+          profile: {
+            ...state.profile,
+            tentCoords: { lat, lng }
+          }
+        })),
       clearProfile: () => set({
-        profile: initialProfile,
-        completedItems: {},
-        tawafCount: 0,
-        saiCount: 0,
-        currentStageIndex: 0,
-      }),
+          profile: initialProfile,
+          completedItems: {},
+          tawafCount: 0,
+          saiCount: 0,
+          currentStageIndex: 0,
+          viewMode: 'map',
+        }),
+      setViewMode: (mode) => set({ viewMode: mode }),
     }),
     {
       name: 'hajj-guide-storage',
@@ -113,6 +119,7 @@ export const useStore = create<AppState>()(
         language: state.language,
         theme: state.theme,
         profile: state.profile,
+        viewMode: state.viewMode,
       }),
     }
   )
