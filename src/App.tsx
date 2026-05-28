@@ -86,6 +86,114 @@ class SanctuarySynth {
   }
 }
 
+interface HajjTypeExplanation {
+  name: string;
+  subtitle: string;
+  description: string;
+  ihramCount: string;
+  sacrificeRequired: boolean;
+  badge?: string;
+}
+
+const hajjTypesExplanation: Record<'en' | 'ar' | 'tr' | 'sq', HajjTypeExplanation[]> = {
+  en: [
+    {
+      name: "Hajj al-Tamattu'",
+      subtitle: "Umrah first, then a separate Hajj (Most Recommended)",
+      description: "You enter Makkah in a state of Ihram to perform Umrah first. After Umrah, you completely cut/shave hair and exit Ihram, enjoying normal dress and lifestyle. On the 8th of Dhu al-Hijjah, you re-enter Ihram from Makkah for the Hajj. This requires a sacrificial animal.",
+      ihramCount: "2 Separate Ihrams",
+      sacrificeRequired: true,
+      badge: "Best Choice"
+    },
+    {
+      name: "Hajj al-Qiran",
+      subtitle: "Umrah and Hajj combined in one continuous Ihram",
+      description: "You enter Ihram at the Miqat with the intention of performing both Umrah and Hajj together. You perform Umrah but do NOT shave/cut hair or exit Ihram. You must remain in the continuous state of Ihram with all restrictions until the rituals are fully complete on Eid day. This requires a sacrificial animal.",
+      ihramCount: "1 Continuous Ihram",
+      sacrificeRequired: true
+    },
+    {
+      name: "Hajj al-Ifrad",
+      subtitle: "Hajj rituals only, no Umrah included",
+      description: "You enter Ihram with the sole intention of performing Hajj only. No Umrah is performed during this journey. You perform the welcome Tawaf upon arrival and remain in Ihram until Eid day. This does not require a sacrificial animal.",
+      ihramCount: "1 Continuous Ihram",
+      sacrificeRequired: false
+    }
+  ],
+  ar: [
+    {
+      name: "حج التمتع",
+      subtitle: "العمرة أولاً، ثم التحلل، ثم إحرام جديد للحج (مستحب جداً)",
+      description: "تدخل مكة محرمًا لتأدية العمرة أولاً (طواف وسعي وقص الشعر). بعد العمرة، تتحلل بالكامل من الإحرام وتعود لملابسك وحياتك الطبيعية. وفي يوم التروية (8 ذو الحجة)، تحرم مرة أخرى للحج من مكة. يلزمه هدي (ذبح شاة).",
+      ihramCount: "إحرامان منفصلان",
+      sacrificeRequired: true,
+      badge: "الخيار الأفضل"
+    },
+    {
+      name: "حج القران",
+      subtitle: "الجمع بين العمرة والحج في إحرام واحد مستمر",
+      description: "تحرم من الميقات بنية العمرة والحج معًا. تؤدي طواف وسعي العمرة عند وصولك ولكنك لا تتحلل من إحرامك، بل تبقى محرمًا بجميع المحظورات حتى تنتهي من جميع مناسك الحج يوم العيد. يلزمه هدي.",
+      ihramCount: "إحرام واحد مستمر",
+      sacrificeRequired: true
+    },
+    {
+      name: "حج الإفراد",
+      subtitle: "أداء مناسك الحج فقط دون عمرة مصاحبة",
+      description: "تحرم بنية الحج فقط من الميقات ولا تؤدي عمرة في هذه الرحلة. تؤدي طواف القدوم عند الوصول وتبقى محرمًا حتى يوم العيد. هذا النوع لا يلزمك فيه تقديم هدي (ذبح شاة).",
+      ihramCount: "إحرام واحد مستمر",
+      sacrificeRequired: false
+    }
+  ],
+  tr: [
+    {
+      name: "Temettu Haccı",
+      subtitle: "Önce Umre yapıp ihramdan çıkmak, sonra Hac için ihrama girmek (Tavsiye Edilen)",
+      description: "Mekke'ye sadece Umre niyetiyle ihramlı girersiniz. Umreyi bitirince saçınızı kesip ihramdan tamamen çıkar ve normal kıyafetlerinize dönersiniz. 8 Zilhicce'de Mekke'de Hac için yeniden ihrama girersiniz. Bu hac türünde şükür kurbanı kesmek vaciptir.",
+      ihramCount: "2 Ayrı İhram",
+      sacrificeRequired: true,
+      badge: "Tavsiye Edilen"
+    },
+    {
+      name: "Kıran Haccı",
+      subtitle: "Umre ve Haccı tek bir ihramda birleştirmek",
+      description: "Mikat sınırında hem Umre hem Hac için birlikte tek bir ihrama girersiniz. Mekke'de Umre yapsa da ihramdan çıkmaz. Bayram günü tıraş olana kadar ihram yasaklarına uymaya devam eder. Bu hac türünde kurban kesmek vaciptir.",
+      ihramCount: "1 Kesintisiz İhram",
+      sacrificeRequired: true
+    },
+    {
+      name: "İfrad Haccı",
+      subtitle: "Umresiz, doğrudan sadece Hac ibadeti yapmak",
+      description: "Sadece Hac niyetiyle ihrama girer ve bu seyahatte Umre yapmazsınız. Mekke'ye varınca Kudüm Tavafı yapar ve Bayram gününe kadar ihramda kalırsınız. İfrad haccında kurban kesmek zorunlu değildir.",
+      ihramCount: "1 Kesintisiz İhram",
+      sacrificeRequired: false
+    }
+  ],
+  sq: [
+    {
+      name: "Haxhi Temettu'",
+      subtitle: "Kryerja e Umres, dalja nga Ihrami, pastaj Ihram i ri për Haxh (I Rekomanduar)",
+      description: "Hyni në Mekë me Ihram për të kryer fillimisht Umren. Pas saj, shkurtoni flokët dhe dilni plotësisht nga Ihrami duke u kthyer në veshje normale. Më 8 Dhil-Hixhxhë, hyni përsëri në Ihram për Haxhin nga Meka. Kërkon therjen e kurbanit.",
+      ihramCount: "2 Ihramë të Ndarë",
+      sacrificeRequired: true,
+      badge: "Rekomandohet"
+    },
+    {
+      name: "Haxhi Kuran",
+      subtitle: "Umre dhe Haxh të bashkuara në një Ihram të vetëm",
+      description: "Hyni në Ihram me qëllim të kryerjes së Umres dhe Haxhit së bashku. Kryeni Umren por NUK shkurtoni flokët dhe NUK dilni nga Ihrami. Qëndroni në Ihram të pandërprerë me të gjitha kufizimet deri në Bajram. Kërkon therjen e kurbanit.",
+      ihramCount: "1 Ihram i Vazhdueshëm",
+      sacrificeRequired: true
+    },
+    {
+      name: "Haxhi Ifrad",
+      subtitle: "Vetëm ritet e Haxhit, pa Umre paraprake",
+      description: "Hyni në Ihram me qëllimin e vetëm për të kryer Haxhin. Nuk kryeni Umre gjatë këtij udhëtimi. Kryeni Tavafin e mirëseardhjes pas mbërritjes dhe qëndroni në Ihram deri në ditën e Bajramit. Nuk kërkon kurban obligues.",
+      ihramCount: "1 Ihram i Vazhdueshëm",
+      sacrificeRequired: false
+    }
+  ]
+};
+
 const App: React.FC = () => {
   const { 
     isDrawerOpen, 
@@ -112,6 +220,7 @@ const App: React.FC = () => {
   const [isSoundOn, setIsSoundOn] = useState(false);
   const [gender, setGender] = useState<'male' | 'female' | null>(null);
   const [hajjType, setHajjType] = useState<'tamattu' | 'qiran' | 'ifrad' | null>(null);
+  const [isHajjInfoOpen, setIsHajjInfoOpen] = useState(false);
 
   // Minimum swipe distance (in px)
   const minSwipeDistance = 50;
@@ -312,7 +421,7 @@ const App: React.FC = () => {
               className="splash-shimmer text-[11px] font-black uppercase tracking-[0.45em] mb-6"
               style={{ fontFamily: 'Inter, sans-serif' }}
             >
-              Hajj Way
+              Hajj Guide
             </p>
 
             {/* ── The Sacred Greeting ── */}
@@ -350,7 +459,7 @@ const App: React.FC = () => {
       <header className="absolute top-0 inset-x-0 z-20 pt-[env(safe-area-inset-top)] p-6 pointer-events-none flex justify-between items-center">
         {/* Brand Badge */}
         <div className="bg-hajj-green/30 dark:bg-black/45 backdrop-blur-md px-4 py-2 rounded-full border border-white/10 pointer-events-auto shadow-sm">
-          <span className="text-white text-xs font-bold tracking-[0.25em] uppercase">Hajj Way</span>
+          <span className="text-white text-xs font-bold tracking-[0.25em] uppercase">Hajj Guide</span>
         </div>
 
         {/* Control Tools */}
@@ -459,7 +568,7 @@ const App: React.FC = () => {
                   {language === 'ar' ? 'تخصيص الحج' : language === 'tr' ? 'HAC PORTALI' : language === 'sq' ? 'PORTALI I HAXHIT' : 'PILGRIM PORTAL'}
                 </span>
                 <h2 className="text-2xl font-black tracking-tight">
-                  {language === 'ar' ? 'مرحباً بك في طريق الحج' : language === 'tr' ? 'Hac Yoluna Hoş Geldiniz' : language === 'sq' ? 'Mirësevini në Hajj Way' : 'Welcome to Hajj Way'}
+                  {language === 'ar' ? 'مرحباً بك في دليل الحج' : language === 'tr' ? 'Hac Rehberine Hoş Geldiniz' : language === 'sq' ? 'Mirësevini në Hajj Guide' : 'Welcome to Hajj Guide'}
                 </h2>
                 <p className={`text-xs leading-relaxed transition-colors duration-500 ${isDark ? 'text-hajj-alabaster/65' : 'text-hajj-navy/65'}`}>
                   {language === 'ar'
@@ -504,9 +613,21 @@ const App: React.FC = () => {
 
                 {/* Hajj Typology Select */}
                 <div className="space-y-2">
-                  <span className="text-[10px] font-black uppercase tracking-widest text-hajj-gold">
-                    {language === 'ar' ? 'نوع الحج' : language === 'tr' ? 'HAC TÜRÜ' : language === 'sq' ? 'LLOJI I HAXHIT' : 'HAJJ TYPE'}
-                  </span>
+                  <div className="flex justify-between items-center">
+                    <span className="text-[10px] font-black uppercase tracking-widest text-hajj-gold">
+                      {language === 'ar' ? 'نوع الحج' : language === 'tr' ? 'HAC TÜRÜ' : language === 'sq' ? 'LLOJI I HAXHIT' : 'HAJJ TYPE'}
+                    </span>
+                    <button
+                      type="button"
+                      onClick={() => setIsHajjInfoOpen(true)}
+                      className="text-[10px] font-extrabold text-hajj-gold hover:brightness-110 active:scale-95 transition-all cursor-pointer flex items-center gap-1 focus:outline-none bg-transparent border-none"
+                    >
+                      <svg className="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24" strokeWidth="2.5">
+                        <path strokeLinecap="round" strokeLinejoin="round" d="M9.879 7.519c1.171-1.025 3.071-1.025 4.242 0 1.172 1.025 1.172 2.687 0 3.712-.203.179-.43.326-.67.442-.745.361-1.45.999-1.45 1.827v.75M21 12a9 9 0 11-18 0 9 9 0 0118 0zm-9 5.25h.008v.008H12v-.008z" />
+                      </svg>
+                      {language === 'ar' ? 'قارن' : language === 'tr' ? 'Karşılaştır' : language === 'sq' ? 'Krahaso' : 'Compare'}
+                    </button>
+                  </div>
                   <div className="grid grid-cols-3 gap-2">
                     <button
                       onClick={() => setHajjType('tamattu')}
@@ -563,6 +684,123 @@ const App: React.FC = () => {
               >
                 {language === 'ar' ? 'ادخل إلى الحرم' : language === 'tr' ? 'Mabede Gir' : language === 'sq' ? 'Hyni në Shenjtërore' : 'Enter the Sanctuary'}
               </button>
+            </motion.div>
+          </motion.div>
+        )}
+      </AnimatePresence>
+      <GlossaryModal />
+
+      {/* Hajj Types Comparison Modal */}
+      <AnimatePresence>
+        {isHajjInfoOpen && (
+          <motion.div
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            exit={{ opacity: 0 }}
+            className="absolute inset-0 z-[70] flex items-center justify-center p-6 bg-black/60 backdrop-blur-md max-w-[450px] mx-auto select-none"
+          >
+            <motion.div
+              initial={{ scale: 0.9, y: 20 }}
+              animate={{ scale: 1, y: 0 }}
+              exit={{ scale: 0.9, y: 20 }}
+              transition={{ type: 'spring', damping: 25 }}
+              className={`w-full max-h-[80vh] p-6 rounded-[32px] border flex flex-col transition-colors duration-500 overflow-hidden ${
+                isDark 
+                  ? 'bg-[#061D13]/95 border-white/10 text-hajj-alabaster shadow-2xl' 
+                  : 'bg-hajj-alabaster/95 border-white/50 text-hajj-navy shadow-2xl'
+              }`}
+            >
+              {/* Modal Header */}
+              <div className="flex justify-between items-center border-b pb-4 mb-4 border-white/10 dark:border-white/5">
+                <div className="text-left">
+                  <span className="text-[9px] font-black uppercase tracking-[0.2em] text-hajj-gold">
+                    {language === 'ar' ? 'دليل الإرشاد فقهياً' : language === 'tr' ? 'FIKIH REHBERİ' : language === 'sq' ? 'UDHËZUESI I FIKHUT' : 'JURISPRUDENCE GUIDE'}
+                  </span>
+                  <h3 className="text-lg font-black tracking-tight">
+                    {language === 'ar' ? 'أنواع الحج الثلاثة' : language === 'tr' ? 'Üç Hac Türü' : language === 'sq' ? 'Tri Llojet e Haxhit' : 'The Three Types of Hajj'}
+                  </h3>
+                </div>
+                <button
+                  onClick={() => setIsHajjInfoOpen(false)}
+                  className="w-8 h-8 rounded-full flex items-center justify-center bg-white/5 hover:bg-white/10 dark:bg-black/20 dark:hover:bg-black/40 border border-white/10 active:scale-95 transition-all cursor-pointer focus:outline-none"
+                  aria-label="Close modal"
+                >
+                  <svg className="w-4 h-4 text-current" fill="none" stroke="currentColor" viewBox="0 0 24 24" strokeWidth="2.5">
+                    <path strokeLinecap="round" strokeLinejoin="round" d="M6 18L18 6M6 6l12 12" />
+                  </svg>
+                </button>
+              </div>
+
+              {/* Modal Scrollable Body */}
+              <div className="flex-1 overflow-y-auto space-y-4 pr-1 text-left custom-scrollbar">
+                {hajjTypesExplanation[language].map((type, idx) => (
+                  <div 
+                    key={idx} 
+                    className={`p-4 rounded-2xl border transition-all duration-300 ${
+                      isDark 
+                        ? 'bg-white/5 border-white/5 hover:bg-white/10' 
+                        : 'bg-white/60 border-white/25 hover:bg-white/80'
+                    }`}
+                  >
+                    <div className="flex justify-between items-center mb-1">
+                      <h4 className="font-extrabold text-sm text-hajj-gold tracking-wide">
+                        {type.name}
+                      </h4>
+                      {type.badge && (
+                        <span className="text-[8px] px-2 py-0.5 rounded-full font-bold uppercase tracking-wider bg-hajj-green/20 dark:bg-hajj-gold/20 text-hajj-green dark:text-hajj-gold border border-hajj-green/10 dark:border-hajj-gold/10">
+                          {type.badge}
+                        </span>
+                      )}
+                    </div>
+                    <p className={`text-[10px] font-extrabold mb-1.5 leading-snug ${isDark ? 'text-hajj-alabaster/90' : 'text-hajj-navy/90'}`}>
+                      {type.subtitle}
+                    </p>
+                    <p className={`text-[11px] leading-relaxed opacity-80 ${isDark ? 'text-hajj-alabaster/70' : 'text-hajj-navy/75'}`}>
+                      {type.description}
+                    </p>
+                    
+                    {/* Quick Details Chips */}
+                    <div className="mt-3 flex flex-wrap gap-2 pt-2 border-t border-white/5">
+                      <span className={`text-[9px] px-2 py-0.5 rounded-md font-semibold ${
+                        type.sacrificeRequired 
+                          ? 'bg-amber-500/10 text-amber-500 border border-amber-500/20' 
+                          : 'bg-blue-500/10 text-blue-500 border border-blue-500/20'
+                      }`}>
+                        {language === 'ar' 
+                          ? (type.sacrificeRequired ? 'الهدي: واجب' : 'الهدي: غير واجب') 
+                          : language === 'tr' 
+                          ? (type.sacrificeRequired ? 'Kurban: Vacip' : 'Kurban: Gerekmez') 
+                          : language === 'sq' 
+                          ? (type.sacrificeRequired ? 'Kurbani: Obligueshëm' : 'Kurbani: Jo i obligueshëm') 
+                          : (type.sacrificeRequired ? 'Sacrifice: Required' : 'Sacrifice: Not Required')}
+                      </span>
+                      <span className="text-[9px] px-2 py-0.5 rounded-md font-semibold bg-emerald-500/10 text-emerald-500 border border-emerald-500/20">
+                        {language === 'ar' 
+                          ? `الإحرام: ${type.ihramCount}` 
+                          : language === 'tr' 
+                          ? `İhram: ${type.ihramCount}` 
+                          : language === 'sq' 
+                          ? `Ihrami: ${type.ihramCount}` 
+                          : `Ihram: ${type.ihramCount}`}
+                      </span>
+                    </div>
+                  </div>
+                ))}
+              </div>
+
+              {/* Modal Footer */}
+              <div className="mt-4 pt-3 border-t border-white/10 dark:border-white/5 flex justify-end">
+                <button
+                  onClick={() => setIsHajjInfoOpen(false)}
+                  className={`px-5 py-2.5 rounded-xl font-bold text-xs uppercase tracking-widest active:scale-95 transition-all cursor-pointer border-none focus:outline-none ${
+                    isDark 
+                      ? 'bg-hajj-gold text-hajj-green hover:brightness-110 shadow-md shadow-hajj-gold/5' 
+                      : 'bg-hajj-green text-hajj-alabaster hover:brightness-110 shadow-md shadow-hajj-green/10'
+                  }`}
+                >
+                  {language === 'ar' ? 'فهمت' : language === 'tr' ? 'Anladım' : language === 'sq' ? 'Kuptova' : 'I Understand'}
+                </button>
+              </div>
             </motion.div>
           </motion.div>
         )}

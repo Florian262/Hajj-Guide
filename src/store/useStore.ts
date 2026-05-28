@@ -104,7 +104,7 @@ export const useStore = create<AppState>()(
       }),
     }),
     {
-      name: 'hajj-way-storage',
+      name: 'hajj-guide-storage',
       partialize: (state) => ({
         currentStageIndex: state.currentStageIndex,
         completedItems: state.completedItems,

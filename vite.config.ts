@@ -10,8 +10,8 @@ export default defineConfig({
       registerType: 'autoUpdate',
       includeAssets: ['favicon.ico', 'apple-touch-icon.png', 'images/*'],
       manifest: {
-        name: 'Hajj Way',
-        short_name: 'HajjWay',
+        name: 'Hajj Guide',
+        short_name: 'HajjGuide',
         description: 'Immersive Offline Hajj Guide',
         theme_color: '#0A3622',
         background_color: '#F9F6F0',
