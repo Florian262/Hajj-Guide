@@ -5,6 +5,7 @@ import BottomSheet from './components/BottomSheet';
 import GlossaryModal from './components/GlossaryModal';
 import { useStore } from './store/useStore';
 import { JourneyMap } from './components/JourneyMap';
+import { CloudTransition } from './components/CloudTransition';
 
 // Web Audio API Sanctuary Drone Synth
 class SanctuarySynth {
@@ -208,7 +209,9 @@ const App: React.FC = () => {
     setProfile,
     clearProfile,
     viewMode,
-    setViewMode
+    setViewMode,
+    setStageIndex,
+    toggleDrawer
   } = useStore();
 
   const [touchStart, setTouchStart] = useState<number | null>(null);
@@ -224,6 +227,20 @@ const App: React.FC = () => {
   const [gender, setGender] = useState<'male' | 'female' | null>(null);
   const [hajjType, setHajjType] = useState<'tamattu' | 'qiran' | 'ifrad' | null>(null);
   const [isHajjInfoOpen, setIsHajjInfoOpen] = useState(false);
+
+  // Persistent Transition Orchestration
+  const [transitionVisible, setTransitionVisible] = useState(false);
+  const triggerTransition = (index: number) => {
+    setTransitionVisible(true);
+    setTimeout(() => {
+      setStageIndex(index);
+      setViewMode('guide');
+      toggleDrawer(false);
+    }, 450); // 450ms aligns perfectly with the peak opacity of the solid Alabaster mask
+    setTimeout(() => {
+      setTransitionVisible(false);
+    }, 1100); // 1100ms aligns perfectly with the 1.1s full duration of the dive
+  };
 
   // Minimum swipe distance (in px)
   const minSwipeDistance = 50;
@@ -456,10 +473,19 @@ const App: React.FC = () => {
         )}
       </AnimatePresence>
 
-      {!isOnboardingOpen && viewMode === 'map' ? (
-        <JourneyMap />
-      ) : (
-        <BackgroundViewer />
+      {!isOnboardingOpen && (
+        <>
+          {/* BackgroundViewer is permanently mounted behind JourneyMap in Z-index */}
+          <BackgroundViewer />
+          
+          {/* JourneyMap is permanently mounted on top, toggling display state instantly without React unmount jank */}
+          <div 
+            style={{ display: viewMode === 'map' ? 'block' : 'none' }} 
+            className="absolute inset-0 z-10 w-full h-full"
+          >
+            <JourneyMap onSelectStage={triggerTransition} />
+          </div>
+        </>
       )}
       
       {/* Header Overlay */}
@@ -572,7 +598,11 @@ const App: React.FC = () => {
         </div>
       </header>
 
-      {!isOnboardingOpen && viewMode === 'map' ? null : <BottomSheet />}
+      {!isOnboardingOpen && (
+        <div style={{ display: viewMode === 'map' ? 'none' : 'block' }}>
+          <BottomSheet />
+        </div>
+      )}
 
       {/* Onboarding Glassmorphism Screen */}
       <AnimatePresence>
@@ -836,6 +866,7 @@ const App: React.FC = () => {
           </motion.div>
         )}
       </AnimatePresence>
+      <CloudTransition isVisible={transitionVisible} />
       <GlossaryModal />
     </main>
   );

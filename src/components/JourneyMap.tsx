@@ -1,13 +1,12 @@
 import React, { useState, useEffect, useRef } from 'react';
 import { motion } from 'framer-motion';
 import { useStore } from '../store/useStore';
-import { hajjData, chapterLabels } from '../data/hajjData';
-import { CloudTransition } from './CloudTransition';
+import { hajjData } from '../data/hajjData';
 
 const mapTranslations = {
   en: {
-    title: "The Sacred Pathway",
-    subtitle: "Your Interactive Hajj Journey Map",
+    title: "The Peaceful Path",
+    subtitle: "Your Illustrated Hajj Journey Scroll",
     resumeBtn: "Resume Guide ➔",
     completed: "Completed Steps",
     steps: "Steps",
@@ -16,12 +15,12 @@ const mapTranslations = {
     typeTamattu: "Hajj al-Tamattu' (Umrah + Hajj)",
     typeQiran: "Hajj al-Qiran (Combined)",
     typeIfrad: "Hajj al-Ifrad (Hajj Only)",
-    clickToFly: "Tap any step to enter that location",
+    clickToFly: "Tap any circle to enter that location",
     chapter: "Chapter",
   },
   ar: {
-    title: "الصراط المقدس",
-    subtitle: "خارطة طريق مناسك الحج التفاعلية",
+    title: "الصراط الهادئ",
+    subtitle: "مخطوطة رحلة الحج التفاعلية",
     resumeBtn: "استئناف الدليل ➔",
     completed: "الخطوات المكتملة",
     steps: "الخطوات",
@@ -30,12 +29,12 @@ const mapTranslations = {
     typeTamattu: "حج التمتع (عمرة + حج)",
     typeQiran: "حج القران (جمع)",
     typeIfrad: "حج الإفراد (حج فقط)",
-    clickToFly: "اضغط على أي خطوة للدخول إلى الموقع",
+    clickToFly: "اضغط على أي دائرة للدخول إلى الموقع",
     chapter: "الفصل",
   },
   tr: {
-    title: "Kutsal Yolculuk Haritası",
-    subtitle: "İnteraktif Hac Rehberi Yol Haritanız",
+    title: "Huzur Yolu",
+    subtitle: "İnteraktif Hac Yolculuğu Parşömeni",
     resumeBtn: "Rehbere Dön ➔",
     completed: "Tamamlanan Adımlar",
     steps: "Adımlar",
@@ -44,12 +43,12 @@ const mapTranslations = {
     typeTamattu: "Temettu Haccı (Umre + Hac)",
     typeQiran: "Kıran Haccı (Birleşik)",
     typeIfrad: "İfrad Haccı (Sadece Hac)",
-    clickToFly: "Bölgeye girmek için istediğiniz adıma dokunun",
+    clickToFly: "Bölgeye girmek için istediğiniz daireye dokunun",
     chapter: "Bölüm",
   },
   sq: {
-    title: "Rruga e Shenjtë",
-    subtitle: "Harta juaj Interaktive e Haxhit",
+    title: "Rruga e Paqes",
+    subtitle: "Rukola juaj Interaktive e Haxhit",
     resumeBtn: "Vazhdo Udhëzuesin ➔",
     completed: "Hapat e Kompletuar",
     steps: "Hapat",
@@ -58,47 +57,135 @@ const mapTranslations = {
     typeTamattu: "Haxhi Temettu' (Umre + Haxh)",
     typeQiran: "Haxhi Kuran (I Bashkuar)",
     typeIfrad: "Haxhi Ifrad (Vetëm Haxhi)",
-    clickToFly: "Prekni mbi çdo hap për të hyrë në atë vendndodhje",
+    clickToFly: "Prekni mbi çdo rreth për të hyrë në atë vendndodhje",
     chapter: "Kapitulli",
   }
 };
 
-const getStepIcon = (stageId: string, location: string) => {
-  const idLower = stageId.toLowerCase();
-  const locLower = location.toLowerCase();
-  
-  if (idLower.includes('preparation') || idLower.includes('departure') || idLower.includes('home')) {
-    return '🏡';
+const phaseTranslations = {
+  en: {
+    kaaba: "Kaaba",
+    safaMarwa: "Safa & Marwa",
+    minaCamp: "Mina Camp",
+    mountArafat: "Mount Arafat",
+    jamaratValley: "Jamarat Valley"
+  },
+  ar: {
+    kaaba: "الكعبة",
+    safaMarwa: "الصفا والمروة",
+    minaCamp: "مخيم منى",
+    mountArafat: "جبل عرفات",
+    jamaratValley: "وادي الجمرات"
+  },
+  tr: {
+    kaaba: "Kâbe",
+    safaMarwa: "Safa & Merve",
+    minaCamp: "Mina Kampı",
+    mountArafat: "Arafat Dağı",
+    jamaratValley: "Cemarat Vadisi"
+  },
+  sq: {
+    kaaba: "Qabeja",
+    safaMarwa: "Safa & Marva",
+    minaCamp: "Kampi në Mina",
+    mountArafat: "Mali i Arafatit",
+    jamaratValley: "Lugina e Xhemaratit"
   }
-  if (idLower.includes('ihram') || idLower.includes('miqat')) {
-    return '🌸';
+};;
+
+
+const kaabaIcon = (
+  <svg viewBox="0 0 24 24" className="w-5.5 h-5.5 fill-none stroke-hajj-gold stroke-[1.8] drop-shadow-[0_1px_2px_rgba(0,0,0,0.5)]">
+    <rect x="4" y="5" width="16" height="14" rx="1.5" />
+    <line x1="4" y1="10" x2="20" y2="10" strokeDasharray="1.5 1.5" />
+    <rect x="10" y="12" width="4" height="7" rx="0.5" />
+  </svg>
+);
+
+const mountainsIcon = (
+  <svg viewBox="0 0 24 24" className="w-5.5 h-5.5 fill-none stroke-hajj-gold stroke-[1.8] drop-shadow-[0_1px_2px_rgba(0,0,0,0.5)]">
+    <path d="M3 20L9 8L15 17L18 12L21 20H3Z" />
+  </svg>
+);
+
+
+const tentsIcon = (
+  <svg viewBox="0 0 24 24" className="w-5.5 h-5.5 fill-none stroke-hajj-gold stroke-[1.8] drop-shadow-[0_1px_2px_rgba(0,0,0,0.5)]">
+    <path d="M12 4L3 15H21L12 4Z" />
+    <line x1="12" y1="4" x2="12" y2="15" />
+    <path d="M8 15C8 11 16 11 16 15" />
+  </svg>
+);
+
+const handsIcon = (
+  <svg viewBox="0 0 24 24" className="w-5.5 h-5.5 fill-none stroke-hajj-gold stroke-[1.8] drop-shadow-[0_1px_2px_rgba(0,0,0,0.5)]">
+    <path d="M12 2C8 6 6 9 6 12C6 16 9 19 12 21C15 19 18 16 18 12C18 9 16 6 12 2Z" />
+    <path d="M12 7V17" />
+  </svg>
+);
+
+const pebbleIcon = (
+  <svg viewBox="0 0 24 24" className="w-5.5 h-5.5 fill-none stroke-hajj-gold stroke-[1.8] drop-shadow-[0_1px_2px_rgba(0,0,0,0.5)]">
+    <rect x="10" y="4" width="4" height="16" rx="1" />
+    <circle cx="12" cy="7" r="1" className="fill-hajj-gold" />
+    <circle cx="12" cy="12" r="1" className="fill-hajj-gold" />
+    <circle cx="12" cy="17" r="1" className="fill-hajj-gold" />
+  </svg>
+);
+
+
+
+// 5-Point Coordinate Map (enforcing 1:2 un-stretched aspect ratio alignment on the road)
+const pathCoordinates = [
+  { x: 45.5, y: 27.5 },  // Kaaba (on the road loop below Kaaba)
+  { x: 57.0, y: 29.5 },  // Safa & Marwa (on the road loop below Safa & Marwa)
+  { x: 61.0, y: 48.5 },  // Mina Camp (on the road loop to the right of Mina Camp)
+  { x: 42.0, y: 64.0 },  // Mount Arafat (on the road loop to the left of Mount Arafat)
+  { x: 56.0, y: 93.0 }   // Jamarat Valley (on the road loop to the right of Jamarat Valley)
+];
+
+const mapPhases = [
+  {
+    id: 'phase-kaaba',
+    titleKey: 'kaaba' as const,
+    icon: kaabaIcon,
+    x: 45.5,
+    y: 27.5,
+    entryStageId: 'step-01-preparation'
+  },
+  {
+    id: 'phase-safa-marwa',
+    titleKey: 'safaMarwa' as const,
+    icon: mountainsIcon,
+    x: 57.0,
+    y: 29.5,
+    entryStageId: 'step-04-safa-marwa'
+  },
+  {
+    id: 'phase-mina',
+    titleKey: 'minaCamp' as const,
+    icon: tentsIcon,
+    x: 61.0,
+    y: 48.5,
+    entryStageId: 'step-08-mina'
+  },
+  {
+    id: 'phase-arafat',
+    titleKey: 'mountArafat' as const,
+    icon: handsIcon,
+    x: 42.0,
+    y: 64.0,
+    entryStageId: 'step-09-arafat'
+  },
+  {
+    id: 'phase-jamarat',
+    titleKey: 'jamaratValley' as const,
+    icon: pebbleIcon,
+    x: 56.0,
+    y: 93.0,
+    entryStageId: 'step-11-rami-aqaba'
   }
-  if (idLower.includes('tawaf') || locLower.includes('kaaba') || locLower.includes('makkah')) {
-    return '🕋';
-  }
-  if (locLower.includes('safa') || locLower.includes('marwa')) {
-    return '⛰️';
-  }
-  if (idLower.includes('hair') || idLower.includes('shave') || idLower.includes('halq')) {
-    return '✂️';
-  }
-  if (locLower.includes('mina')) {
-    return '⛺';
-  }
-  if (locLower.includes('arafat') || locLower.includes('arafe')) {
-    return '☀️';
-  }
-  if (locLower.includes('muzdalifah')) {
-    return '🌌';
-  }
-  if (idLower.includes('rami') || idLower.includes('stoning') || idLower.includes('jamarat')) {
-    return '🪨';
-  }
-  if (idLower.includes('sacrifice') || idLower.includes('qurbani') || idLower.includes('nahr')) {
-    return '🐑';
-  }
-  return '📍';
-};
+];
 
 interface Particle {
   x: number;
@@ -108,31 +195,33 @@ interface Particle {
   opacity: number;
 }
 
-export const JourneyMap: React.FC = () => {
+interface JourneyMapProps {
+  onSelectStage: (index: number) => void;
+}
+
+export const JourneyMap: React.FC<JourneyMapProps> = ({ onSelectStage }) => {
   const language = useStore((state) => state.language);
   const profile = useStore((state) => state.profile);
   const currentStageIndex = useStore((state) => state.currentStageIndex);
-  const setStageIndex = useStore((state) => state.setStageIndex);
-  const setViewMode = useStore((state) => state.setViewMode);
-  const toggleDrawer = useStore((state) => state.toggleDrawer);
   const completedItems = useStore((state) => state.completedItems);
+  const viewMode = useStore((state) => state.viewMode);
 
   const t = mapTranslations[language];
 
   // Transition Orchestration
-  const [transitionVisible, setTransitionVisible] = useState(false);
-  const [targetIndex, setTargetIndex] = useState<number | null>(null);
+  const [mapZoomed, setMapZoomed] = useState(false);
+  const [cameraOrigin, setCameraOrigin] = useState({ x: 50, y: 10 });
 
   // Floating background particles
   const canvasRef = useRef<HTMLCanvasElement>(null);
 
-  // Filter stages based on user Hajj Type
+  // Filter stages based on Hajj Type
   const allStages = hajjData[language].stages;
   const visibleStages = allStages.filter((stage) => {
     return !stage.hajjTypeFilter || (profile.hajjType && stage.hajjTypeFilter.includes(profile.hajjType));
   });
 
-  // Calculate completed stages (if all checklists in a stage are completed, or by checklist items)
+  // Calculate completed stages
   const totalSteps = visibleStages.length;
   const completedStepsCount = visibleStages.filter((stage) => {
     const stageChecklists = stage.details.checklists || [];
@@ -150,13 +239,13 @@ export const JourneyMap: React.FC = () => {
     let height = canvas.height = canvas.offsetHeight;
 
     const particles: Particle[] = [];
-    for (let i = 0; i < 20; i++) {
+    for (let i = 0; i < 15; i++) {
       particles.push({
         x: Math.random() * width,
         y: Math.random() * height,
-        size: Math.random() * 2 + 0.6,
-        speedY: -(Math.random() * 0.15 + 0.05),
-        opacity: Math.random() * 0.4 + 0.1
+        size: Math.random() * 1.5 + 0.5,
+        speedY: -(Math.random() * 0.1 + 0.03),
+        opacity: Math.random() * 0.3 + 0.1
       });
     }
 
@@ -178,7 +267,7 @@ export const JourneyMap: React.FC = () => {
         }
         ctx.beginPath();
         ctx.arc(p.x, p.y, p.size, 0, Math.PI * 2);
-        ctx.fillStyle = 'rgba(212, 175, 55, 0.3)';
+        ctx.fillStyle = 'rgba(212, 175, 55, 0.45)';
         ctx.globalAlpha = p.opacity;
         ctx.fill();
       });
@@ -192,294 +281,206 @@ export const JourneyMap: React.FC = () => {
     };
   }, []);
 
-  const handleStepClick = (index: number) => {
-    setTargetIndex(index);
-    setTransitionVisible(true);
-  };
-
-  const handleFullyCovered = () => {
-    if (targetIndex !== null) {
-      setStageIndex(targetIndex);
-      setViewMode('guide');
-      toggleDrawer(false); // standard closed starting drawer
+  useEffect(() => {
+    if (viewMode === 'map') {
+      setMapZoomed(false);
     }
+  }, [viewMode]);
+
+  const handleStepClick = (targetIndex: number, phase: typeof mapPhases[0]) => {
+    setCameraOrigin({ x: phase.x, y: phase.y });
+    setMapZoomed(true);
+    onSelectStage(targetIndex);
   };
 
-  // Re-order visible stages for winding landscape snake-zig-zag layout on desktop
-  const getSnakeOrderedStages = () => {
-    const cols = 3;
-    const ordered: { stage: typeof visibleStages[0]; index: number; row: number; col: number }[] = [];
-    
-    visibleStages.forEach((stage, index) => {
-      const row = Math.floor(index / cols);
-      const col = index % cols;
-      ordered.push({ stage, index, row, col });
-    });
-
-    return ordered;
-  };
-
-  const orderedStages = getSnakeOrderedStages();
+  // Generate dynamic gold thread winding path SVG definition for the 5 points
+  const dPath = pathCoordinates.map((coords, index) => {
+    return `${index === 0 ? 'M' : 'L'} ${coords.x} ${coords.y}`;
+  }).join(' ');
 
   return (
-    <div className="relative w-full min-h-screen bg-gradient-to-b from-[#051A11] to-[#0A3622] text-[#F9F6F0] overflow-y-auto pb-12 select-none font-sans">
+    <div className="fixed inset-0 w-full h-full bg-[#030f07] text-[#F9F6F0] z-10 select-none font-sans overflow-hidden flex flex-col justify-end">
       
       {/* Background Canvas Particles */}
-      <canvas ref={canvasRef} className="absolute inset-0 w-full h-full pointer-events-none z-0 opacity-70" />
-
-      {/* Cloud Curtain Reveal Overlay */}
-      <CloudTransition isVisible={transitionVisible} onFullyCovered={handleFullyCovered} />
-
-      {/* Header Container */}
-      <header className="relative w-full max-w-5xl mx-auto px-6 pt-8 pb-4 z-10 flex flex-col md:flex-row md:items-center md:justify-between border-b border-hajj-gold/15">
-        <div>
-          <div className="flex items-center gap-3">
-            <span className="text-xl">🕋</span>
-            <h1 className="text-2xl font-black tracking-tight text-hajj-gold font-sans">{t.title}</h1>
+      <canvas ref={canvasRef} className="absolute inset-0 w-full h-full pointer-events-none z-0 opacity-40" />
+      <div className="w-full h-full overflow-y-auto pt-24 pb-12 scroll-smooth custom-scrollbar relative z-10 max-w-[450px] mx-auto flex flex-col">
+        
+        {/* Header Block inside Scrollable Container */}
+        <header className="px-6 pb-6 text-center z-20">
+          <div className="flex items-center justify-center gap-2.5">
+            <span className="text-xl">🧭</span>
+            <h1 className="text-xl font-arabic font-extrabold tracking-tight text-hajj-gold drop-shadow-[0_1px_3px_rgba(0,0,0,0.8)]">{t.title}</h1>
           </div>
-          <p className="text-xs text-[#F9F6F0]/60 mt-1 uppercase tracking-wider font-semibold">{t.subtitle}</p>
-        </div>
+          <p className="text-[9px] text-hajj-gold/75 uppercase tracking-[0.25em] font-black mt-1 drop-shadow-[0_1px_2px_rgba(0,0,0,0.8)]">{t.subtitle}</p>
 
-        {/* Profile Badges and Actions */}
-        <div className="flex flex-wrap items-center gap-3 mt-4 md:mt-0">
-          <div className="px-3 py-1.5 rounded-full bg-hajj-gold/10 border border-hajj-gold/20 text-[10px] uppercase font-bold tracking-wider text-hajj-gold">
-            {profile.gender === 'female' ? t.genderFemale : t.genderMale}
+          {/* Quick Profile Summary */}
+          <div className="flex items-center justify-center gap-2 mt-3 flex-wrap">
+            <span className="text-[8px] font-black uppercase tracking-wider bg-hajj-gold/15 border border-hajj-gold/35 text-hajj-gold px-2 py-0.5 rounded-full backdrop-blur-md">
+              {profile.gender === 'female' ? t.genderFemale : t.genderMale}
+            </span>
+            <span className="text-[8px] font-black uppercase tracking-wider bg-black/40 border border-white/10 text-[#F9F6F0]/75 px-2 py-0.5 rounded-full backdrop-blur-md">
+              {profile.hajjType === 'tamattu' ? 'Tamattu' : profile.hajjType === 'qiran' ? 'Qiran' : 'Ifrad'}
+            </span>
           </div>
-          <div className="px-3 py-1.5 rounded-full bg-white/5 border border-white/10 text-[10px] uppercase font-bold tracking-wider text-[#F9F6F0]/80">
-            {profile.hajjType === 'tamattu' ? t.typeTamattu : profile.hajjType === 'qiran' ? t.typeQiran : t.typeIfrad}
-          </div>
-          <button
-            onClick={() => {
-              setTargetIndex(currentStageIndex);
-              setTransitionVisible(true);
-            }}
-            className="px-4 py-1.5 rounded-full bg-hajj-gold text-hajj-green hover:bg-white hover:text-hajj-green transition-all duration-300 text-xs font-black shadow-lg shadow-hajj-gold/10"
-          >
-            {t.resumeBtn}
-          </button>
-        </div>
-      </header>
 
-      {/* Progress & Helper Alert */}
-      <div className="relative w-full max-w-5xl mx-auto px-6 mt-6 z-10 flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4 text-xs text-[#F9F6F0]/50 font-medium">
-        <div className="flex items-center gap-2">
+          <div className="flex items-center justify-center gap-2 mt-4 bg-black/35 border border-white/5 backdrop-blur-md rounded-full px-3 py-1.5 max-w-[220px] mx-auto text-[9px] font-bold text-[#F9F6F0]/50 shadow-md">
+            <span>🎯 {completedStepsCount}/{totalSteps} {t.steps}</span>
+            <div className="w-16 h-1 bg-white/10 rounded-full overflow-hidden">
+              <div 
+                className="h-full bg-hajj-gold transition-all duration-500 animate-pulse" 
+                style={{ width: `${(completedStepsCount / totalSteps) * 100}%` }}
+              />
+            </div>
+          </div>
+        </header>
+
+        {/* Dynamic Helper Text */}
+        <div className="text-center text-[9px] font-black text-hajj-gold/45 uppercase tracking-[0.2em] py-2 flex items-center justify-center gap-1.5 select-none drop-shadow-[0_1px_2px_rgba(0,0,0,0.8)]">
           <span>✨</span>
           <span>{t.clickToFly}</span>
         </div>
-        <div className="flex items-center gap-4 bg-black/10 border border-white/5 rounded-full px-4 py-2 self-start sm:self-auto">
-          <span>🎯 {t.completed}: <strong className="text-hajj-gold font-bold">{completedStepsCount}</strong> / {totalSteps} {t.steps}</span>
-          <div className="w-20 h-1.5 bg-white/10 rounded-full overflow-hidden">
-            <div 
-              className="h-full bg-hajj-gold transition-all duration-500" 
-              style={{ width: `${(completedStepsCount / totalSteps) * 100}%` }}
-            />
-          </div>
-        </div>
-      </div>
 
-      {/* Main Path Map Container */}
-      <main className="relative w-full max-w-5xl mx-auto px-6 mt-8 z-10">
-        
-        {/* MOBILE LAYOUT (Vertical Zig-Zag Timeline) */}
-        <div className="block md:hidden relative w-full pl-6 border-l-2 border-dashed border-hajj-gold/25 space-y-6 py-4">
-          {visibleStages.map((stage, index) => {
-            const isCurrent = index === currentStageIndex;
-            const icon = getStepIcon(stage.id, stage.location);
-            const chapterName = chapterLabels[stage.chapter]?.[language] || "";
-            const isFirstOfChapter = index === 0 || visibleStages[index - 1].chapter !== stage.chapter;
+        {/* Illustrated Parchment Scroll Map Path */}
+        <motion.div 
+          animate={{ 
+            scale: mapZoomed ? 3.5 : 1, 
+            x: mapZoomed ? `${(50 - cameraOrigin.x) * 2.5}%` : '0%',
+            y: mapZoomed ? `${(45 - cameraOrigin.y) * 1.5}%` : '0%',
+            filter: mapZoomed ? 'blur(6px)' : 'blur(0px)',
+            opacity: mapZoomed ? 0.35 : 1,
+          }}
+          transition={{ duration: 0.6, ease: 'easeInOut' }}
+          className="relative flex-shrink-0 w-full aspect-[1/2] border-[12px] border-hajj-green outline outline-2 outline-hajj-gold/60 rounded-3xl overflow-hidden shadow-[inset_0_0_80px_rgba(10,54,34,0.15),0_15px_40px_rgba(0,0,0,0.5)] z-10"
+        >
+          {/* Background Map Image (User's Beautiful Illustrated Parchment Map) */}
+          <img 
+            src="/images/hajj_map_clean.webp" 
+            alt="Illustrated Hajj Journey Scroll"
+            className="absolute inset-0 w-full h-full object-cover select-none pointer-events-none z-0" 
+          />
 
-            return (
-              <div key={stage.id} className="relative flex flex-col">
+          {/* Paper noise texture overlay for vintage antiqued look */}
+          <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_center,transparent_40%,rgba(10,54,34,0.04)_100%)] opacity-70 pointer-events-none z-10" />
+
+          {/* Winding Golden Thread dashed Connector SVG (subtly layered to reinforce path) */}
+          <div className="absolute inset-0 pointer-events-none z-10 opacity-70">
+            <svg viewBox="0 0 100 100" preserveAspectRatio="none" className="w-full h-full">
+              <path 
+                d={dPath} 
+                stroke="#b8902a" 
+                strokeWidth="0.4" 
+                strokeDasharray="1 1.2" 
+                fill="none" 
+                className="drop-shadow-[0_1px_2px_rgba(0,0,0,0.2)]"
+              />
+              
+              {/* Midpoint Directional Chevrons */}
+              {pathCoordinates.map((_, index) => {
+                if (index === 0) return null;
+                const p1 = pathCoordinates[index - 1];
+                const p2 = pathCoordinates[index];
                 
-                {/* Chapter Heading Banner on Mobile */}
-                {isFirstOfChapter && (
-                  <div className="absolute top-[-36px] left-[-32px] right-0 flex items-center mb-6 pl-2 z-10">
-                    <span className="bg-hajj-gold text-hajj-green px-3 py-1 rounded-full text-[9px] uppercase font-black tracking-widest border border-[#F9F6F0]/20 shadow-md">
-                      {chapterName}
-                    </span>
-                  </div>
-                )}
-
-                {/* Timeline active node bubble */}
-                <div 
-                  className={`absolute left-[-31px] top-4 w-4 h-4 rounded-full border-2 flex items-center justify-center transition-all duration-300 z-10 ${
-                    isCurrent 
-                      ? 'bg-hajj-gold border-hajj-gold scale-125 shadow-[0_0_12px_#D4AF37]' 
-                      : 'bg-hajj-green border-hajj-gold/50'
-                  }`}
-                >
-                  {isCurrent && <div className="w-1.5 h-1.5 bg-hajj-green rounded-full" />}
-                </div>
-
-                {/* Step Card */}
-                <motion.div
-                  whileTap={{ scale: 0.98 }}
-                  onClick={() => handleStepClick(index)}
-                  className={`mt-4 w-full p-4 rounded-2xl border transition-all duration-300 text-left ${
-                    isCurrent 
-                      ? 'bg-[#F9F6F0]/95 border-hajj-gold text-hajj-navy shadow-xl shadow-hajj-gold/5' 
-                      : 'bg-black/25 border-white/5 hover:border-white/15 hover:bg-black/30'
-                  }`}
-                >
-                  <div className="flex items-center gap-3">
-                    <span className="text-2xl">{icon}</span>
-                    <div>
-                      <div className="flex items-center gap-2">
-                        <span className={`text-[10px] font-extrabold uppercase tracking-wider ${isCurrent ? 'text-hajj-gold bg-hajj-green px-2 py-0.5 rounded-md' : 'text-[#F9F6F0]/40'}`}>
-                          {language === 'ar' ? 'الخطوة' : language === 'tr' ? 'Adım' : language === 'sq' ? 'Hapi' : 'Step'} {index + 1}
-                        </span>
-                        <span className={`text-[9px] font-semibold opacity-60 ${isCurrent ? 'text-hajj-navy' : 'text-[#F9F6F0]/40'}`}>
-                          {stage.location}
-                        </span>
-                      </div>
-                      <h3 className={`text-base font-extrabold leading-tight mt-1 ${isCurrent ? 'text-hajj-green' : 'text-[#F9F6F0]/90'}`}>
-                        {stage.title}
-                      </h3>
-                    </div>
-                  </div>
-                  <p className={`text-xs mt-2 leading-relaxed ${isCurrent ? 'text-hajj-navy/85' : 'text-[#F9F6F0]/50'}`}>
-                    {stage.description}
-                  </p>
-                </motion.div>
-              </div>
-            );
-          })}
-        </div>
-
-        {/* DESKTOP LAYOUT (Illuminated Snake Winding Grid) */}
-        <div className="hidden md:block relative w-full py-6">
-          
-          {/* Beautiful flowing winding SVG thread connector */}
-          <div className="absolute inset-0 pointer-events-none z-0 opacity-40">
-            <svg className="w-full h-full" xmlns="http://www.w3.org/2000/svg">
-              {/* Dynamically connected horizontal lines running row-by-row */}
-              {Array.from({ length: Math.ceil(totalSteps / 3) }).map((_, r) => {
-                const y = 80 + r * 220; // vertical center of each row
+                const mx = (p1.x + p2.x) / 2;
+                const my = (p1.y + p2.y) / 2;
+                const angle = Math.atan2(p2.y - p1.y, p2.x - p1.x) * 180 / Math.PI;
+                
                 return (
-                  <g key={r}>
-                    {/* Horizontal connector across the row */}
-                    <line 
-                      x1="12%" 
-                      y1={y} 
-                      x2="88%" 
-                      y2={y} 
-                      stroke="#D4AF37" 
-                      strokeWidth="2" 
-                      strokeDasharray="6 8" 
+                  <g key={`arrow-${index}`} transform={`translate(${mx}, ${my}) rotate(${angle})`}>
+                    <path 
+                      d="M -0.8 -0.8 L 0.8 0 L -0.8 0.8 Z" 
+                      fill="#b8902a" 
+                      className="opacity-80 drop-shadow-[0_0.5px_1px_rgba(0,0,0,0.3)]"
                     />
-                    
-                    {/* Curve connector at row transitions */}
-                    {r < Math.ceil(totalSteps / 3) - 1 && (
-                      r % 2 === 0 ? (
-                        /* Right curve down */
-                        <path 
-                          d={`M 88% ${y} C 98% ${y}, 98% ${y + 220}, 88% ${y + 220}`} 
-                          fill="none" 
-                          stroke="#D4AF37" 
-                          strokeWidth="2" 
-                          strokeDasharray="6 8" 
-                        />
-                      ) : (
-                        /* Left curve down */
-                        <path 
-                          d={`M 12% ${y} C 2% ${y}, 2% ${y + 220}, 12% ${y + 220}`} 
-                          fill="none" 
-                          stroke="#D4AF37" 
-                          strokeWidth="2" 
-                          strokeDasharray="6 8" 
-                        />
-                      )
-                    )}
                   </g>
                 );
               })}
             </svg>
           </div>
 
-          {/* Cards Grid */}
-          <div className="grid grid-cols-3 gap-y-24 gap-x-12 relative z-10 px-4">
-            {orderedStages.map(({ stage, index, row, col }) => {
-              // Standard game snake direction flip: rows 1, 3, 5 are rendered right-to-left
-              const isReversedRow = row % 2 === 1;
-              
-              // Map visual order inside grid-cols-3:
-              // row 0: col 0, 1, 2  (0, 1, 2)
-              // row 1: col 2, 1, 0  (3, 4, 5) -> flips order for grid placement
-              const gridColumn = isReversedRow ? (3 - col) : (col + 1);
+          {/* Clicking Nodes Layer */}
+          {mapPhases.map((phase, index) => {
+            const label = phaseTranslations[language][phase.titleKey];
+            
+            // Find target stage index inside visibleStages dynamically at runtime
+            const stageIndex = visibleStages.findIndex(s => s.id === phase.entryStageId);
+            const targetIndex = stageIndex !== -1 ? stageIndex : 0;
+            const isCurrentPhaseActive = currentStageIndex >= targetIndex && (index === 4 || currentStageIndex < (mapPhases[index + 1] ? visibleStages.findIndex(s => s.id === mapPhases[index + 1].entryStageId) : 99));
 
-              const isCurrent = index === currentStageIndex;
-              const icon = getStepIcon(stage.id, stage.location);
-              const chapterName = chapterLabels[stage.chapter]?.[language] || "";
-              const isFirstOfChapter = index === 0 || visibleStages[index - 1].chapter !== stage.chapter;
-
-              return (
-                <div 
-                  key={stage.id} 
-                  style={{ gridColumnStart: gridColumn }}
-                  className="relative flex flex-col justify-center min-h-[160px]"
+            return (
+              <div 
+                key={phase.id} 
+                style={{ 
+                  position: 'absolute', 
+                  left: `${phase.x}%`, 
+                  top: `${phase.y}%`, 
+                  transform: 'translate(-50%, -50%)',
+                  zIndex: 20
+                }}
+              >
+                <motion.div
+                  whileTap={{ scale: 0.92 }}
+                  onClick={() => handleStepClick(targetIndex, phase)}
+                  className="relative flex items-center cursor-pointer group"
                 >
-                  {/* Chapter Ribbon */}
-                  {isFirstOfChapter && (
-                    <div className="absolute top-[-36px] inset-x-0 flex justify-center z-10">
-                      <span className="bg-hajj-gold text-hajj-green px-3 py-1 rounded-full text-[9px] uppercase font-black tracking-widest border border-[#F9F6F0]/20 shadow-md">
-                        {chapterName}
-                      </span>
-                    </div>
-                  )}
+                  
+                  {/* Frosted Manuscript Paper Tag Label */}
+                  <div 
+                    className="absolute top-[54px] left-1/2 -translate-x-1/2 whitespace-nowrap pointer-events-none select-none transition-all duration-300 bg-[#F9F6F0]/90 border border-hajj-gold/30 rounded-md px-2.5 py-1 shadow-sm backdrop-blur-sm flex items-center justify-center"
+                  >
+                    <h4 
+                      className={`text-[9.5px] font-arabic font-semibold italic tracking-tight leading-snug text-center ${
+                        isCurrentPhaseActive 
+                          ? 'text-hajj-green font-bold scale-102' 
+                          : 'text-[#3E4F42] group-hover:text-hajj-green transition-colors duration-300'
+                      }`}
+                    >
+                      {label}
+                    </h4>
+                  </div>
 
-                  {/* Dynamic hovering game-style card */}
-                  <motion.div
-                    whileHover={{ 
-                      scale: 1.04, 
-                      y: -6,
-                      boxShadow: '0 20px 40px rgba(0, 0, 0, 0.4)'
-                    }}
-                    onClick={() => handleStepClick(index)}
-                    className={`cursor-pointer p-5 rounded-2xl border transition-all duration-300 text-left h-full flex flex-col justify-between ${
-                      isCurrent 
-                        ? 'bg-[#F9F6F0]/95 border-hajj-gold text-hajj-navy shadow-2xl shadow-hajj-gold/15' 
-                        : 'bg-[#061D13]/70 backdrop-blur-md border-white/5 hover:border-hajj-gold/50'
+                  {/* Elegant Gilded Circular Node - Deep Emerald Green with polished Gold rims (larger w-[46px] h-[46px] for 5 medallions) */}
+                  <div 
+                    className={`relative w-[46px] h-[46px] rounded-full border-[2.2px] bg-[#0A3622] flex items-center justify-center shadow-[0_4px_10px_rgba(10,54,34,0.35)] transition-all duration-300 ${
+                      isCurrentPhaseActive 
+                        ? 'border-hajj-gold shadow-[0_0_15px_#D4AF37] scale-112' 
+                        : 'border-hajj-gold/55 group-hover:border-hajj-gold group-hover:shadow-[0_0_8px_rgba(212,175,55,0.35)]'
                     }`}
                   >
-                    <div>
-                      <div className="flex items-center justify-between gap-2">
-                        <span className={`text-[10px] font-extrabold uppercase tracking-wider px-2 py-0.5 rounded ${isCurrent ? 'bg-hajj-green text-hajj-gold' : 'bg-white/5 text-[#F9F6F0]/50 border border-white/5'}`}>
-                          {language === 'ar' ? 'الخطوة' : language === 'tr' ? 'Adım' : language === 'sq' ? 'Hapi' : 'Step'} {index + 1}
-                        </span>
-                        <span className={`text-[9px] font-bold ${isCurrent ? 'text-hajj-green' : 'text-hajj-gold'}`}>
-                          {stage.location}
-                        </span>
-                      </div>
-
-                      <div className="flex items-start gap-3 mt-3">
-                        <span className="text-3xl flex-shrink-0">{icon}</span>
-                        <h3 className={`text-base font-extrabold leading-snug tracking-tight ${isCurrent ? 'text-hajj-navy' : 'text-[#F9F6F0]/90 hover:text-hajj-gold'}`}>
-                          {stage.title}
-                        </h3>
-                      </div>
+                    {/* Golden Icon */}
+                    <div className="w-[24px] h-[24px] flex items-center justify-center opacity-90">
+                      {phase.icon}
                     </div>
+                  </div>
 
-                    <p className={`text-xs mt-3 leading-relaxed flex-grow line-clamp-2 ${isCurrent ? 'text-hajj-navy/80' : 'text-[#F9F6F0]/50'}`}>
-                      {stage.description}
-                    </p>
+                  {/* Circular Step Number Badge */}
+                  <div 
+                    className={`absolute top-[-6px] left-1/2 -translate-x-1/2 text-[5.5px] font-sans font-black uppercase tracking-wider px-1.5 py-0.5 rounded-full border shadow-sm transition-colors ${
+                      isCurrentPhaseActive 
+                        ? 'bg-hajj-gold text-hajj-green border-white/20' 
+                        : 'bg-[#0A3622] text-hajj-gold border-hajj-gold/30'
+                    }`}
+                  >
+                    {index + 1}
+                  </div>
 
-                    {/* Completion indicator inside card bottom */}
-                    <div className="mt-4 flex items-center justify-between border-t border-current/10 pt-2 text-[9px] uppercase tracking-wider font-bold">
-                      <span className={isCurrent ? 'text-hajj-navy/60' : 'text-[#F9F6F0]/40'}>
-                        {isCurrent ? 'Active Location' : 'Tap to Travel'}
-                      </span>
-                      <span>
-                        {isCurrent ? '🕌' : '➔'}
-                      </span>
-                    </div>
-                  </motion.div>
-                </div>
-              );
-            })}
-          </div>
+                </motion.div>
+              </div>
+            );
+          })}
+
+        </motion.div>
+
+        {/* Floating Resume Journey Anchor */}
+        <div className="w-full px-6 pt-6 pb-4 text-center z-10 mt-auto">
+          <button
+            onClick={() => onSelectStage(currentStageIndex)}
+            className="w-full py-3.5 rounded-2xl bg-hajj-gold text-hajj-green hover:bg-[#F9F6F0] hover:text-hajj-green transition-all duration-300 text-xs font-black shadow-lg shadow-hajj-gold/15 active:scale-[0.98]"
+          >
+            {t.resumeBtn}
+          </button>
         </div>
 
-      </main>
+      </div>
 
     </div>
   );

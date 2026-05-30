@@ -373,7 +373,7 @@ const BottomSheet: React.FC = () => {
   return (
     <>
       <motion.div
-        initial="closed"
+        initial={{ y: '100dvh' }}
         animate={isDrawerOpen ? 'open' : 'closed'}
         variants={drawerVariants}
         transition={{ type: 'spring', damping: 25, stiffness: 200 }}

@@ -21,6 +21,7 @@ const BackgroundViewer: React.FC = () => {
   const language = useStore((state) => state.language);
   const isDrawerOpen = useStore((state) => state.isDrawerOpen);
   const theme = useStore((state) => state.theme);
+  const viewMode = useStore((state) => state.viewMode);
   
   // Use profile to determine effective stage list
   const profile = useStore((state) => state.profile);
@@ -38,7 +39,7 @@ const BackgroundViewer: React.FC = () => {
   // High-performance canvas particle engine
   useEffect(() => {
     const canvas = canvasRef.current;
-    if (!canvas) return;
+    if (!canvas || viewMode === 'map') return;
 
     const ctx = canvas.getContext('2d');
     if (!ctx) return;
@@ -136,7 +137,7 @@ const BackgroundViewer: React.FC = () => {
       cancelAnimationFrame(animationFrameId);
       window.removeEventListener('resize', handleResize);
     };
-  }, [currentStage.id, currentStageIndex]);
+  }, [currentStage.id, currentStageIndex, viewMode]);
 
   return (
     <div className="absolute inset-0 w-full h-full overflow-hidden bg-black select-none">

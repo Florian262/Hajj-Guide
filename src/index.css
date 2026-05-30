@@ -169,3 +169,10 @@ body {
   .splash-greeting      { animation: none; opacity: 1; }
   .splash-sub           { animation: none; opacity: 1; }
 }
+
+/* GPU hardware-accelerated screen-blend utility for Cloud.webp mist */
+.cloud-blend-screen {
+  mix-blend-mode: screen;
+  will-change: transform, opacity;
+}
+
