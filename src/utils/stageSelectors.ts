@@ -1,4 +1,4 @@
-import { HajjStage } from '../data/hajjData';
+import type { HajjStage } from '../data/hajjData';
 
 /**
  * Filter Hajj stages dynamically based on the pilgrim's Hajj typology.

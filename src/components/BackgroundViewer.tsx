@@ -2,6 +2,7 @@ import React, { useEffect, useRef } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { useStore } from '../store/useStore';
 import { hajjData } from '../data/hajjData';
+import { getVisibleStages } from '../utils/stageSelectors';
 
 interface Particle {
   x: number;
@@ -42,11 +43,7 @@ const BackgroundViewer: React.FC = () => {
   
   // Use profile to determine effective stage list
   const profile = useStore((state) => state.profile);
-  const allStages = hajjData[language].stages;
-  const visibleStages = allStages.filter((stage) => {
-    if (!stage.hajjTypeFilter) return true;
-    return stage.hajjTypeFilter.includes(profile.hajjType ?? 'tamattu');
-  });
+  const visibleStages = getVisibleStages(hajjData[language].stages, profile.hajjType);
 
   const currentStage = visibleStages[currentStageIndex] ?? visibleStages[0];
   const isDark = theme === 'dark';

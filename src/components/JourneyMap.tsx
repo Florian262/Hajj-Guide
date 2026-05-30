@@ -2,6 +2,7 @@ import React, { useState, useEffect, useRef } from 'react';
 import { motion } from 'framer-motion';
 import { useStore } from '../store/useStore';
 import { hajjData } from '../data/hajjData';
+import { getVisibleStages } from '../utils/stageSelectors';
 
 const mapTranslations = {
   en: {
@@ -215,11 +216,7 @@ export const JourneyMap: React.FC<JourneyMapProps> = ({ onSelectStage }) => {
   // Floating background particles
   const canvasRef = useRef<HTMLCanvasElement>(null);
 
-  // Filter stages based on Hajj Type
-  const allStages = hajjData[language].stages;
-  const visibleStages = allStages.filter((stage) => {
-    return !stage.hajjTypeFilter || (profile.hajjType && stage.hajjTypeFilter.includes(profile.hajjType));
-  });
+  const visibleStages = getVisibleStages(hajjData[language].stages, profile.hajjType);
 
   // Calculate completed stages
   const totalSteps = visibleStages.length;

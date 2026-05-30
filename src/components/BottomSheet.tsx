@@ -3,6 +3,10 @@ import { motion, AnimatePresence } from 'framer-motion';
 import { useStore } from '../store/useStore';
 import { hajjData, chapterLabels } from '../data/hajjData';
 import { renderTextWithTerms } from '../utils/glossaryRenderer';
+import { calculateDistance, calculateBearing } from '../domain/geoMath';
+import { getVisibleStages } from '../utils/stageSelectors';
+import { useGeolocation } from '../hooks/useGeolocation';
+import { useDeviceOrientation } from '../hooks/useDeviceOrientation';
 
 interface Particle {
   x: number;
@@ -14,37 +18,6 @@ interface Particle {
   rotation: number;
   rotationSpeed: number;
 }
-
-// Haversine formula to calculate offline GPS distances in meters
-const calculateDistance = (lat1: number, lon1: number, lat2: number, lon2: number) => {
-  const R = 6371e3; // Earth radius in meters
-  const phi1 = (lat1 * Math.PI) / 180;
-  const phi2 = (lat2 * Math.PI) / 180;
-  const deltaPhi = ((lat2 - lat1) * Math.PI) / 180;
-  const deltaLambda = ((lon2 - lon1) * Math.PI) / 180;
-
-  const a =
-    Math.sin(deltaPhi / 2) * Math.sin(deltaPhi / 2) +
-    Math.cos(phi1) * Math.cos(phi2) * Math.sin(deltaLambda / 2) * Math.sin(deltaLambda / 2);
-  const c = 2 * Math.atan2(Math.sqrt(a), Math.sqrt(1 - a));
-
-  return R * c; // distance in meters
-};
-
-// Calculate compass bearings in degrees
-const calculateBearing = (lat1: number, lon1: number, lat2: number, lon2: number) => {
-  const phi1 = (lat1 * Math.PI) / 180;
-  const phi2 = (lat2 * Math.PI) / 180;
-  const lambda1 = (lon1 * Math.PI) / 180;
-  const lambda2 = (lon2 * Math.PI) / 180;
-
-  const y = Math.sin(lambda2 - lambda1) * Math.cos(phi2);
-  const x =
-    Math.cos(phi1) * Math.sin(phi2) -
-    Math.sin(phi1) * Math.cos(phi2) * Math.cos(lambda2 - lambda1);
-  const brng = (Math.atan2(y, x) * 180) / Math.PI;
-  return (brng + 360) % 360; // bearing in degrees
-};
 
 const getStepGender = (stepText: string): 'male' | 'female' | 'both' => {
   const text = stepText.toLowerCase();
@@ -79,22 +52,25 @@ const BottomSheet: React.FC = () => {
   } = useStore();
 
   // Dynamically filter stages based on pilgrim's Hajj type
-  // Steps with hajjTypeFilter only show for matching types (e.g. steps 5 & 6 are Tamattu-only)
-  const allStages = hajjData[language].stages;
-  const visibleStages = allStages.filter((stage) => {
-    if (!stage.hajjTypeFilter) return true;
-    return stage.hajjTypeFilter.includes(profile.hajjType ?? 'tamattu');
-  });
+  const visibleStages = getVisibleStages(hajjData[language].stages, profile.hajjType);
   const currentStage = visibleStages[currentStageIndex] ?? visibleStages[0];
   const totalStages = visibleStages.length;
   const contentRef = useRef<HTMLDivElement>(null);
   const canvasRef = useRef<HTMLCanvasElement | null>(null);
-  const dialRef = useRef<HTMLDivElement>(null);
-  const kaabaNeedleRef = useRef<HTMLDivElement>(null);
-  const tentNeedleRef = useRef<HTMLDivElement>(null);
-  const deviceHeadingRef = useRef<number>(0);
-  const bearingToKaabaRef = useRef<number>(0);
-  const bearingToTentRef = useRef<number>(0);
+
+  // Hook-based Geolocation State and Simulation
+  const { userCoords, gpsSimulated, handleSimulateGPS } = useGeolocation();
+
+  // Calculations for Telemetry
+  const kaabaCoords = { lat: 21.4225, lng: 39.8262 };
+  const distanceToKaaba = userCoords ? calculateDistance(userCoords.lat, userCoords.lng, kaabaCoords.lat, kaabaCoords.lng) : null;
+  const bearingToKaaba = userCoords ? calculateBearing(userCoords.lat, userCoords.lng, kaabaCoords.lat, kaabaCoords.lng) : 0;
+
+  const distanceToTent = userCoords && profile.tentCoords ? calculateDistance(userCoords.lat, userCoords.lng, profile.tentCoords.lat, profile.tentCoords.lng) : null;
+  const bearingToTent = userCoords && profile.tentCoords ? calculateBearing(userCoords.lat, userCoords.lng, profile.tentCoords.lat, profile.tentCoords.lng) : 0;
+
+  // Direct-DOM Compass and Needle Rotations
+  const { dialRef, kaabaNeedleRef, tentNeedleRef, deviceHeadingRef } = useDeviceOrientation(bearingToKaaba, bearingToTent, gpsSimulated);
 
   // States
   const [playingDuaIndex, setPlayingDuaIndex] = useState<number | null>(null);
@@ -105,10 +81,6 @@ const BottomSheet: React.FC = () => {
 
   // Handle swipe gesture state
   const [handleSwipeStartY, setHandleSwipeStartY] = useState<number | null>(null);
-
-  // GPS & Compass States
-  const [userCoords, setUserCoords] = useState<{ lat: number; lng: number } | null>(null);
-  const [gpsSimulated, setGpsSimulated] = useState(false);
 
   // Android Back Button Fix
   useEffect(() => {
@@ -146,58 +118,7 @@ const BottomSheet: React.FC = () => {
     return () => clearTimeout(timer);
   }, [currentStageIndex]);
 
-  // Web Geolocation & Device Orientation Listeners
-  useEffect(() => {
-    if (!navigator.geolocation || gpsSimulated) return;
-    
-    const watchId = navigator.geolocation.watchPosition(
-      (pos) => {
-        setUserCoords({
-          lat: pos.coords.latitude,
-          lng: pos.coords.longitude
-        });
-      },
-      (err) => console.warn("GPS tracking error", err),
-      { enableHighAccuracy: true, timeout: 8000, maximumAge: 0 }
-    );
 
-    const handleOrientation = (e: DeviceOrientationEvent) => {
-      // webkitCompassHeading is iOS specific, falls back to standard alpha
-      const iosEvent = e as DeviceOrientationEvent & { webkitCompassHeading?: number };
-      const heading = iosEvent.webkitCompassHeading !== undefined 
-        ? iosEvent.webkitCompassHeading 
-        : e.alpha !== null 
-        ? 360 - e.alpha 
-        : 0;
-      
-      deviceHeadingRef.current = heading;
-      if (dialRef.current) {
-        dialRef.current.style.transform = `rotate(${-heading}deg)`;
-      }
-      if (kaabaNeedleRef.current) {
-        kaabaNeedleRef.current.style.transform = `rotate(${bearingToKaabaRef.current - heading}deg)`;
-      }
-      if (tentNeedleRef.current) {
-        tentNeedleRef.current.style.transform = `rotate(${bearingToTentRef.current - heading}deg)`;
-      }
-    };
-
-    window.addEventListener('deviceorientation', handleOrientation);
-    return () => {
-      navigator.geolocation.clearWatch(watchId);
-      window.removeEventListener('deviceorientation', handleOrientation);
-    };
-  }, [gpsSimulated]);
-
-  // Trigger GPS Simulation (highly helpful for testing on desktop!)
-  const handleSimulateGPS = () => {
-    setGpsSimulated(true);
-    // Stamping user coordinates right in Mina plains to test distance calculations!
-    setUserCoords({
-      lat: 21.4172,
-      lng: 39.8890
-    });
-  };
 
   // Stamp current Tent GPS coords in Mina
   const handleStampTent = () => {
@@ -356,17 +277,7 @@ const BottomSheet: React.FC = () => {
     open: { y: '0px' }, // fully open, sits at the bottom of the viewport
   };
 
-  // Calculations for Telemetry
-  const kaabaCoords = { lat: 21.4225, lng: 39.8262 };
-  const distanceToKaaba = userCoords ? calculateDistance(userCoords.lat, userCoords.lng, kaabaCoords.lat, kaabaCoords.lng) : null;
-  const bearingToKaaba = userCoords ? calculateBearing(userCoords.lat, userCoords.lng, kaabaCoords.lat, kaabaCoords.lng) : 0;
 
-  const distanceToTent = userCoords && profile.tentCoords ? calculateDistance(userCoords.lat, userCoords.lng, profile.tentCoords.lat, profile.tentCoords.lng) : null;
-  const bearingToTent = userCoords && profile.tentCoords ? calculateBearing(userCoords.lat, userCoords.lng, profile.tentCoords.lat, profile.tentCoords.lng) : 0;
-
-  // Sync bearings into refs to prevent stale closures inside deviceorientation listener
-  bearingToKaabaRef.current = bearingToKaaba;
-  bearingToTentRef.current = bearingToTent;
 
   // Filter checklists and guide sections dynamically based on Gender/Profile!
   const filterList = (item: string) => {
