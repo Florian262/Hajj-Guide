@@ -1,5 +1,5 @@
 import { create } from 'zustand';
-import { persist } from 'zustand/middleware';
+import { persist, createJSONStorage, type StateStorage } from 'zustand/middleware';
 
 interface UserProfile {
   gender: 'male' | 'female' | null;
@@ -35,6 +35,93 @@ interface AppState {
   setActiveGlossaryTerm: (term: string | null) => void;
   setViewMode: (mode: 'map' | 'guide') => void;
 }
+
+const baseSecret = new TextEncoder().encode("hajj-secure-enclave-key-2026");
+
+const deriveKey = async (salt: Uint8Array): Promise<CryptoKey> => {
+  const baseKey = await window.crypto.subtle.importKey(
+    "raw",
+    baseSecret,
+    { name: "PBKDF2" },
+    false,
+    ["deriveKey"]
+  );
+
+  return window.crypto.subtle.deriveKey(
+    {
+      name: "PBKDF2",
+      salt: salt as any,
+      iterations: 10000,
+      hash: "SHA-256"
+    },
+    baseKey,
+    { name: "AES-GCM", length: 256 },
+    false,
+    ["encrypt", "decrypt"]
+  );
+};
+
+// Custom Secure State Storage utilizing Web Crypto AES-GCM
+const secureStorage: StateStorage = {
+  getItem: async (name: string): Promise<string | null> => {
+    const raw = localStorage.getItem(name);
+    if (!raw) return null;
+
+    try {
+      const payload = JSON.parse(raw);
+      if (!payload.ciphertext || !payload.iv || !payload.salt) {
+        // Fallback or legacy storage handle
+        return raw;
+      }
+
+      const salt = new Uint8Array(payload.salt);
+      const iv = new Uint8Array(payload.iv);
+      const ciphertext = new Uint8Array(payload.ciphertext);
+
+      const key = await deriveKey(salt);
+
+      const decrypted = await window.crypto.subtle.decrypt(
+        { name: "AES-GCM", iv },
+        key,
+        ciphertext
+      );
+
+      return new TextDecoder().decode(decrypted);
+    } catch (e) {
+      console.warn("Secure decryption failed, falling back to plaintext or reset", e);
+      return null;
+    }
+  },
+
+  setItem: async (name: string, value: string): Promise<void> => {
+    try {
+      const salt = window.crypto.getRandomValues(new Uint8Array(16));
+      const iv = window.crypto.getRandomValues(new Uint8Array(12));
+
+      const key = await deriveKey(salt);
+
+      const ciphertext = await window.crypto.subtle.encrypt(
+        { name: "AES-GCM", iv },
+        key,
+        new TextEncoder().encode(value)
+      );
+
+      const payload = {
+        ciphertext: Array.from(new Uint8Array(ciphertext)),
+        iv: Array.from(iv),
+        salt: Array.from(salt)
+      };
+
+      localStorage.setItem(name, JSON.stringify(payload));
+    } catch (e) {
+      console.error("Secure serialization failed", e);
+    }
+  },
+
+  removeItem: async (name: string): Promise<void> => {
+    localStorage.removeItem(name);
+  }
+};
 
 const initialProfile: UserProfile = {
   gender: null,
@@ -111,6 +198,7 @@ export const useStore = create<AppState>()(
     }),
     {
       name: 'hajj-guide-storage',
+      storage: createJSONStorage(() => secureStorage),
       partialize: (state) => ({
         currentStageIndex: state.currentStageIndex,
         completedItems: state.completedItems,
