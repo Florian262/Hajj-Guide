@@ -57,27 +57,27 @@ const BackgroundViewer: React.FC = () => {
     case 'arafat-sunset':
       flareClass = 'bg-[radial-gradient(circle_at_right,rgba(230,120,40,0.22),rgba(212,175,55,0.08)_50%,transparent_80%)]';
       bottomBlendClass = isDark
-        ? 'from-[#061D13] via-[#e67828]/8 via-[#061D13]/30 to-[#b8902a]/5'
-        : 'from-hajj-alabaster/15 via-[#e67828]/4 to-transparent';
+        ? 'from-black/60 via-[#e67828]/12 to-transparent'
+        : 'from-hajj-alabaster/30 via-[#e67828]/5 to-transparent';
       break;
     case 'muzdalifah-night':
-      flareClass = 'bg-[radial-gradient(circle_at_top_left,rgba(100,180,255,0.15),transparent_55%)]';
+      flareClass = 'bg-[radial-gradient(circle_at_top_left,rgba(100,180,255,0.18),transparent_55%)]';
       bottomBlendClass = isDark
-        ? 'from-[#030d08] via-[#020b08]/85 via-[#0c1f24]/30 to-black/40'
-        : 'from-hajj-alabaster/40 via-[#0c1f24]/12 to-transparent';
+        ? 'from-black/80 via-[#0c1f24]/20 to-transparent'
+        : 'from-hajj-alabaster/30 via-[#0c1f24]/5 to-transparent';
       break;
     case 'mina-lantern':
       flareClass = 'bg-[radial-gradient(circle_at_bottom,rgba(245,158,11,0.15),transparent_70%)]';
       bottomBlendClass = isDark
-        ? 'from-[#061D13] via-[#f59e0b]/5 via-[#061D13]/40 to-black/15'
-        : 'from-hajj-alabaster/15 via-[#f59e0b]/3 to-transparent';
+        ? 'from-black/70 via-[#f59e0b]/15 to-transparent'
+        : 'from-hajj-alabaster/30 via-[#f59e0b]/5 to-transparent';
       break;
     case 'divine-sun':
     default:
-      flareClass = 'bg-[radial-gradient(circle_at_top_right,rgba(212,175,55,0.18),transparent_60%)]';
+      flareClass = 'bg-[radial-gradient(circle_at_top_right,rgba(212,175,55,0.20),transparent_60%)]';
       bottomBlendClass = isDark
-        ? 'from-[#061D13] via-[#061D13]/40 to-black/15'
-        : 'from-hajj-alabaster/12 via-hajj-alabaster/4 to-transparent';
+        ? 'from-black/55 via-[#061D13]/10 to-transparent'
+        : 'from-hajj-alabaster/15 to-transparent';
       break;
   }
 
@@ -104,23 +104,23 @@ const BackgroundViewer: React.FC = () => {
 
     const getParticleColor = () => {
       if (isNightStage) {
-        // Twinkling starlight colors: silver/blue-white/soft-gold
+        // Twinkling starlight colors: silver/blue-white/soft-gold (highly bright & saturated)
         const rand = Math.random();
-        if (rand < 0.4) return 'rgba(224, 242, 254, 0.7)'; // soft blue-white
-        if (rand < 0.7) return 'rgba(255, 255, 255, 0.8)'; // pure silver
-        return 'rgba(212, 175, 55, 0.6)'; // soft gold
+        if (rand < 0.4) return 'rgba(224, 242, 254, 0.9)'; // bright blue-white
+        if (rand < 0.7) return 'rgba(255, 255, 255, 0.95)'; // bright silver
+        return 'rgba(212, 175, 55, 0.85)'; // rich gold
       } else {
         // Warm golden sun-dust colors
-        return Math.random() < 0.6 ? 'rgba(212, 175, 55, 0.45)' : 'rgba(245, 217, 122, 0.55)';
+        return Math.random() < 0.6 ? 'rgba(212, 175, 55, 0.75)' : 'rgba(245, 217, 122, 0.8)';
       }
     };
 
-    // Initialize particles
+    // Initialize particles (making them smaller & more concentrated)
     for (let i = 0; i < particleCount; i++) {
       particles.push({
         x: Math.random() * width,
         y: Math.random() * height,
-        size: Math.random() * (isNightStage ? 1.8 : 2.8) + 0.6,
+        size: Math.random() * (isNightStage ? 0.9 : 1.4) + 0.4,
         speedX: (Math.random() - 0.5) * 0.15,
         speedY: -(Math.random() * 0.35 + 0.1), // float upwards
         opacity: Math.random() * 0.7 + 0.1,
@@ -156,20 +156,27 @@ const BackgroundViewer: React.FC = () => {
         }
 
         const alpha = Math.max(0, Math.min(1, p.opacity));
-        const glowScale = isNightStage ? 2.6 : 2.0;
+        const glowScale = isNightStage ? 2.3 : 1.8;
 
-        // 1. Draw soft outer halo glow (hardware accelerated)
+        // 1. Draw soft outer halo glow (highly concentrated & brighter)
         ctx.beginPath();
         ctx.arc(p.x, p.y, p.size * glowScale, 0, Math.PI * 2);
         ctx.fillStyle = p.color;
-        ctx.globalAlpha = alpha * (isNightStage ? 0.25 : 0.18);
+        ctx.globalAlpha = alpha * (isNightStage ? 0.40 : 0.30);
         ctx.fill();
 
-        // 2. Draw sharp inner core
+        // 2. Draw sharp inner colored core
         ctx.beginPath();
         ctx.arc(p.x, p.y, p.size, 0, Math.PI * 2);
         ctx.fillStyle = p.color;
-        ctx.globalAlpha = alpha;
+        ctx.globalAlpha = alpha * 0.9;
+        ctx.fill();
+
+        // 3. Draw hot-white concentrated center (AAA diamond sparkle effect)
+        ctx.beginPath();
+        ctx.arc(p.x, p.y, p.size * 0.4, 0, Math.PI * 2);
+        ctx.fillStyle = '#FFFFFF';
+        ctx.globalAlpha = alpha * 1.0;
         ctx.fill();
 
         // Reset particle if it floats off screen
@@ -223,7 +230,7 @@ const BackgroundViewer: React.FC = () => {
           <img
             src={currentStage.image}
             alt={currentStage.title}
-            className="w-full h-full object-cover"
+            className="w-full h-full object-cover brightness-[1.14] contrast-[1.03] transition-all duration-1000"
           />
 
           {/* Layer 1: Dynamic Liturgical Radial Flare overlay */}
