@@ -447,7 +447,7 @@ const App: React.FC = () => {
             {/* ── The Sacred Greeting ── */}
             <div className="flex flex-col items-center gap-2 px-8 text-center">
               <p
-                className="splash-greeting splash-shimmer text-[22px] leading-snug"
+                className="splash-greeting splash-shimmer text-[22px] leading-loose py-2"
                 style={{ fontFamily: 'Amiri, serif', letterSpacing: '0.02em' }}
               >
                 السَّلَامُ عَلَيْكُمْ وَرَحْمَةُ اللهِ وَبَرَكَاتُهُ
@@ -456,7 +456,11 @@ const App: React.FC = () => {
                 className="splash-sub text-[13px] font-medium tracking-wide"
                 style={{ color: 'rgba(212,175,55,0.65)', fontFamily: 'Inter, sans-serif' }}
               >
-                Selam Aleykum ve Rahmetullahi ve Berekatuhu
+                {language === 'sq'
+                  ? 'Selam Alejkum ve Rrahmetullahi ve Berekatuhu'
+                  : language === 'tr'
+                  ? 'Selamün Aleyküm ve Rahmetullahi ve Berekatühü'
+                  : 'Assalamu Alaykum wa Rahmatullahi wa Barakatuh'}
               </p>
             </div>
 

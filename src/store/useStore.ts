@@ -200,14 +200,12 @@ export const useStore = create<AppState>()(
       name: 'hajj-guide-storage',
       storage: createJSONStorage(() => secureStorage),
       partialize: (state) => ({
-        currentStageIndex: state.currentStageIndex,
         completedItems: state.completedItems,
         tawafCount: state.tawafCount,
         saiCount: state.saiCount,
         language: state.language,
         theme: state.theme,
         profile: state.profile,
-        viewMode: state.viewMode,
       }),
     }
   )
