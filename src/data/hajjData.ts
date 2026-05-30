@@ -63,7 +63,7 @@ export const hajjData: HajjData = {
     "title": "Preparation & Intention",
     "location": "Before Departure — At Home",
     "description": "Hajj begins long before you board the plane. Renew your intentions, settle your affairs, and prepare your heart and bag for the journey of a lifetime.",
-    "image": "/images/kaaba.png",
+    "image": "/images/step_01_preparation.png",
     "coordinates": "21.4225,39.8262",
     "details": {
       "steps": [
@@ -105,7 +105,7 @@ export const hajjData: HajjData = {
     "title": "Enter State of Ihram",
     "location": "[miqat|Meeqat] — Sacred Boundary",
     "description": "At the [miqat|Meeqat] — the sacred boundary point — you physically and spiritually enter the state of Ihram. This is the transition from ordinary life to the sacred.",
-    "image": "/images/kaaba.png",
+    "image": "/images/step_02_ihram.png",
     "coordinates": "21.4225,39.8262",
     "details": {
       "steps": [
@@ -147,7 +147,7 @@ export const hajjData: HajjData = {
     "title": "Tawaf × 7",
     "location": "Masjid al-Haram — The Kaaba",
     "description": "Your first sight of the Kaaba. You circle it seven times counter-clockwise, beginning and ending at the Black Stone, while in a continuous state of supplication.",
-    "image": "/images/kaaba.png",
+    "image": "/images/step_03_tawaf.png",
     "coordinates": "21.4225,39.8262",
     "details": {
       "steps": [
@@ -183,7 +183,7 @@ export const hajjData: HajjData = {
     "title": "Safa and Marwa — Sa'i",
     "location": "Masjid al-Haram — Mas'a Walkway",
     "description": "Walking seven times between the hills of Safa and Marwa, commemorating Hajar's (RA) search for water for her son Isma'il (AS).",
-    "image": "/images/kaaba.png",
+    "image": "/images/step_04_safa_marwa.png",
     "coordinates": "21.3754,39.8227",
     "details": {
       "steps": [
@@ -221,7 +221,7 @@ export const hajjData: HajjData = {
     "title": "Clip / Shave Hair — Umrah Ends",
     "location": "Makkah — Your Hotel",
     "description": "By trimming or shaving your hair, you exit the state of Ihram and complete your Umrah. Everything that was prohibited in Ihram now becomes permitted again.",
-    "image": "/images/kaaba.png",
+    "image": "/images/step_05_hair_clip.png",
     "coordinates": "21.4225,39.8262",
     "hajjTypeFilter": [
       "tamattu"
@@ -254,7 +254,7 @@ export const hajjData: HajjData = {
     "title": "Resting & Praying",
     "location": "Makkah — Masjid al-Haram",
     "description": "Between completing Umrah and the start of Hajj on the 8th of Dhul Hijjah, pilgrims rest, pray in the Haram, and prepare their hearts for the greatest days of Hajj.",
-    "image": "/images/kaaba.png",
+    "image": "/images/step_06_rest.png",
     "coordinates": "21.4225,39.8262",
     "hajjTypeFilter": [
       "tamattu"
@@ -282,7 +282,7 @@ export const hajjData: HajjData = {
     "title": "Enter Ihram for Hajj",
     "location": "Makkah — 8th of Dhul Hijjah",
     "description": "On the morning of the 8th of Dhul Hijjah, pilgrims re-enter the sacred state of Ihram — this time specifically for Hajj. The great journey truly begins.",
-    "image": "/images/mina.jpg",
+    "image": "/images/step_07_ihram_hajj.png",
     "coordinates": "21.4225,39.8262",
     "details": {
       "steps": [
@@ -313,7 +313,7 @@ export const hajjData: HajjData = {
     "title": "Arrive at Mina",
     "location": "Mina Tent City — 8th Dhul Hijjah",
     "description": "The tent city of Mina becomes home for the night. Over 3 million pilgrims camp in rows of white tents stretching across the valley. The eve of the greatest day.",
-    "image": "/images/mina.jpg",
+    "image": "/images/step_08_mina.png",
     "coordinates": "21.4162,39.8916",
     "details": {
       "steps": [
@@ -348,7 +348,7 @@ export const hajjData: HajjData = {
     "title": "Day of Arafah",
     "location": "Plains of Arafat — 9th Dhul Hijjah",
     "description": "The spiritual heart of Hajj. Standing in the plains of Arafat from noon until sunset, making sincere and uninterrupted supplication to Allah. Missing this day means the Hajj is invalid.",
-    "image": "/images/arafat.webp",
+    "image": "/images/step_09_arafat.png",
     "coordinates": "21.3547,39.9839",
     "details": {
       "steps": [
@@ -385,7 +385,7 @@ export const hajjData: HajjData = {
     "title": "Muzdalifah — Night Sky",
     "location": "Open Plains of Muzdalifah",
     "description": "After the emotional peak of Arafat, pilgrims travel to the open plains of Muzdalifah to spend the night under the stars, rest, and collect pebbles.",
-    "image": "/images/muzdalifah.webp",
+    "image": "/images/step_10_muzdalifah.png",
     "coordinates": "21.3894,39.9392",
     "details": {
       "steps": [
@@ -414,7 +414,7 @@ export const hajjData: HajjData = {
     "title": "Rami — Stoning of Jamarat al-Aqaba",
     "location": "Mina — Jamarat Bridge",
     "description": "The first rite of the Day of Eid: stoning the large pillar (Jamarat al-Aqaba) with 7 pebbles, commemorating Prophet Ibrahim's (as) rejection of the devil's temptations.",
-    "image": "/images/jamarat.jpg",
+    "image": "/images/step_11_rami_aqaba.png",
     "coordinates": "21.4213,39.8732",
     "details": {
       "steps": [
@@ -443,7 +443,7 @@ export const hajjData: HajjData = {
     "title": "Qurbani — Animal Sacrifice",
     "location": "Mina — Slaughterhouse",
     "description": "The sacrifice of Hady (Hajj sacrifice) on the Day of Eid. It is mandatory ([wajib|Wajib]) for Tamattu and Qiran pilgrims.",
-    "image": "/images/jamarat.jpg",
+    "image": "/images/step_12_qurbani.png",
     "coordinates": "21.4162,39.8916",
     "details": {
       "steps": [
@@ -466,7 +466,7 @@ export const hajjData: HajjData = {
     "title": "Shaving or Cutting the Hair",
     "location": "Mina Tent City",
     "description": "For men, shaving the head completely or cutting the hair; for women, cutting the length of a fingertip from the ends. This act enables the first release from Ihram.",
-    "image": "/images/mina.jpg",
+    "image": "/images/step_13_shave.png",
     "coordinates": "21.4162,39.8916",
     "details": {
       "steps": [
@@ -495,7 +495,7 @@ export const hajjData: HajjData = {
     "title": "Tawaf al-Ifadah",
     "location": "Masjid al-Haram — Makkah",
     "description": "The essential Tawaf of Hajj — a mandatory pillar ([rukn|Rukn]) for Hajj validity. It is performed in normal clothes after hair shaving or cutting.",
-    "image": "/images/kaaba.png",
+    "image": "/images/step_14_tawaf_ifadah.png",
     "coordinates": "21.4225,39.8262",
     "details": {
       "steps": [
@@ -528,7 +528,7 @@ export const hajjData: HajjData = {
     "title": "Rami — First Day of [tashreeq|Tashreeq]",
     "location": "Mina — Jamarat Bridge — 11 Dhul Hijjah",
     "description": "The first day of [tashreeq|Tashreeq]. Stone all three pillars in sequence after Dhuhr; make Dua after the small and medium pillars.",
-    "image": "/images/jamarat.jpg",
+    "image": "/images/step_15_rami_day1.png",
     "coordinates": "21.4213,39.8732",
     "details": {
       "steps": [
@@ -554,7 +554,7 @@ export const hajjData: HajjData = {
     "title": "Overnight Stay in Mina",
     "location": "Mina Tent City — 11-12 Dhul Hijjah",
     "description": "The nights of [tashreeq|Tashreeq] must be spent in Mina. Staying here is mandatory ([wajib|Wajib]) for pilgrims, following the practice of the Prophet ﷺ.",
-    "image": "/images/mina.jpg",
+    "image": "/images/step_16_mina_night.png",
     "coordinates": "21.4162,39.8916",
     "details": {
       "steps": [
@@ -578,7 +578,7 @@ export const hajjData: HajjData = {
     "title": "Rami — Second Day of [tashreeq|Tashreeq]",
     "location": "Mina — 12/13 Dhul Hijjah",
     "description": "The second day of [tashreeq|Tashreeq]. Those who wish to depart early may do so after stoning on the 12th, before sunset.",
-    "image": "/images/jamarat.jpg",
+    "image": "/images/step_17_rami_day2.png",
     "coordinates": "21.4213,39.8732",
     "details": {
       "steps": [
@@ -601,7 +601,7 @@ export const hajjData: HajjData = {
     "title": "Tawaf al-Wida (Farewell Tawaf)",
     "location": "Masjid al-Haram — Final Rite",
     "description": "The final rite of Hajj. The Farewell Tawaf is your parting greeting to the Kaaba — the circumambulations of separation before leaving Makkah permanently.",
-    "image": "/images/kaaba.png",
+    "image": "/images/step_18_farewell.png",
     "coordinates": "21.4225,39.8262",
     "details": {
       "steps": [
@@ -631,7 +631,7 @@ export const hajjData: HajjData = {
     "title": "التحضير والنية",
     "location": "قبل المغادرة — في المنزل",
     "description": "يبدأ الحج قبل وقت طويل من صعودك إلى الطائرة. جدد نواياك، وسوّ شؤونك، وهيئ قلبك وحقيبتك لرحلة العمر.",
-    "image": "/images/kaaba.png",
+    "image": "/images/step_01_preparation.png",
     "coordinates": "21.4225,39.8262",
     "details": {
       "steps": [
@@ -655,7 +655,7 @@ export const hajjData: HajjData = {
     "title": "الدخول في الإحرام",
     "location": "[miqat|الميقات] — الحدود المقدسة",
     "description": "عند [miqat|الميقات] — النقطة الجغرافية المحددة للإحرام — تدخل جسدياً وروحياً في الحالة المقدسة، تاركاً وراءك زينة الدنيا مقبلاً على عبادة ربك.",
-    "image": "/images/kaaba.png",
+    "image": "/images/step_02_ihram.png",
     "coordinates": "21.4225,39.8262",
     "details": {
       "steps": [
@@ -680,7 +680,7 @@ export const hajjData: HajjData = {
     "title": "طواف القدوم (Tawaf × 7)",
     "location": "المسجد الحرام — الكعبة المشرفة",
     "description": "رؤيتك الأولى للكعبة المشرفة. تطوف حول البيت العتيق سبعة أشواط عكس عقارب الساعة، بدءاً من الحجر الأسود وانتهاءً به، في حالة مستمرة من الدعاء والتضرع.",
-    "image": "/images/kaaba.png",
+    "image": "/images/step_03_tawaf.png",
     "coordinates": "21.4225,39.8262",
     "details": {
       "steps": [
@@ -716,7 +716,7 @@ export const hajjData: HajjData = {
     "title": "السعي بين الصفا والمروة",
     "location": "المسجد الحرام — المسعى",
     "description": "المشي سبعة أشواط بين جبلين الصفا والمروة، إحياءً لذكرى سعي السيدة هاجر (عليها السلام) بحثاً عن الماء لابنها إسماعيل (عليه السلام).",
-    "image": "/images/kaaba.png",
+    "image": "/images/step_04_safa_marwa.png",
     "coordinates": "21.3754,39.8227",
     "details": {
       "steps": [
@@ -754,7 +754,7 @@ export const hajjData: HajjData = {
     "title": "التحلل من العمرة — قص الشعر",
     "location": "مكة المكرمة — الحلاقين",
     "description": "بقص الشعر أو حلقه، تنهي مناسك العمرة بنجاح وتتحلل تحللاً كاملاً من محظورات الإحرام، وتنتظر بدء مناسك الحج في الثامن من ذي الحجة.",
-    "image": "/images/kaaba.png",
+    "image": "/images/step_05_hair_clip.png",
     "coordinates": "21.4225,39.8262",
     "details": {
       "steps": [
@@ -778,7 +778,7 @@ export const hajjData: HajjData = {
     "title": "الاستراحة والعبادة بمكة",
     "location": "مكة المكرمة — المسجد الحرام",
     "description": "الفترة الانتقالية بين العمرة وبدء مناسك الحج. يستغل الحجاج هذا الوقت للراحة البدنية والعبادة وتلاوة القرآن والإكثار من الصلوات في الحرم الشريف.",
-    "image": "/images/kaaba.png",
+    "image": "/images/step_06_rest.png",
     "coordinates": "21.4225,39.8262",
     "details": {
       "steps": [
@@ -803,7 +803,7 @@ export const hajjData: HajjData = {
     "title": "الإحرام للحج",
     "location": "مكة المكرمة — [tarwiyah|يوم التروية]",
     "description": "في صباح اليوم الثامن من ذي الحجة ([tarwiyah|يوم التروية])، يدخل الحجاج مجدداً في حالة الإحرام المقدسة — هذه المرة خصيصاً للحج — لتبدأ رحلة الحج الكبرى رسمياً.",
-    "image": "/images/mina.jpg",
+    "image": "/images/step_07_ihram_hajj.png",
     "coordinates": "21.4225,39.8262",
     "details": {
       "steps": [
@@ -834,7 +834,7 @@ export const hajjData: HajjData = {
     "title": "الوصول إلى منى ([tarwiyah|يوم التروية])",
     "location": "مشعر منى — مدينة الخيام",
     "description": "يقضي الحجاج [tarwiyah|يوم التروية] ومبيت ليلة التاسع من ذي الحجة في مدينة الخيام البيضاء بمنى، مصلين الصلوات الخمس قصرًا بلا جمع، مهيئين أنفسهم ليوم عرفة العظيم.",
-    "image": "/images/mina.jpg",
+    "image": "/images/step_08_mina.png",
     "coordinates": "21.4162,39.8916",
     "details": {
       "steps": [
@@ -869,7 +869,7 @@ export const hajjData: HajjData = {
     "title": "يوم عرفة العظيم",
     "location": "صعيد عرفات الطاهر — 9 ذي الحجة",
     "description": "الوقوف بعرفة هو [rukn|الركن] الأعظم للحج الذي لا يصح الحج بدونه. يقف الحجاج متضرعين داعين مستغفرين من الزوال وحتى غروب الشمس، في أعظم يوم طلعت فيه الشمس.",
-    "image": "/images/arafat.webp",
+    "image": "/images/step_09_arafat.png",
     "coordinates": "21.3547,39.9839",
     "details": {
       "steps": [
@@ -905,7 +905,7 @@ export const hajjData: HajjData = {
     "title": "مزدلفة — مبيت تحت النجوم",
     "location": "مشعر مزدلفة — 9 ذي الحجة ليلاً",
     "description": "بعد غروب شمس عرفة، ينفر الحجاج إلى مزدلفة حيث يبيتون ليلتهم تحت السماء المكشوفة، ويؤدون صلاتي المغرب والعشاء جمعاً وقصراً، ويجمعون الحصى لرمي الجمرات.",
-    "image": "/images/muzdalifah.webp",
+    "image": "/images/step_10_muzdalifah.png",
     "coordinates": "21.3894,39.9392",
     "details": {
       "steps": [
@@ -934,7 +934,7 @@ export const hajjData: HajjData = {
     "title": "رمي جمرة العقبة الكبرى",
     "location": "منى — جسر الجمرات",
     "description": "أول أعمال يوم العيد: رمي الجمرة الكبرى بـ ٧ حصيات، اقتداءً بسيدنا إبراهيم عليه السلام في رفضه لوساوس الشيطان.",
-    "image": "/images/jamarat.jpg",
+    "image": "/images/step_11_rami_aqaba.png",
     "coordinates": "21.4213,39.8732",
     "details": {
       "steps": [
@@ -963,7 +963,7 @@ export const hajjData: HajjData = {
     "title": "الهدي — ذبح الأضحية",
     "location": "منى — المجازر",
     "description": "ذبح الهدي في يوم العيد تعظيماً لشعائر الله واقتداءً بسيدنا إبراهيم عليه السلام. وهو [wajib|واجب] على حجاج التمتع والقران.",
-    "image": "/images/jamarat.jpg",
+    "image": "/images/step_12_qurbani.png",
     "coordinates": "21.4162,39.8916",
     "details": {
       "steps": [
@@ -986,7 +986,7 @@ export const hajjData: HajjData = {
     "title": "الحلق أو التقصير",
     "location": "منى — مدينة الخيام",
     "description": "للرجال حلق الرأس بالكامل أو تقصيره، وللنساء قص قدر أنملة من أطراف الشعر. وبذلك يتحلل الحاج تحللاً أولاً.",
-    "image": "/images/mina.jpg",
+    "image": "/images/step_13_shave.png",
     "coordinates": "21.4162,39.8916",
     "details": {
       "steps": [
@@ -1015,7 +1015,7 @@ export const hajjData: HajjData = {
     "title": "طواف الإفاضة",
     "location": "المسجد الحرام — مكة المكرمة",
     "description": "[rukn|ركن] الحج الأعظم وطوافه الأساسي. يؤدى سبعة أشواط حول الكعبة بعد التحلل الأول بالملابس العادية.",
-    "image": "/images/kaaba.png",
+    "image": "/images/step_14_tawaf_ifadah.png",
     "coordinates": "21.4225,39.8262",
     "details": {
       "steps": [
@@ -1050,7 +1050,7 @@ export const hajjData: HajjData = {
     "title": "رمي أول [tashreeq|أيام التشريق]",
     "location": "منى — جسر الجمرات — ١١ ذي الحجة",
     "description": "أول [tashreeq|أيام التشريق]. ترمى الجمرات الثلاث بالترتيب بعد الزوال (الظهر)، مع الدعاء الطويل بعد الصغرى والوسطى.",
-    "image": "/images/jamarat.jpg",
+    "image": "/images/step_15_rami_day1.png",
     "coordinates": "21.4213,39.8732",
     "details": {
       "steps": [
@@ -1077,7 +1077,7 @@ export const hajjData: HajjData = {
     "title": "المبيت في منى ليالي [tashreeq|التشريق]",
     "location": "منى — مدينة الخيام — ١١-١٢ ذي الحجة",
     "description": "المبيت في منى خلال ليالي [tashreeq|التشريق] [wajib|واجب] على الحجاج اقتداءً بالرسول ﷺ، وهو فرصة للتأمل والدعاء وقراءة القرآن.",
-    "image": "/images/mina.jpg",
+    "image": "/images/step_16_mina_night.png",
     "coordinates": "21.4162,39.8916",
     "details": {
       "steps": [
@@ -1101,7 +1101,7 @@ export const hajjData: HajjData = {
     "title": "رمي ثاني [tashreeq|أيام التشريق] والتعجل",
     "location": "منى — جسر الجمرات — ١٢-١٣ ذي الحجة",
     "description": "رمي الجمرات الثلاث بالترتيب بعد الظهر. ويمكن للمتعجل مغادرة منى قبل مغيب الشمس في يوم ١٢ ذي الحجة.",
-    "image": "/images/jamarat.jpg",
+    "image": "/images/step_17_rami_day2.png",
     "coordinates": "21.4213,39.8732",
     "details": {
       "steps": [
@@ -1124,7 +1124,7 @@ export const hajjData: HajjData = {
     "title": "طواف الوداع",
     "location": "المسجد الحرام — مكة المكرمة",
     "description": "آخر أعمال الحج واللحظة الأكثر عاطفية. طواف الوداع ٧ أشواط حول الكعبة إيذاناً بالرحيل عن البلد الحرام.",
-    "image": "/images/kaaba.png",
+    "image": "/images/step_18_farewell.png",
     "coordinates": "21.4225,39.8262",
     "details": {
       "steps": [
@@ -1155,7 +1155,7 @@ export const hajjData: HajjData = {
     "title": "Hazırlık ve [niyyah|Niyet]",
     "location": "Yola Çıkmadan Önce — Evde",
     "description": "Hac, uçağa binmeden çok önce başlar. Niyetinizi tazeleyin, kul haklarını ödeyin, kalbinizi ve bavulunuzu bu ömürlük yolculuğa hazırlayın.",
-    "image": "/images/kaaba.png",
+    "image": "/images/step_01_preparation.png",
     "coordinates": "21.4225,39.8262",
     "details": {
       "steps": [
@@ -1179,7 +1179,7 @@ export const hajjData: HajjData = {
     "title": "İhrama Girme",
     "location": "[miqat|Mikat] — Kutsal Sınır",
     "description": "[miqat|Mikat] sınırında — hac ibadeti için belirlenen kutsal sınır noktasında — dünya süslerinden arınarak bedenen ve ruhen ihram haline girersiniz.",
-    "image": "/images/kaaba.png",
+    "image": "/images/step_02_ihram.png",
     "coordinates": "21.4225,39.8262",
     "details": {
       "steps": [
@@ -1204,7 +1204,7 @@ export const hajjData: HajjData = {
     "title": "Kudüm Tavafı (Tawaf × 7)",
     "location": "Mescid-i Haram — Kabe",
     "description": "Kabe-i Muazzama'yı ilk görüşünüz. Hacerü'l-Esved'den başlayıp yine orada biten, Kabe'nin etrafında saat yönünün tersine yedi kez dönerek dua ve yakarışlarla yapılan ibadet.",
-    "image": "/images/kaaba.png",
+    "image": "/images/step_03_tawaf.png",
     "coordinates": "21.4225,39.8262",
     "details": {
       "steps": [
@@ -1240,7 +1240,7 @@ export const hajjData: HajjData = {
     "title": "Safa ve Merve Arasında Sa'y",
     "location": "Mescid-i Haram — Mes'a Alanı",
     "description": "Hz. Hacer validemizin oğlu Hz. İsmail için su arayışını temsil eden, Safa ile Merve tepeleri arasında yedi kez gidip gelerek yapılan ibadet.",
-    "image": "/images/kaaba.png",
+    "image": "/images/step_04_safa_marwa.png",
     "coordinates": "21.3754,39.8227",
     "details": {
       "steps": [
@@ -1278,7 +1278,7 @@ export const hajjData: HajjData = {
     "title": "Tıraş Olma ve İhramdan Çıkış",
     "location": "Mekke — Berberler",
     "description": "Saçınızı tıraş ederek veya kısaltarak umre ibadetini tamamlar, ihram yasaklarından çıkar ve 8 Zilhicce'de başlayacak olan hac günlerini beklersiniz.",
-    "image": "/images/kaaba.png",
+    "image": "/images/step_05_hair_clip.png",
     "coordinates": "21.4225,39.8262",
     "details": {
       "steps": [
@@ -1302,7 +1302,7 @@ export const hajjData: HajjData = {
     "title": "Mekke'de İbadet ve Dinlenme",
     "location": "Mekke — Mescid-i Haram",
     "description": "Umre bitişi ile hac başlangıcı arasındaki dinlenme dönemi. Hacılar bu günlerde bedenlerini dinlendirir, Kabe'de namaz kılar ve ibadetle vakit geçirirler.",
-    "image": "/images/kaaba.png",
+    "image": "/images/step_06_rest.png",
     "coordinates": "21.4225,39.8262",
     "details": {
       "steps": [
@@ -1327,7 +1327,7 @@ export const hajjData: HajjData = {
     "title": "Hac İçin İhrama Girme",
     "location": "Mekke — [tarwiyah|Terviye Günü]",
     "description": "8 Zilhicce ([tarwiyah|Terviye]) sabahı, hacılar kaldıkları otellerde hac niyetiyle yeniden ihrama girerler ve kutsal hac yolculuğu resmen başlar.",
-    "image": "/images/mina.jpg",
+    "image": "/images/step_07_ihram_hajj.png",
     "coordinates": "21.4225,39.8262",
     "details": {
       "steps": [
@@ -1358,7 +1358,7 @@ export const hajjData: HajjData = {
     "title": "Mina'ya Ulaşım ([tarwiyah|Terviye Günü])",
     "location": "Mina — Çadır Kenti",
     "description": "Hacılar [tarwiyah|Terviye] gününü ve Arafat gecesini Mina'daki beyaz çadırlarda geçirirler. Beş vakit namazı birleştirmeden, kısaltarak kılarlar ve ruhen Arafat'a hazırlanırlar.",
-    "image": "/images/mina.jpg",
+    "image": "/images/step_08_mina.png",
     "coordinates": "21.4162,39.8916",
     "details": {
       "steps": [
@@ -1393,7 +1393,7 @@ export const hajjData: HajjData = {
     "title": "Arafat Günü ve Vakfe",
     "location": "Arafat Ovaları — 9 Zilhicce",
     "description": "Haccın en büyük [rukn|rüknü]. Hacılar zeval vaktinden gün batımına kadar Arafat meydanında ayakta veya oturarak samimiyetle dua ve istiğfar ederler. Arafat'ta bulunmayanın haccı geçerli değildir.",
-    "image": "/images/arafat.webp",
+    "image": "/images/step_09_arafat.png",
     "coordinates": "21.3547,39.9839",
     "details": {
       "steps": [
@@ -1429,7 +1429,7 @@ export const hajjData: HajjData = {
     "title": "Müzdelife'de Geceleme",
     "location": "Müzdelife Ovaları — 9 Zilhicce Gecesi",
     "description": "Arafat'tan sonra hacılar akşam namazını kılmadan Müzdelife'ye hareket ederler. Geceyi gökyüzü altında geçirir, namazlarını kılar ve şeytan taşlama için taş toplarlar.",
-    "image": "/images/muzdalifah.webp",
+    "image": "/images/step_10_muzdalifah.png",
     "coordinates": "21.3894,39.9392",
     "details": {
       "steps": [
@@ -1458,7 +1458,7 @@ export const hajjData: HajjData = {
     "title": "Rami — Büyük Şeytan Taşlama",
     "location": "Mina — Cemarat Köprüsü",
     "description": "Bayramın birinci günü yapılan ilk ibadet: Hz. İbrahim'in şeytanı taşlamasını canlandırarak en büyük sütuna (Cemre-i Akabe) 7 taş atmak.",
-    "image": "/images/jamarat.jpg",
+    "image": "/images/step_11_rami_aqaba.png",
     "coordinates": "21.4213,39.8732",
     "details": {
       "steps": [
@@ -1487,7 +1487,7 @@ export const hajjData: HajjData = {
     "title": "Kurban — Hayvan Kesimi",
     "location": "Mina — Mezbahalar",
     "description": "Bayram günü Allah'ın şiarını yüceltmek ve Hz. İbrahim'in teslimiyetini anmak için kurban (Hedy) kesmek. Kıran ve Temettu hacıları için [wajib|vaciptir].",
-    "image": "/images/jamarat.jpg",
+    "image": "/images/step_12_qurbani.png",
     "coordinates": "21.4162,39.8916",
     "details": {
       "steps": [
@@ -1510,7 +1510,7 @@ export const hajjData: HajjData = {
     "title": "Tıraş Olma veya Saç Kısaltma",
     "location": "Mina Çadır Kenti",
     "description": "Erkeklerin saçlarını tamamen kazıtması veya kısaltması, kadınların ise saç uçlarından bir parmak boğumu kadar kesmesi. Bu ibadetle ihramdan çıkılır.",
-    "image": "/images/mina.jpg",
+    "image": "/images/step_13_shave.png",
     "coordinates": "21.4162,39.8916",
     "details": {
       "steps": [
@@ -1539,7 +1539,7 @@ export const hajjData: HajjData = {
     "title": "Tavaf-ı İfade (Ziyaret Tavafı)",
     "location": "Mescid-i Harâm — Kâbe",
     "description": "Haccın farz olan ana tavafı. Bu tavaf olmadan hac geçerli olmaz. Tıraş olup normal kıyafetlerle Harem'e gidilerek yapılır.",
-    "image": "/images/kaaba.png",
+    "image": "/images/step_14_tawaf_ifadah.png",
     "coordinates": "21.4225,39.8262",
     "details": {
       "steps": [
@@ -1574,7 +1574,7 @@ export const hajjData: HajjData = {
     "title": "[tashreeq|Teşrik Günleri] — 1. Gün Taşlama",
     "location": "Mina — Cemarat Köprüsü — Zilhicce 11",
     "description": "[tashreeq|Teşrik] günlerinin birincisi. Öğleden (Zevalden) sonra sırasıyla üç sütun taşlanır, küçük ve orta sütunlardan sonra kıbleye dönüp uzun dua edilir.",
-    "image": "/images/jamarat.jpg",
+    "image": "/images/step_15_rami_day1.png",
     "coordinates": "21.4213,39.8732",
     "details": {
       "steps": [
@@ -1601,7 +1601,7 @@ export const hajjData: HajjData = {
     "title": "Mina'da Geceleme",
     "location": "Mina Çadır Kenti — Zilhicce 11-12",
     "description": "[tashreeq|Teşrik] günlerinde geceleri Mina'da geçirmek [wajib|vaciptir]. Peygamberimiz ﷺ bu geceleri Mina'da geçirmiştir.",
-    "image": "/images/mina.jpg",
+    "image": "/images/step_16_mina_night.png",
     "coordinates": "21.4162,39.8916",
     "details": {
       "steps": [
@@ -1625,7 +1625,7 @@ export const hajjData: HajjData = {
     "title": "[tashreeq|Teşrik Günleri] — 2. Gün Taşlama ve Aceleyle Ayrılış",
     "location": "Mina — Cemarat Köprüsü — Zilhicce 12-13",
     "description": "Üç şeytanı sırayla taşlama. Erken ayrılmak (Nafar-ı Evvel) isteyenler bayramın 3. günü taşlamadan sonra güneş batmadan Mina'dan ayrılmalıdır.",
-    "image": "/images/jamarat.jpg",
+    "image": "/images/step_17_rami_day2.png",
     "coordinates": "21.4213,39.8732",
     "details": {
       "steps": [
@@ -1648,7 +1648,7 @@ export const hajjData: HajjData = {
     "title": "Veda Tavafı (Tavaf-ı Veda)",
     "location": "Mescid-i Harâm — Son Vazife",
     "description": "Haccın son ibadeti ve en duygusal anı. Kâbe'ye son veda — Mekke'den ayrılmadan önce Beytullah'ın etrafında yapılan veda şavtları.",
-    "image": "/images/kaaba.png",
+    "image": "/images/step_18_farewell.png",
     "coordinates": "21.4225,39.8262",
     "details": {
       "steps": [
@@ -1679,7 +1679,7 @@ export const hajjData: HajjData = {
     "title": "Përgatitja & [niyyah|Nijeti]",
     "location": "Para Nisjes — Në Shtëpi",
     "description": "Haxhi fillon shumë para se të hipni në aeroplan. Përtërini [niyyah|nijetin] tuaj, rregulloni çështjet tuaja dhe përgatitni zemrën dhe bagazhin tuaj për udhëtimin e jetës.",
-    "image": "/images/kaaba.png",
+    "image": "/images/step_01_preparation.png",
     "coordinates": "21.4225,39.8262",
     "details": {
       "steps": [
@@ -1712,7 +1712,7 @@ export const hajjData: HajjData = {
     "title": "Hyrja në Ihram",
     "location": "[miqat|Mikati] — Kufiri Sheriatik",
     "description": "Në [miqat|Mikat], hyni trupërisht dhe shpirtërisht në gjendjen e shenjtë të Ihramit — kalimi nga jeta e zakonshme në atë të adhurimit.",
-    "image": "/images/kaaba.png",
+    "image": "/images/step_02_ihram.png",
     "coordinates": "21.4225,39.8262",
     "details": {
       "steps": [
@@ -1746,7 +1746,7 @@ export const hajjData: HajjData = {
     "title": "Tavafi × 7",
     "location": "Xhamia Haram — Qabja",
     "description": "Pamja e parë e Qabes. Rrotullohuni shtatë herë kundërorar rreth Qabes, duke filluar dhe mbaruar te Guri i Zi, në një gjendje të vazhdueshme lutjeje.",
-    "image": "/images/kaaba.png",
+    "image": "/images/step_03_tawaf.png",
     "coordinates": "21.4225,39.8262",
     "details": {
       "steps": [
@@ -1781,7 +1781,7 @@ export const hajjData: HajjData = {
     "title": "Sa'i midis Safas & Mervas",
     "location": "Xhamia Haram — Mes'a",
     "description": "Shatë kalime midis kodrave Safa dhe Merva, duke ecur në gjurmët e Haxheres (ra) në kërkimin e saj të dëshpëruar për ujë për foshnjën Ismail.",
-    "image": "/images/kaaba.png",
+    "image": "/images/step_04_safa_marwa.png",
     "coordinates": "21.3754,39.8227",
     "details": {
       "steps": [
@@ -1821,7 +1821,7 @@ export const hajjData: HajjData = {
     "title": "Shkurtimi i Flokëve — Fundi i Umres",
     "location": "Makkah — Hoteli",
     "description": "Duke shkurtuar ose rruar flokët, ju dilni nga gjendja e Ihramit të Umres. Gjithçka kthehet në normale deri në fillimin e Haxhit më 8 Dhul Hixhe.",
-    "image": "/images/kaaba.png",
+    "image": "/images/step_05_hair_clip.png",
     "coordinates": "21.4225,39.8262",
     "details": {
       "steps": [
@@ -1854,7 +1854,7 @@ export const hajjData: HajjData = {
     "title": "Pushimi dhe Namazi",
     "location": "Makkah — Xhamia Haram",
     "description": "Midis përfundimit të Umres dhe fillimit të Haxhit më 8 Dhul Hixhe, haxhinjtë pushojnë, falen në Haram dhe përgatisin zemrat për ditët e mëdha.",
-    "image": "/images/kaaba.png",
+    "image": "/images/step_06_rest.png",
     "coordinates": "21.4225,39.8262",
     "details": {
       "steps": [
@@ -1878,7 +1878,7 @@ export const hajjData: HajjData = {
     "title": "Ihrami për Haxh",
     "location": "Makkah — 8 Dhul Hixhe",
     "description": "Në mëngjesin e datës 8 Dhul Hixhe, haxhinjtë hyjnë sërish në Ihram — këtë herë specifikisht për Haxh. Udhëtimi i madh fillon tani.",
-    "image": "/images/mina.jpg",
+    "image": "/images/step_07_ihram_hajj.png",
     "coordinates": "21.4225,39.8262",
     "details": {
       "steps": [
@@ -1909,7 +1909,7 @@ export const hajjData: HajjData = {
     "title": "Arritja në Mina",
     "location": "Mina — Qyteti i Çadrave — 8 Dhul Hixhe",
     "description": "Qyteti i çadrave të bardha në Mina bëhet shtëpia juaj. Tri milionë besimtarë flenë në çadrat e ngritura në luginë. Nata para ditës së madhe.",
-    "image": "/images/mina.jpg",
+    "image": "/images/step_08_mina.png",
     "coordinates": "21.4162,39.8916",
     "details": {
       "steps": [
@@ -1944,7 +1944,7 @@ export const hajjData: HajjData = {
     "title": "Dita e Arafatit",
     "location": "Fusha e Arafatit — 9 Dhul Hixhe",
     "description": "Zemra dhe esenca e Haxhit. Qëndrimi në Arafat nga dreka deri në perëndim të diellit në lutje dhe meditim. Kush e humb këtë ditë, ka humbur Haxhin.",
-    "image": "/images/arafat.webp",
+    "image": "/images/step_09_arafat.png",
     "coordinates": "21.3547,39.9839",
     "details": {
       "steps": [
@@ -1981,7 +1981,7 @@ export const hajjData: HajjData = {
     "title": "Muzdelife — Nën Qiellin e Hapur",
     "location": "Fusha e Muzdelifes",
     "description": "Pas kulmit shpirtëror të Arafatit, haxhinjtë udhëtojnë drejt Muzdelifes për të kaluar natën nën yje, për t'u çlodhur dhe për të mbledhur gurë.",
-    "image": "/images/muzdalifah.webp",
+    "image": "/images/step_10_muzdalifah.png",
     "coordinates": "21.3894,39.9392",
     "details": {
       "steps": [
@@ -2010,7 +2010,7 @@ export const hajjData: HajjData = {
     "title": "Rami — Gjuajtja e Jamarat al-Aqaba",
     "location": "Mina — Ura e Jamaratit",
     "description": "Akti i parë në ditën e Bajramit: gjuajtja e shtyllës së madhe (Jamarat al-Aqaba) me 7 gurë, duke rijetuar refuzimin e tundimeve të shejtanit nga profeti Ibrahim (as).",
-    "image": "/images/jamarat.jpg",
+    "image": "/images/step_11_rami_aqaba.png",
     "coordinates": "21.4213,39.8732",
     "details": {
       "steps": [
@@ -2039,7 +2039,7 @@ export const hajjData: HajjData = {
     "title": "Kurbani — Flijimi i Kafshës",
     "location": "Mina — Thertorja",
     "description": "Flijimi i Hedyit (Kurbanit të Haxhit) në ditën e Bajramit. Është [wajib|Vaxhib] për haxhinjtë Tamattu dhe Kiran.",
-    "image": "/images/jamarat.jpg",
+    "image": "/images/step_12_qurbani.png",
     "coordinates": "21.4162,39.8916",
     "details": {
       "steps": [
@@ -2062,7 +2062,7 @@ export const hajjData: HajjData = {
     "title": "Rroja ose Prerja e Flokëve",
     "location": "Qyteti i Çadrave të Minës",
     "description": "Burrat rruajnë tërë kokën ose shkurtojnë flokët; gratë presin një gisht nga majat e tyre. Ky akt mundëson daljen e parë nga Ihrami.",
-    "image": "/images/mina.jpg",
+    "image": "/images/step_13_shave.png",
     "coordinates": "21.4162,39.8916",
     "details": {
       "steps": [
@@ -2091,7 +2091,7 @@ export const hajjData: HajjData = {
     "title": "Tavafi i Ifadahut",
     "location": "Xhamia Haram — Qabja",
     "description": "Tavafi i vërtetë i Haxhit — [rukn|Rukn] ([rukn|Shtylla]) i detyrueshëm për vlefshmërinë e Haxhit. Bëhet pas rrojës në rroba normale.",
-    "image": "/images/kaaba.png",
+    "image": "/images/step_14_tawaf_ifadah.png",
     "coordinates": "21.4225,39.8262",
     "details": {
       "steps": [
@@ -2124,7 +2124,7 @@ export const hajjData: HajjData = {
     "title": "Rami — Dita e Parë e Teshrikut",
     "location": "Mina — Ura e Xhemrateve — 11 Dhul Hixhe",
     "description": "Dita e parë e Teshrikut. Gjuani të tre [rukn|shtyllat] në rend pas Drekës; bëni dua pas së vogëls dhe të mesmes.",
-    "image": "/images/jamarat.jpg",
+    "image": "/images/step_15_rami_day1.png",
     "coordinates": "21.4213,39.8732",
     "details": {
       "steps": [
@@ -2150,7 +2150,7 @@ export const hajjData: HajjData = {
     "title": "Kalimi i Natës në Mina",
     "location": "Qyteti i Çadrave të Minës — 11-12 Dhul Hixhe",
     "description": "Netët e Teshrikut duhet të kalohen në Mina. Qëndrimi këtu është [wajib|Vaxhib] për haxhinjtë si ndjekje e praktikës së Profetit ﷺ.",
-    "image": "/images/mina.jpg",
+    "image": "/images/step_16_mina_night.png",
     "coordinates": "21.4162,39.8916",
     "details": {
       "steps": [
@@ -2174,7 +2174,7 @@ export const hajjData: HajjData = {
     "title": "Rami — Dita e Dytë e Teshrikut",
     "location": "Mina — 12/13 Dhul Hixhe",
     "description": "Dita e dytë e Teshrikut. Ata që duan të largohen herët mund ta bëjnë pas gjuajtjes së ditës 12 para perëndimit të diellit.",
-    "image": "/images/jamarat.jpg",
+    "image": "/images/step_17_rami_day2.png",
     "coordinates": "21.4213,39.8732",
     "details": {
       "steps": [
@@ -2197,7 +2197,7 @@ export const hajjData: HajjData = {
     "title": "Tavafi i Lamtumirës",
     "location": "Xhamia Haram — Akti Final",
     "description": "Akti i fundit i Haxhit. Tavafi i Lamtumirës është lamtumira e fundit me Qaben — rrotullimet e ndarjes para lënies së Mekës.",
-    "image": "/images/kaaba.png",
+    "image": "/images/step_18_farewell.png",
     "coordinates": "21.4225,39.8262",
     "details": {
       "steps": [
