@@ -87,9 +87,14 @@ const BottomSheet: React.FC = () => {
   });
   const currentStage = visibleStages[currentStageIndex] ?? visibleStages[0];
   const totalStages = visibleStages.length;
-  
   const contentRef = useRef<HTMLDivElement>(null);
   const canvasRef = useRef<HTMLCanvasElement | null>(null);
+  const dialRef = useRef<HTMLDivElement>(null);
+  const kaabaNeedleRef = useRef<HTMLDivElement>(null);
+  const tentNeedleRef = useRef<HTMLDivElement>(null);
+  const deviceHeadingRef = useRef<number>(0);
+  const bearingToKaabaRef = useRef<number>(0);
+  const bearingToTentRef = useRef<number>(0);
 
   // States
   const [playingDuaIndex, setPlayingDuaIndex] = useState<number | null>(null);
@@ -103,7 +108,6 @@ const BottomSheet: React.FC = () => {
 
   // GPS & Compass States
   const [userCoords, setUserCoords] = useState<{ lat: number; lng: number } | null>(null);
-  const [deviceHeading, setDeviceHeading] = useState<number>(0);
   const [gpsSimulated, setGpsSimulated] = useState(false);
 
   // Android Back Button Fix
@@ -165,7 +169,17 @@ const BottomSheet: React.FC = () => {
         : e.alpha !== null 
         ? 360 - e.alpha 
         : 0;
-      setDeviceHeading(heading);
+      
+      deviceHeadingRef.current = heading;
+      if (dialRef.current) {
+        dialRef.current.style.transform = `rotate(${-heading}deg)`;
+      }
+      if (kaabaNeedleRef.current) {
+        kaabaNeedleRef.current.style.transform = `rotate(${bearingToKaabaRef.current - heading}deg)`;
+      }
+      if (tentNeedleRef.current) {
+        tentNeedleRef.current.style.transform = `rotate(${bearingToTentRef.current - heading}deg)`;
+      }
     };
 
     window.addEventListener('deviceorientation', handleOrientation);
@@ -350,6 +364,10 @@ const BottomSheet: React.FC = () => {
   const distanceToTent = userCoords && profile.tentCoords ? calculateDistance(userCoords.lat, userCoords.lng, profile.tentCoords.lat, profile.tentCoords.lng) : null;
   const bearingToTent = userCoords && profile.tentCoords ? calculateBearing(userCoords.lat, userCoords.lng, profile.tentCoords.lat, profile.tentCoords.lng) : 0;
 
+  // Sync bearings into refs to prevent stale closures inside deviceorientation listener
+  bearingToKaabaRef.current = bearingToKaaba;
+  bearingToTentRef.current = bearingToTent;
+
   // Filter checklists and guide sections dynamically based on Gender/Profile!
   const filterList = (item: string) => {
     if (profile.gender === 'female') {
@@ -389,7 +407,7 @@ const BottomSheet: React.FC = () => {
           <canvas ref={canvasRef} className="absolute inset-0 z-50 pointer-events-none w-full h-full" />
         )}
 
-        {/* Floating Menses Assistant Button for Women */}
+        {/* Floating Menses Assistant Button for Women (RTL-aware top-left in Arabic) */}
         {profile.gender === 'female' && isDrawerOpen && (
           <motion.button
             initial={{ scale: 0, opacity: 0 }}
@@ -398,7 +416,9 @@ const BottomSheet: React.FC = () => {
             whileHover={{ scale: 1.05 }}
             whileTap={{ scale: 0.95 }}
             onClick={(e) => { e.stopPropagation(); setIsMensesDrawerOpen(true); }}
-            className="absolute top-5 right-5 z-40 w-10 h-10 rounded-full flex items-center justify-center border shadow-lg cursor-pointer focus:outline-none bg-rose-50 border-rose-200 text-rose-500 shadow-rose-200/20 dark:bg-rose-950/40 dark:border-rose-900/40 dark:text-rose-400 dark:shadow-none"
+            className={`absolute top-5 z-40 w-10 h-10 rounded-full flex items-center justify-center border shadow-lg cursor-pointer focus:outline-none bg-rose-50 border-rose-200 text-rose-500 shadow-rose-200/20 dark:bg-rose-950/40 dark:border-rose-900/40 dark:text-rose-400 dark:shadow-none ${
+              language === 'ar' ? 'left-5' : 'right-5'
+            }`}
             title="Menses Assistant"
           >
             <span className="text-base select-none">🌸</span>
@@ -426,7 +446,11 @@ const BottomSheet: React.FC = () => {
 
         {/* Handle / Tap Area — supports tap, swipe up (open), swipe down (close) */}
         <div 
-          className="w-full py-3.5 flex flex-col items-center cursor-pointer flex-shrink-0 select-none"
+          className={`w-full py-3.5 flex flex-col items-center cursor-pointer flex-shrink-0 select-none transition-all duration-300 ${
+            profile.gender === 'female' && isDrawerOpen
+              ? 'px-14'
+              : 'px-6'
+          }`}
           onClick={() => toggleDrawer()}
           onTouchStart={onHandleTouchStart}
           onTouchEnd={onHandleTouchEnd}
@@ -466,13 +490,13 @@ const BottomSheet: React.FC = () => {
           )}
 
           {/* Chapter label */}
-          <span className="text-[9px] font-black uppercase tracking-[0.25em] text-hajj-gold/70 mb-0.5">
+          <span className="text-[9px] font-black uppercase tracking-[0.25em] text-hajj-gold/70 mb-0.5 text-center">
             {chapterLabels[currentStage.chapter]?.[language] ?? ''}
           </span>
-          <h2 className={`text-xl font-bold tracking-tight transition-colors duration-500 ${isDark ? 'text-hajj-gold' : 'text-hajj-green'}`}>
+          <h2 className={`text-xl font-bold tracking-tight text-center transition-colors duration-500 ${isDark ? 'text-hajj-gold' : 'text-hajj-green'}`}>
             {language === 'ar' ? 'الخطوة' : language === 'tr' ? 'Adım' : language === 'sq' ? 'Hapi' : 'Step'} {currentStageIndex + 1} — {currentStage.title}
           </h2>
-          <p className={`text-sm font-medium transition-colors duration-500 ${isDark ? 'text-hajj-alabaster/60' : 'text-hajj-navy/60'}`}>
+          <p className={`text-sm font-medium text-center transition-colors duration-500 ${isDark ? 'text-hajj-alabaster/60' : 'text-hajj-navy/60'}`}>
             {currentStage.location}
           </p>
         </div>
@@ -517,8 +541,9 @@ const BottomSheet: React.FC = () => {
                 <div className="relative w-36 h-36 rounded-full border-4 border-hajj-gold/30 flex items-center justify-center bg-black/10 dark:bg-black/35 shadow-inner">
                   {/* Rotating Dial Ring */}
                   <div 
+                    ref={dialRef}
                     className="absolute inset-0 w-full h-full rounded-full transition-transform duration-200"
-                    style={{ transform: `rotate(${-deviceHeading}deg)` }}
+                    style={{ transform: `rotate(${-deviceHeadingRef.current}deg)` }}
                   >
                     {/* Compass Markers */}
                     <span className="absolute top-1 inset-x-0 mx-auto text-[9px] font-black text-red-500 text-center">N</span>
@@ -530,8 +555,9 @@ const BottomSheet: React.FC = () => {
                   {/* Golden Needle: Kaaba Direction pointer */}
                   {userCoords && (
                     <div 
+                      ref={kaabaNeedleRef}
                       className="absolute w-1 h-32 transition-transform duration-300 pointer-events-none"
-                      style={{ transform: `rotate(${bearingToKaaba - deviceHeading}deg)` }}
+                      style={{ transform: `rotate(${bearingToKaaba - deviceHeadingRef.current}deg)` }}
                     >
                       <div className="w-1.5 h-16 bg-hajj-gold rounded-t-full shadow-lg" />
                     </div>
@@ -540,8 +566,9 @@ const BottomSheet: React.FC = () => {
                   {/* Green Needle: Saved Mina Tent pointer */}
                   {userCoords && profile.tentCoords && currentStage.id !== 'arrival' && (
                     <div 
+                      ref={tentNeedleRef}
                       className="absolute w-1 h-32 transition-transform duration-300 pointer-events-none"
-                      style={{ transform: `rotate(${bearingToTent - deviceHeading}deg)` }}
+                      style={{ transform: `rotate(${bearingToTent - deviceHeadingRef.current}deg)` }}
                     >
                       <div className="w-1.5 h-16 bg-emerald-500 rounded-t-full shadow-lg" />
                     </div>
@@ -556,7 +583,7 @@ const BottomSheet: React.FC = () => {
                 <div className="w-full grid grid-cols-2 gap-4 text-center">
                   <div className={`p-3 rounded-2xl border transition-colors ${isDark ? 'bg-black/20 border-white/5' : 'bg-hajj-alabaster/40 border-hajj-green/5'}`}>
                     <span className="text-[9px] font-black uppercase text-hajj-gold tracking-widest block">
-                      {language === 'ar' ? 'المسافة إلى الكعبة' : language === 'tr' ? 'Kâbe Mesafesi' : language === 'sq' ? 'Lartësia te Qabja' : 'To Holy Kaaba'}
+                      {language === 'ar' ? 'المسافة إلى الكعبة' : language === 'tr' ? 'Kâbe Mesafesi' : language === 'sq' ? 'Te Qabeja' : 'To Holy Kaaba'}
                     </span>
                     <span className="text-sm font-extrabold block mt-0.5">
                       {distanceToKaaba 
@@ -567,7 +594,7 @@ const BottomSheet: React.FC = () => {
 
                   <div className={`p-3 rounded-2xl border transition-colors ${isDark ? 'bg-black/20 border-white/5' : 'bg-hajj-alabaster/40 border-hajj-green/5'}`}>
                     <span className="text-[9px] font-black uppercase text-emerald-500 tracking-widest block">
-                      {language === 'ar' ? 'المسافة إلى الخيمة' : language === 'tr' ? 'Çadır Mesafesi' : language === 'sq' ? 'Lartësia te Çadra' : 'To Your Tent'}
+                      {language === 'ar' ? 'المسافة إلى الخيمة' : language === 'tr' ? 'Çadır Mesafesi' : language === 'sq' ? 'Te Çadra' : 'To Your Tent'}
                     </span>
                     <span className="text-sm font-extrabold block mt-0.5 text-emerald-500">
                       {profile.tentCoords 

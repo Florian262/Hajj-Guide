@@ -16,6 +16,23 @@ interface Particle {
   color: string;
 }
 
+type LiturgicalEnv = 'divine-sun' | 'arafat-sunset' | 'muzdalifah-night' | 'mina-lantern';
+
+const getLiturgicalEnv = (stageId: string): LiturgicalEnv => {
+  if (stageId === 'step-09-arafat') return 'arafat-sunset';
+  if (stageId === 'step-10-muzdalifah') return 'muzdalifah-night';
+  if (
+    stageId === 'step-08-mina' ||
+    stageId === 'step-13-shave' ||
+    stageId === 'step-15-rami-day1' ||
+    stageId === 'step-16-mina-night' ||
+    stageId === 'step-17-rami-day2'
+  ) {
+    return 'mina-lantern';
+  }
+  return 'divine-sun';
+};
+
 const BackgroundViewer: React.FC = () => {
   const currentStageIndex = useStore((state) => state.currentStageIndex);
   const language = useStore((state) => state.language);
@@ -33,13 +50,46 @@ const BackgroundViewer: React.FC = () => {
 
   const currentStage = visibleStages[currentStageIndex] ?? visibleStages[0];
   const isDark = theme === 'dark';
+  const liturgicalEnv = getLiturgicalEnv(currentStage?.id ?? '');
+
+  // Liturgical Overlay styling definitions based on active step environment
+  let flareClass = '';
+  let bottomBlendClass = '';
+
+  switch (liturgicalEnv) {
+    case 'arafat-sunset':
+      flareClass = 'bg-[radial-gradient(circle_at_right,rgba(230,120,40,0.22),rgba(212,175,55,0.08)_50%,transparent_80%)]';
+      bottomBlendClass = isDark
+        ? 'from-[#061D13] via-[#e67828]/8 via-[#061D13]/30 to-[#b8902a]/5'
+        : 'from-hajj-alabaster/15 via-[#e67828]/4 to-transparent';
+      break;
+    case 'muzdalifah-night':
+      flareClass = 'bg-[radial-gradient(circle_at_top_left,rgba(100,180,255,0.15),transparent_55%)]';
+      bottomBlendClass = isDark
+        ? 'from-[#030d08] via-[#020b08]/85 via-[#0c1f24]/30 to-black/40'
+        : 'from-hajj-alabaster/40 via-[#0c1f24]/12 to-transparent';
+      break;
+    case 'mina-lantern':
+      flareClass = 'bg-[radial-gradient(circle_at_bottom,rgba(245,158,11,0.15),transparent_70%)]';
+      bottomBlendClass = isDark
+        ? 'from-[#061D13] via-[#f59e0b]/5 via-[#061D13]/40 to-black/15'
+        : 'from-hajj-alabaster/15 via-[#f59e0b]/3 to-transparent';
+      break;
+    case 'divine-sun':
+    default:
+      flareClass = 'bg-[radial-gradient(circle_at_top_right,rgba(212,175,55,0.18),transparent_60%)]';
+      bottomBlendClass = isDark
+        ? 'from-[#061D13] via-[#061D13]/40 to-black/15'
+        : 'from-hajj-alabaster/12 via-hajj-alabaster/4 to-transparent';
+      break;
+  }
 
   const canvasRef = useRef<HTMLCanvasElement>(null);
 
   // High-performance canvas particle engine
   useEffect(() => {
     const canvas = canvasRef.current;
-    if (!canvas || viewMode === 'map') return;
+    if (!canvas || viewMode === 'map' || isDrawerOpen) return;
 
     const ctx = canvas.getContext('2d');
     if (!ctx) return;
@@ -108,13 +158,21 @@ const BackgroundViewer: React.FC = () => {
           p.opacitySpeed = -p.opacitySpeed;
         }
 
-        // Draw particle
+        const alpha = Math.max(0, Math.min(1, p.opacity));
+        const glowScale = isNightStage ? 2.6 : 2.0;
+
+        // 1. Draw soft outer halo glow (hardware accelerated)
+        ctx.beginPath();
+        ctx.arc(p.x, p.y, p.size * glowScale, 0, Math.PI * 2);
+        ctx.fillStyle = p.color;
+        ctx.globalAlpha = alpha * (isNightStage ? 0.25 : 0.18);
+        ctx.fill();
+
+        // 2. Draw sharp inner core
         ctx.beginPath();
         ctx.arc(p.x, p.y, p.size, 0, Math.PI * 2);
         ctx.fillStyle = p.color;
-        ctx.globalAlpha = Math.max(0, Math.min(1, p.opacity));
-        ctx.shadowBlur = isNightStage ? 4 : 2;
-        ctx.shadowColor = p.color;
+        ctx.globalAlpha = alpha;
         ctx.fill();
 
         // Reset particle if it floats off screen
@@ -127,7 +185,6 @@ const BackgroundViewer: React.FC = () => {
         if (p.x > width + 10) p.x = -10;
       });
 
-      ctx.shadowBlur = 0; // reset shadows
       animationFrameId = requestAnimationFrame(render);
     };
 
@@ -137,7 +194,7 @@ const BackgroundViewer: React.FC = () => {
       cancelAnimationFrame(animationFrameId);
       window.removeEventListener('resize', handleResize);
     };
-  }, [currentStage.id, currentStageIndex, viewMode]);
+  }, [currentStage.id, currentStageIndex, viewMode, isDrawerOpen]);
 
   return (
     <div className="absolute inset-0 w-full h-full overflow-hidden bg-black select-none">
@@ -172,17 +229,11 @@ const BackgroundViewer: React.FC = () => {
             className="w-full h-full object-cover"
           />
 
-          {/* Layer 1: Radial light flare from the top right simulating divine sunlight */}
-          <div className="absolute inset-0 bg-[radial-gradient(circle_at_top_right,rgba(212,175,55,0.18),transparent_60%)] pointer-events-none" />
+          {/* Layer 1: Dynamic Liturgical Radial Flare overlay */}
+          <div className={`absolute inset-0 pointer-events-none transition-all duration-1000 ${flareClass}`} />
 
-          {/* Layer 2: Theme-aware bottom-up linear gradient to blend photos with BottomSheet */}
-          <div 
-            className={`absolute inset-0 bg-gradient-to-t pointer-events-none transition-colors duration-500 ${
-              isDark 
-                ? 'from-[#061D13] via-[#061D13]/40 to-black/15' 
-                : 'from-hajj-alabaster/12 via-hajj-alabaster/4 to-transparent'
-            }`} 
-          />
+          {/* Layer 2: Dynamic Liturgical Theme-aware bottom-up blend overlay */}
+          <div className={`absolute inset-0 pointer-events-none transition-all duration-1000 bg-gradient-to-t ${bottomBlendClass}`} />
         </motion.div>
       </AnimatePresence>
 

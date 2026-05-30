@@ -489,112 +489,125 @@ const App: React.FC = () => {
       )}
       
       {/* Header Overlay */}
-      <header className="absolute top-0 inset-x-0 z-20 pt-[env(safe-area-inset-top)] p-6 pointer-events-none flex justify-between items-center">
-        {/* Brand Badge */}
-        <div className="bg-hajj-green/30 dark:bg-black/45 backdrop-blur-md px-4 py-2 rounded-full border border-white/10 pointer-events-auto shadow-sm">
-          <span className="text-white text-xs font-bold tracking-[0.25em] uppercase">Hajj Guide</span>
-        </div>
+      <header className="absolute top-0 inset-x-0 z-20 pt-[env(safe-area-inset-top)] p-4 max-w-[450px] mx-auto pointer-events-none">
+        <div className={`w-full flex items-center justify-between gap-2 px-3.5 py-2.5 rounded-full border shadow-lg backdrop-blur-md pointer-events-auto transition-colors duration-500 ${
+          isDark 
+            ? 'bg-[#061D13]/40 border-white/10 text-hajj-alabaster/95 shadow-black/30' 
+            : 'bg-hajj-alabaster/60 border-white/30 text-hajj-navy shadow-hajj-green/5'
+        } ${language === 'ar' ? 'flex-row-reverse' : 'flex-row'}`}>
+          
+          {/* Brand Badge */}
+          <div className="flex items-center gap-1.5 select-none pl-1 pr-2">
+            <span className="text-base" role="img" aria-label="Kaaba">🕋</span>
+            <span className={`text-xs font-arabic font-extrabold uppercase tracking-[0.18em] transition-colors ${
+              isDark ? 'text-hajj-gold' : 'text-hajj-green'
+            }`}>
+              {language === 'ar' ? 'دليل الحج' : language === 'tr' ? 'Hac Rehberi' : language === 'sq' ? 'Udhëzuesi Haxhit' : 'Hajj Guide'}
+            </span>
+          </div>
 
-        {/* Control Tools */}
-        <div className="flex items-center gap-3 pointer-events-auto">
-          {/* Map Portal Toggle Button */}
-          {!isOnboardingOpen && (
+          {/* Control Tools Cluster */}
+          <div className={`flex items-center gap-2 ${language === 'ar' ? 'flex-row-reverse' : 'flex-row'}`}>
+            {/* Map Portal Toggle Button */}
+            {!isOnboardingOpen && (
+              <button
+                onClick={() => setViewMode(viewMode === 'map' ? 'guide' : 'map')}
+                className={`w-8.5 h-8.5 flex items-center justify-center rounded-full border active:scale-95 transition-all cursor-pointer shadow-sm focus:outline-none ${
+                  viewMode === 'map' 
+                    ? 'bg-hajj-gold/25 border-hajj-gold/45 text-hajj-gold font-bold animate-pulse' 
+                    : isDark ? 'bg-white/10 border-white/10 text-white hover:bg-white/20' : 'bg-black/5 border-black/10 text-hajj-navy hover:bg-black/10'
+                }`}
+                title={viewMode === 'map' ? "Enter Guide View" : "Enter Map View"}
+                aria-label="Toggle View Mode"
+              >
+                {viewMode === 'map' ? (
+                  <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24" strokeWidth="2.5">
+                    <path strokeLinecap="round" strokeLinejoin="round" d="M12 6.253v13m0-13C10.832 5.477 9.246 5 7.5 5S4.168 5.477 3 6.253v13C4.168 18.477 5.754 18 7.5 18s3.332.477 4.5 1.253m0-13C13.168 5.477 14.754 5 16.5 5c1.747 0 3.332.477 4.5 1.253v13C19.832 18.477 18.247 18 16.5 18c-1.746 0-3.332.477-4.5 1.253" />
+                  </svg>
+                ) : (
+                  <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24" strokeWidth="2.5">
+                    <path strokeLinecap="round" strokeLinejoin="round" d="M9 20l-5.447-2.724A1 1 0 013 16.382V5.618a1 1 0 011.447-.894L9 7m0 13l6-3m-6 3V7m6 10l4.553 2.276A1 1 0 0021 18.382V7.618a1 1 0 00-.553-.894L15 4m0 13V4m0 0L9 7" />
+                  </svg>
+                )}
+              </button>
+            )}
+
+            {/* Sound Synthesizer Player Toggle */}
             <button
-              onClick={() => setViewMode(viewMode === 'map' ? 'guide' : 'map')}
-              className={`w-10 h-10 flex items-center justify-center rounded-full backdrop-blur-md border active:scale-95 transition-all cursor-pointer shadow-sm focus:outline-none ${
-                viewMode === 'map' 
-                  ? 'bg-hajj-gold/25 border-hajj-gold/45 text-hajj-gold font-bold animate-pulse' 
-                  : 'bg-white/10 dark:bg-black/35 border-white/15 dark:border-white/10 text-white hover:bg-white/20'
+              onClick={handleToggleSound}
+              className={`w-8.5 h-8.5 flex items-center justify-center rounded-full border active:scale-95 transition-all cursor-pointer shadow-sm focus:outline-none ${
+                isSoundOn 
+                  ? 'bg-hajj-gold/25 border-hajj-gold/45 text-hajj-gold animate-pulse' 
+                  : isDark ? 'bg-white/10 border-white/10 text-white hover:bg-white/20' : 'bg-black/5 border-black/10 text-hajj-navy hover:bg-black/10'
               }`}
-              title={viewMode === 'map' ? "Enter Guide View" : "Enter Map View"}
-              aria-label="Toggle View Mode"
+              title="Toggle Sanctuary Ambient sound"
+              aria-label="Toggle Sound"
             >
-              {viewMode === 'map' ? (
-                <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24" strokeWidth="2.5">
-                  <path strokeLinecap="round" strokeLinejoin="round" d="M12 6.253v13m0-13C10.832 5.477 9.246 5 7.5 5S4.168 5.477 3 6.253v13C4.168 18.477 5.754 18 7.5 18s3.332.477 4.5 1.253m0-13C13.168 5.477 14.754 5 16.5 5c1.747 0 3.332.477 4.5 1.253v13C19.832 18.477 18.247 18 16.5 18c-1.746 0-3.332.477-4.5 1.253" />
+              <svg className="w-4.5 h-4.5" fill="none" stroke="currentColor" viewBox="0 0 24 24" strokeWidth="2.5">
+                <path strokeLinecap="round" strokeLinejoin="round" d="M9 19V6l12-3v13M9 19c0 1.105-1.343 2-3 2s-3-.895-3-2 1.343-2 3-2 3 .895 3 2zm12-3c0 1.105-1.343 2-3 2s-3-.895-3-2 1.343-2 3-2 3 .895 3 2zM9 10l12-3" />
+              </svg>
+            </button>
+
+            {/* Theme Switcher */}
+            <button
+              onClick={() => toggleTheme()}
+              className={`w-8.5 h-8.5 flex items-center justify-center rounded-full border active:scale-95 transition-all cursor-pointer shadow-sm focus:outline-none ${
+                isDark ? 'bg-white/10 border-white/10 text-hajj-gold hover:bg-white/20' : 'bg-black/5 border-black/10 text-hajj-navy hover:bg-black/10'
+              }`}
+              aria-label="Toggle Theme"
+              title="Toggle Theme Mode"
+            >
+              {theme === 'light' ? (
+                <svg className="w-4.5 h-4.5" fill="none" stroke="currentColor" viewBox="0 0 24 24" strokeWidth="2.5">
+                  <path strokeLinecap="round" strokeLinejoin="round" d="M12 3v1m0 16v1m9-9h-1M4 12H3m15.364-6.364l-.707.707M6.343 17.657l-.707.707m12.728 0l-.707-.707M6.343 6.343l-.707-.707M14.5 12a2.5 2.5 0 11-5 0 2.5 2.5 0 015 0z" />
                 </svg>
               ) : (
-                <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24" strokeWidth="2.5">
-                  <path strokeLinecap="round" strokeLinejoin="round" d="M9 20l-5.447-2.724A1 1 0 013 16.382V5.618a1 1 0 011.447-.894L9 7m0 13l6-3m-6 3V7m6 10l4.553 2.276A1 1 0 0021 18.382V7.618a1 1 0 00-.553-.894L15 4m0 13V4m0 0L9 7" />
+                <svg className="w-4.5 h-4.5 text-hajj-gold" fill="currentColor" viewBox="0 0 24 24">
+                  <path d="M21.752 15.002A9.718 9.718 0 0118 15.75c-5.385 0-9.75-4.365-9.75-9.75 0-1.33.266-2.597.748-3.752A9.753 9.753 0 003 11.25C3 16.635 7.365 21 12.75 21a9.753 9.753 0 009.002-5.998z" />
                 </svg>
               )}
             </button>
-          )}
 
-          {/* Sound Synthesizer Player Toggle */}
-          <button
-            onClick={handleToggleSound}
-            className={`w-10 h-10 flex items-center justify-center rounded-full backdrop-blur-md border active:scale-95 transition-all cursor-pointer shadow-sm focus:outline-none ${
-              isSoundOn 
-                ? 'bg-hajj-gold/25 border-hajj-gold/45 text-hajj-gold animate-pulse' 
-                : 'bg-white/10 dark:bg-black/35 border-white/15 dark:border-white/10 text-white hover:bg-white/20'
-            }`}
-            title="Toggle Sanctuary Ambient sound"
-            aria-label="Toggle Sound"
-          >
-            <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24" strokeWidth="2.5">
-              <path strokeLinecap="round" strokeLinejoin="round" d="M9 19V6l12-3v13M9 19c0 1.105-1.343 2-3 2s-3-.895-3-2 1.343-2 3-2 3 .895 3 2zm12-3c0 1.105-1.343 2-3 2s-3-.895-3-2 1.343-2 3-2 3 .895 3 2zM9 10l12-3" />
-            </svg>
-          </button>
+            {/* Language Selector (Symmetric Circular Globe Dropdown Button) */}
+            <div className={`relative w-8.5 h-8.5 flex items-center justify-center rounded-full border transition-all hover:bg-white/20 cursor-pointer shadow-sm ${
+              isDark ? 'bg-white/10 border-white/10 text-white' : 'bg-black/5 border-black/10 text-hajj-navy'
+            }`}>
+              <span className="text-base select-none">🌐</span>
+              <select
+                value={language}
+                onChange={(e) => setLanguage(e.target.value as 'en' | 'ar' | 'tr' | 'sq')}
+                className="absolute inset-0 w-full h-full opacity-0 cursor-pointer pointer-events-auto"
+                aria-label="Select Language"
+              >
+                <option value="en" className="text-hajj-navy bg-hajj-alabaster">EN - English</option>
+                <option value="ar" className="text-hajj-navy bg-hajj-alabaster">AR - العربية</option>
+                <option value="tr" className="text-hajj-navy bg-hajj-alabaster">TR - Türkçe</option>
+                <option value="sq" className="text-hajj-navy bg-hajj-alabaster">SQ - Shqip</option>
+              </select>
+            </div>
 
-          {/* Theme Switcher */}
-          <button
-            onClick={() => toggleTheme()}
-            className="w-10 h-10 flex items-center justify-center rounded-full bg-white/10 dark:bg-black/35 backdrop-blur-md border border-white/15 dark:border-white/10 text-white active:scale-95 transition-all cursor-pointer shadow-sm hover:bg-white/20 focus:outline-none"
-            aria-label="Toggle Theme"
-            title="Toggle Theme Mode"
-          >
-            {theme === 'light' ? (
-              <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24" strokeWidth="2.5">
-                <path strokeLinecap="round" strokeLinejoin="round" d="M12 3v1m0 16v1m9-9h-1M4 12H3m15.364-6.364l-.707.707M6.343 17.657l-.707.707m12.728 0l-.707-.707M6.343 6.343l-.707-.707M14.5 12a2.5 2.5 0 11-5 0 2.5 2.5 0 015 0z" />
-              </svg>
-            ) : (
-              <svg className="w-5 h-5 text-hajj-gold" fill="currentColor" viewBox="0 0 24 24">
-                <path d="M21.752 15.002A9.718 9.718 0 0118 15.75c-5.385 0-9.75-4.365-9.75-9.75 0-1.33.266-2.597.748-3.752A9.753 9.753 0 003 11.25C3 16.635 7.365 21 12.75 21a9.753 9.753 0 009.002-5.998z" />
-              </svg>
+            {/* Profile Reset Button (visible only when onboarded) */}
+            {!isOnboardingOpen && (
+              <button
+                onClick={() => {
+                  if (window.confirm(language === 'sq' ? 'A dëshironi të fshini të dhënat dhe të ndryshoni profilin?' : language === 'tr' ? 'Profilinizi sıfırlamak ve tüm verileri silmek istediğinizden emin misiniz?' : language === 'ar' ? 'هل أنت متأكد من إعادة ضبط الملف الشخصي ومسح البيانات؟' : 'Are you sure you want to reset your profile and erase all progress?')) {
+                    clearProfile();
+                    setIsSoundOn(false);
+                    synthRef.current?.stop();
+                  }
+                }}
+                className={`w-8.5 h-8.5 flex items-center justify-center rounded-full border active:scale-95 transition-all cursor-pointer shadow-sm focus:outline-none ${
+                  isDark ? 'bg-white/10 border-white/10 text-white hover:bg-red-950/20 hover:border-red-500/20' : 'bg-black/5 border-black/10 text-hajj-navy hover:bg-red-50 hover:border-red-200'
+                }`}
+                title="Reset Profile"
+                aria-label="Reset Profile"
+              >
+                <svg className="w-4.5 h-4.5" fill="none" stroke="currentColor" viewBox="0 0 24 24" strokeWidth="2.5">
+                  <path strokeLinecap="round" strokeLinejoin="round" d="M16 7a4 4 0 11-8 0 4 4 0 018 0zM12 14a7 7 0 00-7 7h14a7 7 0 00-7-7z" />
+                </svg>
+              </button>
             )}
-          </button>
-
-          {/* Language Selector */}
-          <div className="relative flex items-center bg-white/10 dark:bg-black/35 backdrop-blur-md border border-white/15 dark:border-white/10 rounded-full px-3.5 py-2 shadow-sm text-white hover:bg-white/20 transition-all cursor-pointer">
-            <span className="text-[10px] uppercase font-black tracking-widest mr-1.5 opacity-80">
-              {language === 'sq' ? 'AL' : language}
-            </span>
-            <select
-              value={language}
-              onChange={(e) => setLanguage(e.target.value as 'en' | 'ar' | 'tr' | 'sq')}
-              className="absolute inset-0 w-full h-full opacity-0 cursor-pointer pointer-events-auto"
-              aria-label="Select Language"
-            >
-              <option value="en" className="text-hajj-navy bg-hajj-alabaster">EN - English</option>
-              <option value="ar" className="text-hajj-navy bg-hajj-alabaster">AR - العربية</option>
-              <option value="tr" className="text-hajj-navy bg-hajj-alabaster">TR - Türkçe</option>
-              <option value="sq" className="text-hajj-navy bg-hajj-alabaster">SQ - Shqip</option>
-            </select>
-            <svg className="w-3 h-3 opacity-70" fill="none" stroke="currentColor" viewBox="0 0 24 24" strokeWidth="3">
-              <path strokeLinecap="round" strokeLinejoin="round" d="M19 9l-7 7-7-7" />
-            </svg>
           </div>
-
-          {/* Profile Reset Button (visible only when onboarded) */}
-          {!isOnboardingOpen && (
-            <button
-              onClick={() => {
-                if (window.confirm(language === 'sq' ? 'A dëshironi të fshini të dhënat dhe të ndryshoni profilin?' : language === 'tr' ? 'Profilinizi sıfırlamak ve tüm verileri silmek istediğinizden emin misiniz?' : language === 'ar' ? 'هل أنت متأكد من إعادة ضبط الملف الشخصي ومسح البيانات؟' : 'Are you sure you want to reset your profile and erase all progress?')) {
-                  clearProfile();
-                  setIsSoundOn(false);
-                  synthRef.current?.stop();
-                }
-              }}
-              className="w-10 h-10 flex items-center justify-center rounded-full bg-white/10 dark:bg-black/35 backdrop-blur-md border border-white/15 dark:border-white/10 text-white active:scale-95 transition-all cursor-pointer shadow-sm hover:bg-red-950/20 hover:border-red-500/20 focus:outline-none"
-              title="Reset Profile"
-              aria-label="Reset Profile"
-            >
-              <svg className="w-4.5 h-4.5" fill="none" stroke="currentColor" viewBox="0 0 24 24" strokeWidth="2.5">
-                <path strokeLinecap="round" strokeLinejoin="round" d="M16 7a4 4 0 11-8 0 4 4 0 018 0zM12 14a7 7 0 00-7 7h14a7 7 0 00-7-7z" />
-              </svg>
-            </button>
-          )}
         </div>
       </header>
 

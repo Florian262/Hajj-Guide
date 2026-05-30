@@ -230,6 +230,8 @@ export const JourneyMap: React.FC<JourneyMapProps> = ({ onSelectStage }) => {
   }).length;
 
   useEffect(() => {
+    if (viewMode !== 'map') return;
+
     const canvas = canvasRef.current;
     if (!canvas) return;
     const ctx = canvas.getContext('2d');
@@ -279,7 +281,7 @@ export const JourneyMap: React.FC<JourneyMapProps> = ({ onSelectStage }) => {
       cancelAnimationFrame(frameId);
       window.removeEventListener('resize', handleResize);
     };
-  }, []);
+  }, [viewMode]);
 
   useEffect(() => {
     if (viewMode === 'map') {

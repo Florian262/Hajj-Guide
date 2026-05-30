@@ -29,7 +29,8 @@ export const CloudTransition: React.FC<CloudTransitionProps> = ({ isVisible }) =
             style={{ 
               willChange: 'transform, opacity',
               backfaceVisibility: 'hidden',
-              WebkitBackfaceVisibility: 'hidden'
+              WebkitBackfaceVisibility: 'hidden',
+              transformStyle: 'preserve-3d'
             }}
           />
 
@@ -44,7 +45,8 @@ export const CloudTransition: React.FC<CloudTransitionProps> = ({ isVisible }) =
             style={{ 
               willChange: 'transform, opacity',
               backfaceVisibility: 'hidden',
-              WebkitBackfaceVisibility: 'hidden'
+              WebkitBackfaceVisibility: 'hidden',
+              transformStyle: 'preserve-3d'
             }}
           />
 
@@ -58,7 +60,8 @@ export const CloudTransition: React.FC<CloudTransitionProps> = ({ isVisible }) =
             style={{ 
               willChange: 'opacity',
               backfaceVisibility: 'hidden',
-              WebkitBackfaceVisibility: 'hidden'
+              WebkitBackfaceVisibility: 'hidden',
+              transformStyle: 'preserve-3d'
             }}
           />
         </motion.div>
