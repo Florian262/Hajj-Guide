@@ -227,7 +227,7 @@ export const JourneyMap: React.FC<JourneyMapProps> = ({ onSelectStage }) => {
   }).length;
 
   useEffect(() => {
-    if (viewMode !== 'map') return;
+    if (viewMode !== 'map' || mapZoomed) return;
 
     const canvas = canvasRef.current;
     if (!canvas) return;
@@ -278,7 +278,7 @@ export const JourneyMap: React.FC<JourneyMapProps> = ({ onSelectStage }) => {
       cancelAnimationFrame(frameId);
       window.removeEventListener('resize', handleResize);
     };
-  }, [viewMode]);
+  }, [viewMode, mapZoomed]);
 
   useEffect(() => {
     if (viewMode === 'map') {
@@ -345,7 +345,6 @@ export const JourneyMap: React.FC<JourneyMapProps> = ({ onSelectStage }) => {
             scale: mapZoomed ? 3.5 : 1, 
             x: mapZoomed ? `${(50 - cameraOrigin.x) * 2.5}%` : '0%',
             y: mapZoomed ? `${(45 - cameraOrigin.y) * 1.5}%` : '0%',
-            filter: mapZoomed ? 'blur(6px)' : 'blur(0px)',
             opacity: mapZoomed ? 0.35 : 1,
           }}
           transition={{ duration: 0.6, ease: 'easeInOut' }}

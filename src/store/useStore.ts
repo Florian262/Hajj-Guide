@@ -1,10 +1,20 @@
 import { create } from 'zustand';
 import { persist, createJSONStorage, type StateStorage } from 'zustand/middleware';
+import { commonDuas } from '../data/commonDuas';
 
 interface UserProfile {
   gender: 'male' | 'female' | null;
   hajjType: 'tamattu' | 'qiran' | 'ifrad' | null;
   tentCoords: { lat: number; lng: number } | null;
+}
+
+export interface PersonalDua {
+  id: string;
+  text: string;
+  category: 'self' | 'family' | 'health' | 'general';
+  completed: boolean;
+  starred?: boolean;
+  commonDuaId?: string;
 }
 
 interface AppState {
@@ -18,6 +28,7 @@ interface AppState {
   profile: UserProfile;
   activeGlossaryTerm: string | null;
   viewMode: 'map' | 'guide';
+  personalDuas: PersonalDua[];
   setStageIndex: (index: number) => void;
   toggleDrawer: (open?: boolean) => void;
   nextStage: () => void;
@@ -34,6 +45,10 @@ interface AppState {
   clearProfile: () => void;
   setActiveGlossaryTerm: (term: string | null) => void;
   setViewMode: (mode: 'map' | 'guide') => void;
+  addPersonalDua: (text: string, category: PersonalDua['category'], starred?: boolean, commonDuaId?: string) => void;
+  togglePersonalDua: (id: string) => void;
+  toggleStarDua: (id: string) => void;
+  deletePersonalDua: (id: string) => void;
 }
 
 const baseSecret = new TextEncoder().encode("hajj-secure-enclave-key-2026");
@@ -123,6 +138,52 @@ const secureStorage: StateStorage = {
   }
 };
 
+const localizedTemplateDuas = {
+  en: {
+    init1: 'اللَّهُمَّ تَقَبَّلْ مِنِّي حَجِّي، وَاغْفِرْ لِي ذَنْبِي، وَثَبِّتْنِي عَلَى الْهُدَى. (O Allah, accept my Hajj, forgive my sins, and grant me steadfastness upon guidance.)',
+    init2: 'اللَّهُمَّ بَارِكْ فِي وَالِدَيَّ، وَارْزُقْهُمَا الصِّحَّةَ وَالْعَافِيَةَ، وَأَدْخِلْهُمَا الْجَنَّةَ. (O Allah, bless my parents, grant them health and well-being, and admit them to Paradise.)',
+    init3: 'اللَّهُمَّ اشْفِ مَرْضَانَا وَمَرْضَى الْمُسْلِمِينَ، وَأَذْهِبْ عَنْهُمُ الْبَأْسَ. (O Allah, cure our sick and the sick of the Muslims, and grant them a healing that leaves no ailment.)'
+  },
+  ar: {
+    init1: 'اللَّهُمَّ تَقَبَّلْ مِنِّي حَجِّي، وَاغْفِرْ لِي ذَنْبِي، وَثَبِّتْنِي عَلَى الْهُدَى.',
+    init2: 'اللَّهُمَّ بَارِكْ فِي وَالِدَيَّ، وَارْزُقْهُمَا الصِّحَّةَ وَالْعَافِيَةَ، وَأَدْخِلْهُمَا الْجَنَّةَ الْفِرْدَوْسَ.',
+    init3: 'اللَّهُمَّ اشْفِ مَرْضَانَا وَمَرْضَى الْمُسْلِمِينَ، وَأَذْهِبْ عَنْهُمُ الْبَأْسَ شِفَاءً لَا يُغَادِرُ سَقَمًا.'
+  },
+  tr: {
+    init1: 'اللَّهُمَّ تَقَبَّلْ مِنِّي حَجِّي، وَاغْفِرْ لِي ذَنْبِي، وَثَبِّتْنِي عَلَى الْهُدَى. (Allah\'ım, haccımı kabul et, günahlarımı bağışla ve beni hidayet üzere sabit kıl.)',
+    init2: 'اللَّهُمَّ بَارِكْ فِي وَالِدَيَّ، وَارْزُقْهُمَا الصِّحَّةَ وَالْعَافِيَةَ، وَأَدْخِلْهُمَا الْجَنَّةَ. (Allah\'ım, anne babamı mübarek kıl, onlara sağlık ve afiyet ver, cennetine kabul et.)',
+    init3: 'اللَّهُمَّ اشْفِ مَرْضَانَا وَمَرْضَى الْمُسْلِمِينَ، وَأَذْهِبْ عَنْهُمُ الْبَأْسَ. (Allah\'ım, hastalarımıza ve tüm Müslüman hastalarına şifa ver, dertlerini gider.)'
+  },
+  sq: {
+    init1: 'اللَّهُمَّ تَقَبَّلْ مِنِّي حَجِّي، وَاغْفِرْ لِي ذَنْبِي، وَثَبِّتْنِي عَلَى الْهُدَى. (O Allah, pranoje haxhin tim, falmi mëkatet e mia dhe më përforco në udhëzim.)',
+    init2: 'اللَّهُمَّ بَارِكْ فِي وَالِدَيَّ، وَارْزُقْهُمَا الصِّحَّةَ وَالْعَافِيَةَ، وَأَدْخِلْهُمَا الْجَنَّةَ. (O Allah, bekoji prindërit e mi, dhuro u shëndet e mirëqenie dhe pranoji në Xhenet.)',
+    init3: 'اللَّهُمَّ اشْفِ مَرْضَانَا وَمَرْضَى الْمُسْلِمِينَ، وَأَذْهِبْ عَنْهُمُ الْبَأْسَ. (O Allah, shëroji të sëmurët tanë dhe të sëmurët e muslimanëve, dhe jepu shërim pa mundim.)'
+  }
+};
+
+const getInitialPersonalDuas = (lang: 'en' | 'ar' | 'tr' | 'sq'): PersonalDua[] => [
+  {
+    id: 'init-1',
+    text: localizedTemplateDuas[lang].init1,
+    category: 'self',
+    completed: false
+  },
+  {
+    id: 'init-2',
+    text: localizedTemplateDuas[lang].init2,
+    category: 'family',
+    completed: false
+  },
+  {
+    id: 'init-3',
+    text: localizedTemplateDuas[lang].init3,
+    category: 'health',
+    completed: false
+  }
+];
+
+const initialPersonalDuas = getInitialPersonalDuas('en');
+
 const initialProfile: UserProfile = {
   gender: null,
   hajjType: null,
@@ -170,7 +231,33 @@ export const useStore = create<AppState>()(
           saiCount: state.saiCount < 7 ? state.saiCount + 1 : 7
         })),
       resetSai: () => set({ saiCount: 0 }),
-      setLanguage: (lang) => set({ language: lang }),
+      setLanguage: (lang) => set((state) => {
+        const updatedPersonalDuas = state.personalDuas.map((dua) => {
+          if (dua.id === 'init-1' && !dua.completed) {
+            return { ...dua, text: localizedTemplateDuas[lang].init1 };
+          }
+          if (dua.id === 'init-2' && !dua.completed) {
+            return { ...dua, text: localizedTemplateDuas[lang].init2 };
+          }
+          if (dua.id === 'init-3' && !dua.completed) {
+            return { ...dua, text: localizedTemplateDuas[lang].init3 };
+          }
+          if (dua.commonDuaId) {
+            const commonDua = commonDuas.find((d) => d.id === dua.commonDuaId);
+            if (commonDua) {
+              return {
+                ...dua,
+                text: `${commonDua.arabic}\n(${commonDua.translations[lang] || commonDua.translations['en']})`
+              };
+            }
+          }
+          return dua;
+        });
+        return { 
+          language: lang,
+          personalDuas: updatedPersonalDuas
+        };
+      }),
       toggleTheme: () => set((state) => ({ theme: state.theme === 'light' ? 'dark' : 'light' })),
       setProfile: (newProfile) => set((state) => ({
           profile: {
@@ -183,18 +270,46 @@ export const useStore = create<AppState>()(
       saveTentLocation: (lat, lng) => set((state) => ({
           profile: {
             ...state.profile,
-            tentCoords: { lat, lng }
+            coords: { lat, lng }
           }
         })),
-      clearProfile: () => set({
+      clearProfile: () => set((state) => ({
           profile: initialProfile,
           completedItems: {},
           tawafCount: 0,
           saiCount: 0,
           currentStageIndex: 0,
           viewMode: 'map',
-        }),
+          personalDuas: getInitialPersonalDuas(state.language),
+        })),
       setViewMode: (mode) => set({ viewMode: mode }),
+      personalDuas: initialPersonalDuas,
+      addPersonalDua: (text, category, starred = false, commonDuaId) => set((state) => ({
+        personalDuas: [
+          ...state.personalDuas,
+          {
+            id: typeof crypto !== 'undefined' && crypto.randomUUID ? crypto.randomUUID() : Math.random().toString(36).substring(2, 11),
+            text,
+            category,
+            completed: false,
+            starred,
+            commonDuaId
+          }
+        ]
+      })),
+      togglePersonalDua: (id) => set((state) => ({
+        personalDuas: state.personalDuas.map((dua) => 
+          dua.id === id ? { ...dua, completed: !dua.completed } : dua
+        )
+      })),
+      toggleStarDua: (id) => set((state) => ({
+        personalDuas: state.personalDuas.map((dua) => 
+          dua.id === id ? { ...dua, starred: !dua.starred } : dua
+        )
+      })),
+      deletePersonalDua: (id) => set((state) => ({
+        personalDuas: state.personalDuas.filter((dua) => dua.id !== id)
+      })),
     }),
     {
       name: 'hajj-guide-storage',
@@ -206,6 +321,7 @@ export const useStore = create<AppState>()(
         language: state.language,
         theme: state.theme,
         profile: state.profile,
+        personalDuas: state.personalDuas,
       }),
     }
   )

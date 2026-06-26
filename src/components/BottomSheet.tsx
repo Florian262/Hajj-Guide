@@ -1,7 +1,8 @@
 import React, { useEffect, useRef, useState } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
-import { useStore } from '../store/useStore';
+import { useStore, type PersonalDua } from '../store/useStore';
 import { hajjData, chapterLabels } from '../data/hajjData';
+import { commonDuas } from '../data/commonDuas';
 import { renderTextWithTerms } from '../utils/glossaryRenderer';
 import { calculateDistance, calculateBearing } from '../domain/geoMath';
 import { getVisibleStages } from '../utils/stageSelectors';
@@ -48,7 +49,12 @@ const BottomSheet: React.FC = () => {
     language,
     theme,
     profile,
-    saveTentLocation
+    saveTentLocation,
+    personalDuas,
+    addPersonalDua,
+    togglePersonalDua,
+    toggleStarDua,
+    deletePersonalDua
   } = useStore();
 
   // Dynamically filter stages based on pilgrim's Hajj type
@@ -78,6 +84,15 @@ const BottomSheet: React.FC = () => {
   const [isMensesDrawerOpen, setIsMensesDrawerOpen] = useState(false);
   const [showConfetti, setShowConfetti] = useState(false);
   const [confettiMessage, setConfettiMessage] = useState(false);
+
+  // Personal Dua States
+  const [activeTab, setActiveTab] = useState<'guide' | 'duas'>('guide');
+  const [newDuaText, setNewDuaText] = useState('');
+  const [newDuaCategory, setNewDuaCategory] = useState<PersonalDua['category']>('general');
+  const [duaFilter, setDuaFilter] = useState<'all' | 'favorites' | PersonalDua['category']>('all');
+  const [isCommonDuasOpen, setIsCommonDuasOpen] = useState(false);
+  const [commonDuaCategory, setCommonDuaCategory] = useState<'all' | 'quran' | 'prophetic' | 'forgiveness' | 'hajj'>('all');
+  const [importingDuaId, setImportingDuaId] = useState<string | null>(null);
 
   // Handle swipe gesture state
   const [handleSwipeStartY, setHandleSwipeStartY] = useState<number | null>(null);
@@ -110,6 +125,9 @@ const BottomSheet: React.FC = () => {
   useEffect(() => {
     if (window.speechSynthesis) {
       window.speechSynthesis.cancel();
+    }
+    if (contentRef.current) {
+      contentRef.current.scrollTop = 0;
     }
     const timer = setTimeout(() => {
       setPlayingDuaIndex(null);
@@ -299,6 +317,55 @@ const BottomSheet: React.FC = () => {
 
   const isDark = theme === 'dark';
 
+  const renderPersonalDuaText = (text: string, completed: boolean) => {
+    const lines = text.split('\n');
+    const hasArabic = lines.length > 1 && /[\u0600-\u06FF]/.test(lines[0]);
+
+    if (hasArabic) {
+      const arabicLine = lines[0];
+      const translationLines = lines.slice(1).join('\n');
+      return (
+        <div className="space-y-2">
+          <p 
+            className={`text-right text-lg font-bold leading-loose font-arabic transition-all duration-300 ${
+              completed 
+                ? 'line-through opacity-35' 
+                : isDark 
+                ? 'text-white' 
+                : 'text-hajj-navy'
+            }`} 
+            dir="rtl"
+          >
+            {arabicLine}
+          </p>
+          <p 
+            className={`text-xs leading-relaxed font-semibold opacity-90 border-t border-black/5 dark:border-white/5 pt-2 transition-all duration-300 ${
+              completed 
+                ? 'line-through opacity-35' 
+                : isDark 
+                ? 'text-hajj-alabaster/80' 
+                : 'text-hajj-navy/80'
+            }`}
+          >
+            {translationLines}
+          </p>
+        </div>
+      );
+    }
+
+    return (
+      <p className={`text-sm leading-relaxed transition-all duration-300 ${
+        completed 
+          ? 'line-through opacity-35' 
+          : isDark 
+          ? 'text-hajj-alabaster/90' 
+          : 'text-hajj-navy'
+      }`}>
+        {text}
+      </p>
+    );
+  };
+
   return (
     <>
       <motion.div
@@ -412,6 +479,40 @@ const BottomSheet: React.FC = () => {
           </p>
         </div>
 
+        {/* Tab Selection */}
+        <div className="flex border-b border-black/5 dark:border-white/5 px-6 pb-2.5 flex-shrink-0">
+          <div className="flex w-full bg-black/5 dark:bg-white/5 p-1 rounded-xl">
+            <button
+              onClick={() => setActiveTab('guide')}
+              className={`flex-1 py-2 text-[11px] font-black uppercase tracking-wider rounded-lg transition-all focus:outline-none cursor-pointer ${
+                activeTab === 'guide'
+                  ? isDark 
+                    ? 'bg-hajj-gold text-hajj-green shadow-md shadow-hajj-gold/5' 
+                    : 'bg-hajj-green text-hajj-alabaster shadow-md shadow-hajj-green/10'
+                  : isDark
+                    ? 'text-hajj-alabaster/40 hover:text-hajj-alabaster/70'
+                    : 'text-hajj-navy/50 hover:text-hajj-navy/80'
+              }`}
+            >
+              🗺️ {language === 'ar' ? 'الدليل والمناسك' : language === 'tr' ? 'Rehber & Menasik' : language === 'sq' ? 'Udhëzuesi & Ritet' : 'Guide & Rites'}
+            </button>
+            <button
+              onClick={() => setActiveTab('duas')}
+              className={`flex-1 py-2 text-[11px] font-black uppercase tracking-wider rounded-lg transition-all focus:outline-none cursor-pointer ${
+                activeTab === 'duas'
+                  ? isDark 
+                    ? 'bg-hajj-gold text-hajj-green shadow-md shadow-hajj-gold/5' 
+                    : 'bg-hajj-green text-hajj-alabaster shadow-md shadow-hajj-green/10'
+                  : isDark
+                    ? 'text-hajj-alabaster/40 hover:text-hajj-alabaster/70'
+                    : 'text-hajj-navy/50 hover:text-hajj-navy/80'
+              }`}
+            >
+              📿 {language === 'ar' ? 'الأدعية الخاصة' : language === 'tr' ? 'Özel Dualarım' : language === 'sq' ? 'Lutjet e Mia' : 'Personal Duas'}
+            </button>
+          </div>
+        </div>
+
         {/* Scrollable Content */}
         <div 
           ref={contentRef}
@@ -419,7 +520,8 @@ const BottomSheet: React.FC = () => {
           style={{ paddingBottom: 'env(safe-area-inset-bottom, 24px)' }}
           onScroll={(e) => e.stopPropagation()} // Prevent bubble to horizontal nav
         >
-          <div className="py-6 space-y-8">
+          {activeTab === 'guide' ? (
+            <div className="py-6 space-y-8">
             {/* Onboarding Typology Notice */}
             {currentStage.id === 'arrival' && profile.hajjType === 'ifrad' && (
               <div className={`p-4 rounded-2xl border text-xs font-semibold leading-relaxed transition-all duration-500 ${
@@ -860,6 +962,279 @@ const BottomSheet: React.FC = () => {
             </section>
           )}
         </div>
+      ) : (
+        <div className="py-6 space-y-6">
+          {/* Progress Summary */}
+          <div className={`p-4 rounded-2xl border flex items-center justify-between transition-colors ${
+            isDark ? 'bg-white/5 border-white/5' : 'bg-white/50 border-white/20 shadow-sm'
+          }`}>
+            <div className="space-y-1">
+              <span className="text-[10px] font-black uppercase text-hajj-gold tracking-widest block">
+                {language === 'ar' ? 'تقدم الأدعية' : language === 'tr' ? 'Dua İlerlemesi' : language === 'sq' ? 'Progresi i Lutjeve' : 'Dua Progress'}
+              </span>
+              <span className="text-sm font-extrabold block">
+                🎯 {personalDuas.filter(d => d.completed).length} / {personalDuas.length} {language === 'ar' ? 'أدعية مكتملة' : language === 'tr' ? 'Tamamlanan Dua' : language === 'sq' ? 'Lutje të kryera' : 'completed'}
+              </span>
+            </div>
+            {personalDuas.length > 0 && (
+              <div className="w-20 h-1.5 bg-black/10 dark:bg-white/10 rounded-full overflow-hidden">
+                <div 
+                  className="h-full bg-hajj-gold transition-all duration-500" 
+                  style={{ width: `${(personalDuas.filter(d => d.completed).length / personalDuas.length) * 100}%` }}
+                />
+              </div>
+            )}
+          </div>
+
+          {/* Common Duas Catalog CTA Banner */}
+          <div className={`p-4 rounded-2xl border flex items-center justify-between gap-4 transition-all duration-300 ${
+            isDark 
+              ? 'bg-gradient-to-r from-hajj-green/30 to-hajj-green/10 border-hajj-green/20' 
+              : 'bg-gradient-to-r from-hajj-green/10 to-hajj-green/5 border-hajj-green/10 shadow-sm'
+          }`}>
+            <div className="space-y-0.5 flex-1">
+              <h4 className="text-xs font-bold text-hajj-gold uppercase tracking-wider">
+                📖 {language === 'ar' ? 'الأدعية المأثورة والجامعة' : language === 'tr' ? 'Sahih Dualar Kataloğu' : language === 'sq' ? 'Katalogu i Lutjeve të Shpeshta' : 'Common Duas Catalog'}
+              </h4>
+              <p className="text-[10px] opacity-75 leading-relaxed">
+                {language === 'ar' 
+                  ? 'تصفح ٣٢ دعاءً صحيحاً من القرآن والسنة واستوردها مباشرة لقائمتك.' 
+                  : language === 'tr' 
+                  ? 'Kur\'an ve Sünnet\'ten 32 sahih duayı inceleyin ve listenize aktarın.' 
+                  : language === 'sq' 
+                  ? 'Shfletoni 32 lutje të vërteta nga Kurani e Suneti dhe importojini ato.' 
+                  : 'Browse 32 authentic Qur\'an & Sunnah supplications to import.'}
+              </p>
+            </div>
+            <button
+              onClick={() => setIsCommonDuasOpen(true)}
+              className={`px-3 py-2 rounded-xl text-[10px] font-black uppercase tracking-wider active:scale-95 transition-all shadow-md focus:outline-none cursor-pointer flex-shrink-0 ${
+                isDark
+                  ? 'bg-hajj-gold text-hajj-green shadow-hajj-gold/5 hover:brightness-110'
+                  : 'bg-hajj-green text-hajj-alabaster shadow-hajj-green/10 hover:brightness-110'
+              }`}
+            >
+              {language === 'ar' ? 'عرض الأدعية' : language === 'tr' ? 'Duaları Gör' : language === 'sq' ? 'Shiko Lutjet' : 'View Catalog'}
+            </button>
+          </div>
+
+          {/* Add Supplication Form */}
+          <div className={`p-5 rounded-2xl border space-y-4 transition-colors ${
+            isDark ? 'bg-white/5 border-white/5' : 'bg-white/50 border-white/20 shadow-sm'
+          }`}>
+            <h4 className="text-xs font-bold text-hajj-gold uppercase tracking-wider">
+              ✍️ {language === 'ar' ? 'إضافة دعاء جديد' : language === 'tr' ? 'Yeni Dua Ekle' : language === 'sq' ? 'Shto Lutje të Re' : 'Add New Supplication'}
+            </h4>
+            
+            <div className="space-y-3">
+              <textarea
+                rows={2}
+                value={newDuaText}
+                onChange={(e) => setNewDuaText(e.target.value)}
+                placeholder={
+                  language === 'ar' 
+                    ? 'اكتب دعاءك هنا...' 
+                    : language === 'tr' 
+                    ? 'Duanızı buraya yazın...' 
+                    : language === 'sq' 
+                    ? 'Shkruani lutjen tuaj këtu...' 
+                    : 'Type your supplication here...'
+                }
+                className={`w-full p-3 rounded-xl border text-sm focus:outline-none transition-colors ${
+                  isDark 
+                    ? 'bg-black/45 border-white/10 text-white focus:border-hajj-gold/55' 
+                    : 'bg-white border-black/10 text-hajj-navy focus:border-hajj-green/55'
+                }`}
+              />
+              
+              <div className="flex gap-2 items-center">
+                <select
+                  value={newDuaCategory}
+                  onChange={(e) => setNewDuaCategory(e.target.value as PersonalDua['category'])}
+                  className={`flex-1 p-2.5 rounded-xl border text-xs focus:outline-none cursor-pointer transition-colors ${
+                    isDark 
+                      ? 'bg-black/45 border-white/10 text-white focus:border-hajj-gold/55' 
+                      : 'bg-white border-black/10 text-hajj-navy focus:border-hajj-green/55'
+                  }`}
+                >
+                  <option value="general">✨ {language === 'ar' ? 'عام' : language === 'tr' ? 'Genel' : language === 'sq' ? 'E Përgjithshme' : 'General'}</option>
+                  <option value="self">👞/🌸 {language === 'ar' ? 'لنفسي' : language === 'tr' ? 'Kendim İçin' : language === 'sq' ? 'Për Vete' : 'For Self'}</option>
+                  <option value="family">👨‍👩‍👧‍👦 {language === 'ar' ? 'لعائلتي' : language === 'tr' ? 'Ailem İçin' : language === 'sq' ? 'Për Familjen' : 'For Family'}</option>
+                  <option value="health">🤲 {language === 'ar' ? 'الصحة والشفاء' : language === 'tr' ? 'Sağlık & Şifa' : language === 'sq' ? 'Shëndet & Shërim' : 'Health & Shifa'}</option>
+                </select>
+
+                <button
+                  onClick={() => {
+                    if (!newDuaText.trim()) return;
+                    addPersonalDua(newDuaText.trim(), newDuaCategory);
+                    setNewDuaText('');
+                    if (navigator.vibrate) navigator.vibrate(30);
+                  }}
+                  className={`px-5 py-2.5 rounded-xl font-bold text-xs uppercase tracking-wider cursor-pointer active:scale-95 transition-all focus:outline-none ${
+                    isDark 
+                      ? 'bg-hajj-gold text-hajj-green hover:brightness-110 shadow-md shadow-hajj-gold/5' 
+                      : 'bg-hajj-green text-hajj-alabaster hover:brightness-110 shadow-md shadow-hajj-green/10'
+                  }`}
+                >
+                  {language === 'ar' ? 'حفظ' : language === 'tr' ? 'Kaydet' : language === 'sq' ? 'Ruaj' : 'Save'}
+                </button>
+              </div>
+            </div>
+          </div>
+
+          {/* Filtering Chips */}
+          <div className="flex gap-1.5 overflow-x-auto pb-1 flex-wrap">
+            {(['all', 'favorites', 'self', 'family', 'health', 'general'] as const).map((cat) => {
+              const isActive = duaFilter === cat;
+              let label = '';
+              if (cat === 'all') {
+                label = language === 'ar' ? 'الكل' : language === 'tr' ? 'Hepsi' : language === 'sq' ? 'Të Gjitha' : 'All';
+              } else if (cat === 'favorites') {
+                label = language === 'ar' ? '⭐ المفضلة' : language === 'tr' ? '⭐ Favoriler' : language === 'sq' ? '⭐ Favoritet' : '⭐ Favorites';
+              } else if (cat === 'self') {
+                label = language === 'ar' ? 'لنفسي' : language === 'tr' ? 'Kendim' : language === 'sq' ? 'Për Vete' : 'Self';
+              } else if (cat === 'family') {
+                label = language === 'ar' ? 'عائلتي' : language === 'tr' ? 'Ailem' : language === 'sq' ? 'Familja' : 'Family';
+              } else if (cat === 'health') {
+                label = language === 'ar' ? 'الشفاء' : language === 'tr' ? 'Sağlık' : language === 'sq' ? 'Shëndeti' : 'Health';
+              } else {
+                label = language === 'ar' ? 'عام' : language === 'tr' ? 'Genel' : language === 'sq' ? 'Përgjithshme' : 'General';
+              }
+              
+              return (
+                <button
+                  key={cat}
+                  onClick={() => setDuaFilter(cat)}
+                  className={`px-3 py-1.5 rounded-full text-[10px] font-black uppercase tracking-wider transition-all cursor-pointer focus:outline-none ${
+                    isActive
+                      ? isDark 
+                        ? 'bg-hajj-gold text-hajj-green border-none' 
+                        : 'bg-hajj-green text-hajj-alabaster border-none'
+                      : isDark
+                        ? 'bg-white/5 border border-white/5 text-hajj-alabaster/60 hover:bg-white/10'
+                        : 'bg-black/5 border border-black/5 text-hajj-navy/60 hover:bg-black/10'
+                  }`}
+                >
+                  {label}
+                </button>
+              );
+            })}
+          </div>
+
+          {/* Supplications List */}
+          <div className="space-y-3">
+            {personalDuas
+              .filter((d) => {
+                if (duaFilter === 'all') return true;
+                if (duaFilter === 'favorites') return !!d.starred;
+                return d.category === duaFilter;
+              })
+              .map((dua) => {
+                return (
+                  <div
+                    key={dua.id}
+                    className={`p-5 rounded-2xl border flex gap-4 items-start transition-all duration-300 relative ${
+                      isDark 
+                        ? 'bg-[#082216]/60 border-white/5 hover:border-white/10 hover:bg-[#082216]/80' 
+                        : 'bg-white/70 border-black/5 shadow-sm hover:shadow-md hover:bg-white'
+                    }`}
+                  >
+                    {/* Checkbox */}
+                    <div className="pt-0.5 flex-shrink-0">
+                      <input
+                        type="checkbox"
+                        checked={dua.completed}
+                        onChange={() => {
+                          togglePersonalDua(dua.id);
+                          if (navigator.vibrate) navigator.vibrate(30);
+                        }}
+                        className="w-5 h-5 cursor-pointer accent-hajj-green rounded-md"
+                      />
+                    </div>
+                    
+                    {/* Content area */}
+                    <div className="flex-1 space-y-2">
+                      <div className="flex items-center justify-between">
+                        <span className={`text-[8px] font-black uppercase tracking-widest px-1.5 py-0.5 rounded-md border ${
+                          dua.category === 'self'
+                            ? 'bg-emerald-500/10 border-emerald-500/20 text-emerald-500'
+                            : dua.category === 'family'
+                            ? 'bg-blue-500/10 border-blue-500/20 text-blue-500'
+                            : dua.category === 'health'
+                            ? 'bg-rose-500/10 border-rose-500/20 text-rose-500'
+                            : 'bg-hajj-gold/15 border-hajj-gold/30 text-hajj-gold'
+                        }`}>
+                          {dua.category}
+                        </span>
+                      </div>
+
+                      {renderPersonalDuaText(dua.text, dua.completed)}
+                    </div>
+
+                    {/* Actions Panel (Star & Delete) */}
+                    <div className="flex flex-col gap-2 items-center flex-shrink-0 self-stretch justify-between">
+                      {/* Star Button */}
+                      <button
+                        onClick={() => {
+                          toggleStarDua(dua.id);
+                          if (navigator.vibrate) navigator.vibrate(30);
+                        }}
+                        className={`w-7 h-7 flex items-center justify-center rounded-lg border transition-colors cursor-pointer focus:outline-none ${
+                          dua.starred
+                            ? isDark
+                              ? 'bg-hajj-gold/20 border-hajj-gold/35 text-hajj-gold hover:bg-hajj-gold/30'
+                              : 'bg-amber-50 border-amber-200 text-amber-600 hover:bg-amber-100/70 shadow-sm'
+                            : isDark
+                              ? 'bg-white/5 border-white/5 text-hajj-alabaster/40 hover:bg-white/10 hover:text-hajj-alabaster/70'
+                              : 'bg-black/5 border-black/5 text-hajj-navy/40 hover:bg-black/10 hover:text-hajj-navy/70'
+                        }`}
+                        title={dua.starred ? "Remove from Favorites" : "Add to Favorites"}
+                      >
+                        <svg 
+                          className="w-3.5 h-3.5" 
+                          fill={dua.starred ? "currentColor" : "none"} 
+                          stroke="currentColor" 
+                          viewBox="0 0 24 24" 
+                          strokeWidth="2.5"
+                        >
+                          <path strokeLinecap="round" strokeLinejoin="round" d="M11.48 3.499c.195-.596 1.04-.596 1.236 0l2.25 6.848a1 1 0 00.95.69h7.198c.628 0 .888.82.38 1.218l-5.82 4.45a1 1 0 00-.364 1.118l2.25 6.848c.196.596-.48 1.09-.98.718l-5.82-4.45a1 1 0 00-1.176 0l-5.82 4.45c-.5.372-1.176-.122-.98-.718l2.25-6.848a1 1 0 00-.364-1.118L2.064 12.255c-.5-.398-.24-1.218.38-1.218h7.198a1 1 0 00.95-.69l2.25-6.848z" />
+                        </svg>
+                      </button>
+
+                      {/* Delete Button */}
+                      <button
+                        onClick={() => {
+                          deletePersonalDua(dua.id);
+                          if (navigator.vibrate) navigator.vibrate(40);
+                        }}
+                        className={`w-7 h-7 flex items-center justify-center rounded-lg border transition-colors cursor-pointer focus:outline-none ${
+                          isDark 
+                            ? 'bg-red-950/20 border-red-900/30 text-red-400 hover:bg-red-900/40 hover:text-red-300' 
+                            : 'bg-red-50 border-red-200 text-red-650 hover:bg-red-100 hover:text-red-800'
+                        }`}
+                        title="Delete Supplication"
+                      >
+                        <svg className="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24" strokeWidth="2.5">
+                          <path strokeLinecap="round" strokeLinejoin="round" d="M19 7l-.867 12.142A2 2 0 0116.138 21H7.862a2 2 0 01-1.995-1.858L5 7m5 4v6m4-6v6m1-10V4a1 1 0 00-1-1h-4a1 1 0 00-1 1v3M4 7h16" />
+                        </svg>
+                      </button>
+                    </div>
+                  </div>
+                );
+              })}
+
+            {personalDuas.filter((d) => {
+              if (duaFilter === 'all') return true;
+              if (duaFilter === 'favorites') return !!d.starred;
+              return d.category === duaFilter;
+            }).length === 0 && (
+              <div className="py-8 text-center text-xs opacity-40 font-medium">
+                {language === 'ar' ? 'لا توجد أدعية في هذا القسم.' : language === 'tr' ? 'Bu kategoride dua bulunmuyor.' : language === 'sq' ? 'Nuk ka lutje në këtë kategori.' : 'No supplications in this category.'}
+              </div>
+            )}
+          </div>
+        </div>
+      )}
         
         {/* Safe Area Spacer */}
         <div className="h-[env(safe-area-inset-bottom,24px)]" />
@@ -1209,6 +1584,219 @@ const BottomSheet: React.FC = () => {
               <div className={isDark ? 'bg-[#0d0406]' : 'bg-rose-100/50'} style={{ height: 'env(safe-area-inset-bottom, 0px)' }} />
             </motion.div>
           </>
+        )}
+      </AnimatePresence>
+
+      {/* Common Duas Modal */}
+      <AnimatePresence>
+        {isCommonDuasOpen && (
+          <motion.div
+            initial={{ opacity: 0, y: 30 }}
+            animate={{ opacity: 1, y: 0 }}
+            exit={{ opacity: 0, y: 30 }}
+            className={`fixed inset-0 z-[100] flex flex-col backdrop-blur-xl ${
+              isDark ? 'bg-hajj-green/95 text-hajj-alabaster' : 'bg-hajj-alabaster/95 text-hajj-navy'
+            }`}
+          >
+            {/* Header */}
+            <div className={`px-6 py-4 flex items-center justify-between border-b ${
+              isDark ? 'border-white/5 bg-[#061D13]' : 'border-black/5 bg-[#FAF6F0]'
+            }`}>
+              <div className="flex items-center gap-2">
+                <span className="text-xl">📖</span>
+                <div>
+                  <h3 className="text-sm font-black uppercase tracking-wider text-hajj-gold">
+                    {language === 'ar' ? 'الأدعية المأثورة والجامعة' : language === 'tr' ? 'Sahih Dualar' : language === 'sq' ? 'Lutjet e Shpeshta' : 'Common Duas'}
+                  </h3>
+                  <p className="text-[9px] opacity-60">
+                    {language === 'ar' ? '٣٢ دعاءً صحيحاً من القرآن والسنة النبوية' : language === 'tr' ? 'Kur\'an ve Sünnet\'ten 32 Sahih Dua' : language === 'sq' ? '32 Lutje të Vërteta nga Kurani e Suneti' : '32 Authentic Supplications from Quran & Sunnah'}
+                  </p>
+                </div>
+              </div>
+              <button
+                onClick={() => {
+                  setIsCommonDuasOpen(false);
+                  setImportingDuaId(null);
+                }}
+                className={`w-8 h-8 flex items-center justify-center rounded-full border transition-transform active:scale-90 cursor-pointer focus:outline-none ${
+                  isDark ? 'bg-white/5 border-white/10 text-white/80 hover:bg-white/10' : 'bg-black/5 border-black/10 text-black/80 hover:bg-black/10'
+                }`}
+              >
+                ✕
+              </button>
+            </div>
+
+            {/* Category Filter Tabs */}
+            <div className={`px-6 py-3 flex gap-1.5 overflow-x-auto border-b ${
+              isDark ? 'border-white/5 bg-[#051810]' : 'border-black/5 bg-[#FAF8F5]'
+            }`}>
+              {(['all', 'quran', 'prophetic', 'forgiveness', 'hajj'] as const).map((cat) => {
+                const isActive = commonDuaCategory === cat;
+                let label = '';
+                if (cat === 'all') {
+                  label = language === 'ar' ? 'الكل' : language === 'tr' ? 'Tümü' : language === 'sq' ? 'Të Gjitha' : 'All';
+                } else if (cat === 'quran') {
+                  label = language === 'ar' ? 'من القرآن' : language === 'tr' ? 'Kur\'an\'dan' : language === 'sq' ? 'Nga Kurani' : 'Quranic';
+                } else if (cat === 'prophetic') {
+                  label = language === 'ar' ? 'أدعية نبوية' : language === 'tr' ? 'Nebevi' : language === 'sq' ? 'Profetike' : 'Prophetic';
+                } else if (cat === 'forgiveness') {
+                  label = language === 'ar' ? 'الاستغفار' : language === 'tr' ? 'Bağışlanma' : language === 'sq' ? 'Për Falje' : 'Forgiveness';
+                } else if (cat === 'hajj') {
+                  label = language === 'ar' ? 'الحج والمناسك' : language === 'tr' ? 'Hac & Arafat' : language === 'sq' ? 'Haxhi' : 'Hajj';
+                }
+                return (
+                  <button
+                    key={cat}
+                    onClick={() => {
+                      setCommonDuaCategory(cat);
+                      setImportingDuaId(null);
+                    }}
+                    className={`px-3.5 py-1.5 rounded-full text-[10px] font-black uppercase tracking-wider transition-all whitespace-nowrap cursor-pointer focus:outline-none ${
+                      isActive
+                        ? isDark 
+                          ? 'bg-hajj-gold text-hajj-green border-none shadow-md shadow-hajj-gold/10' 
+                          : 'bg-hajj-green text-hajj-alabaster border-none shadow-md shadow-hajj-green/10'
+                        : isDark
+                          ? 'bg-white/5 border border-white/5 text-hajj-alabaster/60 hover:bg-white/10'
+                          : 'bg-black/5 border border-black/5 text-hajj-navy/60 hover:bg-black/10'
+                    }`}
+                  >
+                    {label}
+                  </button>
+                );
+              })}
+            </div>
+
+            {/* List of Duas */}
+            <div className="flex-1 overflow-y-auto p-6 space-y-4">
+              {commonDuas
+                .filter((d) => commonDuaCategory === 'all' || d.category === commonDuaCategory)
+                .map((dua) => {
+                  const isImporting = importingDuaId === dua.id;
+                  return (
+                    <div
+                      key={dua.id}
+                      className={`p-5 rounded-2xl border transition-all relative ${
+                        isDark 
+                          ? 'bg-[#082216]/60 border-white/5 hover:border-white/10' 
+                          : 'bg-white/70 border-black/5 shadow-sm hover:bg-white'
+                      }`}
+                    >
+                      {/* Badge */}
+                      <span className={`text-[8px] font-black uppercase tracking-widest px-1.5 py-0.5 rounded-md border inline-block mb-3 ${
+                        dua.category === 'quran'
+                          ? 'bg-emerald-500/10 border-emerald-500/20 text-emerald-500'
+                          : dua.category === 'prophetic'
+                          ? 'bg-blue-500/10 border-blue-500/20 text-blue-500'
+                          : dua.category === 'forgiveness'
+                          ? 'bg-purple-500/10 border-purple-500/20 text-purple-500'
+                          : 'bg-hajj-gold/15 border-hajj-gold/30 text-hajj-gold'
+                      }`}>
+                        {dua.category}
+                      </span>
+
+                      {/* Arabic script with diacritics */}
+                      <p className="text-right text-lg font-bold leading-loose text-hajj-navy dark:text-white mb-2 font-arabic" dir="rtl">
+                        {dua.arabic}
+                      </p>
+
+                      {/* Transliteration */}
+                      <p className="text-xs italic opacity-65 leading-relaxed mb-3">
+                        {dua.transliteration}
+                      </p>
+
+                      {/* Translated text */}
+                      <p className="text-xs leading-relaxed font-semibold opacity-90 border-t border-black/5 dark:border-white/5 pt-3">
+                        {dua.translations[language] || dua.translations['en']}
+                      </p>
+
+                      {/* Actions Footer */}
+                      <div className="mt-4 pt-3 border-t border-black/5 dark:border-white/5 flex items-center justify-between flex-wrap gap-2">
+                        <span className="text-[9px] opacity-40 font-mono">ID: {dua.id}</span>
+                        
+                        <div className="relative">
+                          {!isImporting ? (
+                            <button
+                              onClick={() => {
+                                setImportingDuaId(dua.id);
+                                if (navigator.vibrate) navigator.vibrate(30);
+                              }}
+                              className={`px-3 py-1.5 rounded-lg text-[10px] font-black uppercase tracking-wider cursor-pointer active:scale-95 transition-all focus:outline-none flex items-center gap-1.5 ${
+                                isDark 
+                                  ? 'bg-hajj-gold text-hajj-green hover:brightness-110 shadow-sm shadow-hajj-gold/5' 
+                                  : 'bg-hajj-green text-hajj-alabaster hover:brightness-110 shadow-sm'
+                              }`}
+                            >
+                              📥 {language === 'ar' ? 'حفظ ودعاء' : language === 'tr' ? 'Ekle & Kaydet' : language === 'sq' ? 'Shto & Ruaj' : 'Import & Save'}
+                            </button>
+                          ) : (
+                            <div className="flex items-center gap-1 bg-black/10 dark:bg-white/5 p-1 rounded-xl border border-black/5 dark:border-white/5 animate-fade-in flex-wrap">
+                              <span className="text-[9px] px-2 font-bold uppercase tracking-wider opacity-60">
+                                {language === 'ar' ? 'الفئة:' : language === 'tr' ? 'Kategori:' : language === 'sq' ? 'Kategoria:' : 'Folder:'}
+                              </span>
+                              {(['general', 'self', 'family', 'health'] as const).map((destCat) => {
+                                let label = destCat === 'general' ? 'Gen' : destCat === 'self' ? 'Self' : destCat === 'family' ? 'Fam' : 'Health';
+                                if (language === 'ar') {
+                                  label = destCat === 'general' ? 'عام' : destCat === 'self' ? 'نفسي' : destCat === 'family' ? 'عائلة' : 'شفاء';
+                                } else if (language === 'tr') {
+                                  label = destCat === 'general' ? 'Genel' : destCat === 'self' ? 'Kendim' : destCat === 'family' ? 'Ailem' : 'Sağlık';
+                                } else if (language === 'sq') {
+                                  label = destCat === 'general' ? 'Përgj' : destCat === 'self' ? 'Vete' : destCat === 'family' ? 'Familj' : 'Shënd';
+                                }
+                                return (
+                                  <button
+                                    key={destCat}
+                                    onClick={() => {
+                                      const textToImport = `${dua.arabic}\n(${dua.translations[language] || dua.translations['en']})`;
+                                      addPersonalDua(textToImport, destCat, false, dua.id);
+                                      setImportingDuaId(null);
+                                      if (navigator.vibrate) navigator.vibrate(50);
+                                    }}
+                                    className={`px-2 py-1 rounded-lg text-[9px] font-black uppercase tracking-wider cursor-pointer active:scale-95 transition-all ${
+                                      isDark
+                                        ? 'bg-white/10 hover:bg-hajj-gold hover:text-hajj-green text-white'
+                                        : 'bg-white hover:bg-hajj-green hover:text-white text-hajj-navy border border-black/5'
+                                    }`}
+                                  >
+                                    {label}
+                                  </button>
+                                );
+                              })}
+                              
+                              {/* Option with star directly */}
+                              <button
+                                onClick={() => {
+                                  const textToImport = `${dua.arabic}\n(${dua.translations[language] || dua.translations['en']})`;
+                                  addPersonalDua(textToImport, 'general', true, dua.id);
+                                  setImportingDuaId(null);
+                                  if (navigator.vibrate) navigator.vibrate(60);
+                                }}
+                                className={`p-1 rounded-lg text-[9px] font-black uppercase tracking-wider cursor-pointer active:scale-95 transition-all ${
+                                  isDark
+                                    ? 'bg-hajj-gold/25 hover:bg-hajj-gold text-hajj-gold hover:text-hajj-green'
+                                    : 'bg-amber-50 hover:bg-amber-100 text-amber-600 border border-amber-200'
+                                }`}
+                                title="Import and mark Favorite ⭐"
+                              >
+                                ⭐
+                              </button>
+
+                              {/* Cancel import */}
+                              <button
+                                onClick={() => setImportingDuaId(null)}
+                                className={`w-5 h-5 flex items-center justify-center rounded-full text-xs font-black text-red-500 hover:bg-red-500/10 cursor-pointer`}
+                              >
+                                ✕
+                              </button>
+                            </div>
+                          )}
+                        </div>
+                      </div>
+                    </div>
+                  );
+                })}
+            </div>
+          </motion.div>
         )}
       </AnimatePresence>
     </>

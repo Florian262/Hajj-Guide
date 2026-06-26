@@ -26,3 +26,7 @@ dist-ssr
 # Scratch files
 scratch
 scratch/
+
+# Vite cache and config timestamps
+.vite/
+vite.config.ts.timestamp-*

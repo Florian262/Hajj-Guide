@@ -12,7 +12,7 @@ export const CloudTransition: React.FC<CloudTransitionProps> = ({ isVisible }) =
     <AnimatePresence>
       {isVisible && (
         <motion.div 
-          className="fixed inset-0 w-full h-full z-50 overflow-hidden pointer-events-none select-none bg-black/5"
+          className="absolute inset-0 w-full h-full z-50 overflow-hidden pointer-events-none select-none bg-black/5"
           initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}
           exit={{ opacity: 0 }}
@@ -22,11 +22,15 @@ export const CloudTransition: React.FC<CloudTransitionProps> = ({ isVisible }) =
           <motion.img 
             src={cloudAssetUrl} 
             alt="Transition Mist Base" 
-            className="absolute w-[200vw] h-[200vh] object-cover cloud-blend-screen"
-            initial={{ scale: 0.5, rotate: 0 }}
-            animate={{ scale: 2.2, rotate: -15 }}
+            className="absolute object-cover cloud-blend-screen"
+            initial={{ scale: 0.8, rotate: 0 }}
+            animate={{ scale: 1.5, rotate: -15 }}
             transition={{ duration: 1.1, ease: [0.4, 0, 0.2, 1] }} // Custom cubic bezier for a heavy plunge feel
             style={{ 
+              left: "-20%",
+              top: "-20%",
+              width: "140%",
+              height: "140%",
               willChange: 'transform, opacity',
               backfaceVisibility: 'hidden',
               WebkitBackfaceVisibility: 'hidden',
@@ -38,11 +42,15 @@ export const CloudTransition: React.FC<CloudTransitionProps> = ({ isVisible }) =
           <motion.img 
             src={cloudAssetUrl} 
             alt="Transition Mist Foreground" 
-            className="absolute w-[250vw] h-[250vh] object-cover cloud-blend-screen scale-y-[-1]" // Flips image vertically for variety
-            initial={{ scale: 0.4, rotate: 45 }}
-            animate={{ scale: 3.0, rotate: 90 }}
+            className="absolute object-cover cloud-blend-screen scale-y-[-1]" // Flips image vertically for variety
+            initial={{ scale: 0.7, rotate: 45 }}
+            animate={{ scale: 1.6, rotate: 90 }}
             transition={{ duration: 0.9, ease: [0.25, 1, 0.5, 1] }} // Snappy exit ease
             style={{ 
+              left: "-30%",
+              top: "-30%",
+              width: "160%",
+              height: "160%",
               willChange: 'transform, opacity',
               backfaceVisibility: 'hidden',
               WebkitBackfaceVisibility: 'hidden',
